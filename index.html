@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KOALA - Advanced Thermal Analysis Tool</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- MathJax for rendering equations -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <img src="img/KLogo.png" alt="KOALA" style="height: 40px; width: auto;">
+                </div>
+                <div class="nav-links">
+                    <a href="#features">Features</a>
+                    <a href="documentation.html">Documentation</a>
+                    <a href="#download" class="btn btn-primary">
+                        <i class="fas fa-download"></i> Get KOALA
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="hero">
+
+
+            <div class="container">
+                <h1>KOALA</h1>
+                <p>K-value Optimization & Advanced Layer Analysis<br>Thermal Analysis of Building Assemblies</p>
+                <!-- <div class="hero-cta">
+                    <a href="#download" class="btn btn-primary">
+                        <i class="fas fa-download"></i> Get KOALA
+                    </a>
+                    <a href="#features" class="btn btn-secondary">
+                        Learn More
+                    </a>
+                </div> -->
+                <div class="hero-image">
+                    <img src="img/screenshot.png" alt="KOALA Interface">
+                </div>
+
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Features</span>
+                    <h2>Tool For Advanced Construction Assembly Thermal Analysis</h2>
+                </div>
+
+                <div class="features-grid">
+                    <!--<div class="feature-card">
+                        <div class="feature-image">
+                            <div class="img-placeholder">Editor Screenshot</div>
+                        </div>
+                        <div class="feature-content">
+                            <div class="feature-icon">
+                                <i class="fas fa-layer-group"></i>
+                            </div>
+                            <h3>Construction Editor</h3>
+                            <p>Build assemblies layer by layer. Manage homogeneous and inhomogeneous layers with
+                                parametric editing of thickness and stud spacing.</p>
+                        </div>
+                    </div> -->
+
+                    <div class="feature-card">
+                        <div class="feature-image">
+                            <img src="img/materials.png" alt="Material Management"> -->
+                        </div>
+                        <div class="feature-content">
+                            <div class="feature-icon">
+                                <i class="fas fa-cubes"></i>
+                            </div>
+                            <h3>Material Management</h3>
+                            <p>Robust built-in library of standard materials. Create custom libraries, import/export
+                                JSON, and manage distinct properties.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-image">
+                            <img src="img/export.png" alt="Equivalent U-Value and IDF">
+                        </div>
+                        <div class="feature-content">
+                            <div class="feature-icon">
+                                <i class="fas fa-calculator"></i>
+                            </div>
+                            <h3>U-Value Calculation</h3>
+                            <p>Compute an U-value that takes into account the thermal bridging effect in inhomogeneous
+                                constructions and export equivalent homogenious construction to EnergyPlus IDF.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-image contain">
+                            <img src="img/dynamic.png" alt="Dynamic Analysis"> -->
+                        </div>
+                        <div class="feature-content">
+                            <div class="feature-icon">
+                                <i class="fas fa-wave-square"></i>
+                            </div>
+                            <h3>Dynamic Analysis</h3>
+                            <p>ISO 13786 compliant dynamic solver. Calculate decrement factor, phase shift, and thermal
+                                admittance for time-dependent response.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-image contain">
+                            <img src="img/temperaturegradient.png" alt="Temperature Gradient">
+                        </div>
+                        <div class="feature-content">
+                            <div class="feature-icon">
+                                <i class="fas fa-temperature-high"></i>
+                            </div>
+                            <h3>Temperature Gradient Mapping</h3>
+                            <p>Visualize temperature distribution to identify thermal weak points to facilitate thermal
+                                bridging mitigation.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-image contain">
+                            <img src="img/heatflux.png" alt="Heat Flux Mapping"> -->
+                            <div class="img-placeholder">Heat Flux Mapping</div>
+                        </div>
+                        <div class="feature-content">
+                            <div class="feature-icon">
+                                <i class="fas fa-bars-staggered"></i>
+                            </div>
+                            <h3>Heat Flux Mapping</h3>
+                            <p>Visualize heat flux through your construction assembly components</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-image contain">
+                            <img src="img/condensation.png" alt="Condensation Risk">
+
+                        </div>
+                        <div class="feature-content">
+                            <div class="feature-icon">
+                                <i class="fas fa-tint"></i>
+                            </div>
+                            <h3>Condensation Risk Analysis</h3>
+                            <p>Perform a 2D condensation risk assessment and understand where moisture issues could
+                                arise.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <section id="download" class="download">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Download KOALA for your platform</h2>
+                </div>
+
+                <div class="download-cards">
+                    <div class="download-card">
+                        <div class="os-icon">
+                            <i class="fab fa-windows"></i>
+                        </div>
+                        <h3>Windows</h3>
+                        <span class="version">v1.0.0 (x64)</span>
+                        <a href="#" class="btn btn-primary" onclick="openModal('Windows', '')">Download
+                            .exe</a>
+                    </div>
+
+                    <div class="download-card">
+                        <div class="os-icon">
+                            <i class="fab fa-apple"></i>
+                        </div>
+                        <h3>macOS</h3>
+                        <span class="version">v1.0.0 (Universal)</span>
+                        <a href="#" class="btn btn-primary" onclick="openModal('macOS', '')">Download
+                            .dmg</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Timur Dogan. All rights reserved.</p>
+            <p class="footer-links"><a href="license.html">Software License</a></p>
+        </div>
+    </footer>
+    <!-- Download Modal -->
+    <div id="downloadModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Get KOALA for <span id="platformName"></span></h2>
+            <p style="margin-bottom: 1rem; color: var(--text-muted);">Please share a bit about yourself. The installer
+                download links will be provided after this short form. By downloading and installing the software, you
+                are agreeing to the <a href="license.html" target="_blank"
+                    style="color: var(--primary); text-decoration: underline;">license</a>.</p>
+
+            <div class="form-container">
+                <!-- Iframe src will be set dynamically to include pre-filled platform -->
+                <iframe id="googleFormIframe" src="" width="100%" height="500" frameborder="0" marginheight="0"
+                    marginwidth="0">Loading…</iframe>
+            </div>
+
+            <div class="modal-footer">
+                <!-- <p class="modal-note">Finished the form?</p>
+                <a id="finalDownloadBtn" href="#" class="btn btn-primary" onclick="handleDownload()">
+                    <i class="fas fa-download"></i> Start Download
+                </a> -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal logic
+        const modal = document.getElementById("downloadModal");
+        const platformSpan = document.getElementById("platformName");
+        const formIframe = document.getElementById("googleFormIframe");
+        let currentDownloadUrl = "";
+
+        const baseFormUrl = "https://docs.google.com/forms/d/e/1FAIpQLSdD_Id0k9NyOirrJRc1OGQ-yDChW14p5x7cDBk--HINyaklbQ/viewform?embedded=true";
+        const platformEntryId = "entry.1515897647";
+
+        function openModal(platform, url) {
+            modal.style.display = "block";
+            platformSpan.textContent = platform;
+            currentDownloadUrl = url;
+
+            // Map platform name to form expectation if needed
+            let formPlatformValue = platform;
+            if (platform === 'macOS') formPlatformValue = 'Mac';
+
+            // Construct URL with pre-filled platform
+            // Note: Google Forms prefills use query parameters
+            const formUrl = `${baseFormUrl}&${platformEntryId}=${encodeURIComponent(formPlatformValue)}`;
+            formIframe.src = formUrl;
+
+            // Prevent scrolling on body when modal is open
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+
+        function handleDownload() {
+            // Trigger download logic
+            if (currentDownloadUrl) {
+                if (currentDownloadUrl.includes('example.com')) {
+                    alert(`Starting download for ${platformSpan.textContent}... (This is a placeholder action)`);
+                } else {
+                    window.location.href = currentDownloadUrl;
+                }
+            }
+
+            closeModal();
+        }
+
+        // Close modal when clicking outside of the content
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+
+</html>

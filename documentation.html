@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - KOALA</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- MathJax for rendering equations -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <a href="index.html" style="text-decoration: none; color: inherit;">
+                        <img src="img/KLogo.png" alt="KOALA" style="height: 40px; width: auto;">
+                    </a>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html#features">Features</a>
+                    <a href="#" class="active" style="color: var(--secondary);">Documentation</a>
+                    <a href="index.html#download" class="btn btn-primary">Download</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" style="padding-bottom: 50px; padding-top: 150px;">
+            <div class="container">
+                <h1>Documentation</h1>
+            </div>
+        </section>
+
+        <section class="documentation-content">
+            <div class="container">
+                <div class="docs-grid" style="display: grid; grid-template-columns: 250px 1fr; gap: 4rem;">
+
+                    <!-- Sidebar Navigation -->
+                    <aside class="docs-nav" style="position: sticky; top: 100px; height: fit-content;">
+                        <ul style="list-style: none;">
+                            <li style="margin-bottom: 1rem;"><a href="#getting-started"
+                                    style="font-weight: 600;">Getting Started</a></li>
+                            <li style="margin-bottom: 1rem;"><a href="#interface" style="font-weight: 600;">Interface
+                                    Overview</a></li>
+                            <li style="margin-bottom: 1rem;"><a href="#materials" style="font-weight: 600;">Material
+                                    Library</a></li>
+                            <li style="margin-bottom: 1rem;"><a href="#constructions" style="font-weight: 600;">Building
+                                    Constructions</a></li>
+                            <li style="margin-bottom: 1rem;"><a href="#solver" style="font-weight: 600;">Running the
+                                    Solver</a></li>
+                            <li style="margin-bottom: 1rem;"><a href="#results" style="font-weight: 600;">Analyzing
+                                    Results</a></li>
+                            <li style="margin-bottom: 1rem;"><a href="#idf-export" style="font-weight: 600;">EnergyPlus
+                                    Export</a></li>
+                            <li style="margin-bottom: 1rem;"><a href="#under-the-hood"
+                                    style="font-weight: 600;">Simulations Under the Hood</a></li>
+                        </ul>
+                    </aside>
+
+                    <!-- Main Content -->
+                    <div class="docs-main">
+
+                        <article id="getting-started" style="margin-bottom: 4rem;">
+                            <h2>Getting Started</h2>
+                            <p style="margin-bottom: 1rem; color: var(--text-muted);">
+                                KOALA is a standalone application for Windows and macOS that is distributed as MSI installer or DMG.
+                            </p>
+                        </article>
+
+                        <article id="interface" style="margin-bottom: 4rem;">
+                            <h2>Interface Overview</h2>
+                            <p style="margin-bottom: 1rem; color: var(--text-muted);">
+                                The KOALA interface is designed to be intuitive and efficient. The main window is
+                                divided into three primary areas:
+                            </p>
+                            <ol style="list-style: decimal; margin-left: 20px; color: var(--text-muted);">
+                                <li style="margin-bottom: 0.5rem;"><strong>Navigation Bar:</strong> Access different
+                                    modules (Materials, Constructions, Solver).</li>
+                                <li style="margin-bottom: 0.5rem;"><strong>Workspace:</strong> The central area where
+                                    you edit materials or build geometric models.</li>
+                                <li style="margin-bottom: 0.5rem;"><strong>Properties Panel:</strong> Located on the
+                                    right, this panel shows details for the currently selected item.</li>
+                            </ol>
+                        </article>
+
+                        <article id="materials" style="margin-bottom: 4rem;">
+                            <h2>Material Library</h2>
+                            <p style="margin-bottom: 1rem; color: var(--text-muted);">
+                                Before creating a construction, you need materials. KOALA comes with a standard library,
+                                but you can create your own.
+                            </p>
+                            <p style="color: var(--text-muted);">
+                                Navigate to the <strong>Materials</strong> tab. Click "New Material" to define
+                                properties like Thermal Conductivity (λ), Density (ρ), and Specific Heat Capacity (cp).
+                            </p>
+                        </article>
+
+                        <article id="constructions" style="margin-bottom: 4rem;">
+                            <h2>Building Constructions</h2>
+                            <p style="margin-bottom: 1rem; color: var(--text-muted);">
+                                The <strong>Construction Editor</strong> is where you define the geometry of your
+                                building assembly.
+                            </p>
+                            <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Adding Layers</h3>
+                            <p style="color: var(--text-muted);">
+                                You can add layers to your assembly. Each layer can be:
+                            </p>
+                            <ul style="list-style: disc; margin-left: 20px; color: var(--text-muted);">
+                                <li><strong>Homogeneous:</strong> A single material slab.</li>
+                                <li><strong>Inhomogeneous:</strong> A layer with repeating thermal bridges (e.g.,
+                                    studs). You can define the stud spacing and width parametrically.</li>
+                            </ul>
+                            <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Surface Resistances (Rsi/Rse)</h3>
+                            <p style="color: var(--text-muted); margin-bottom: 1rem;">
+                                Every construction requires <strong>Surface Film Resistances</strong> to account for the
+                                thin layer of air clinging to the surface.
+                            </p>
+                            <ul style="list-style: disc; margin-left: 20px; color: var(--text-muted);">
+                                <li><strong>Rsi (Interior):</strong> Represents the resistance at the indoor surface
+                                    (convection + radiation). Standard value for walls: <strong>0.13 m²K/W</strong>.
+                                </li>
+                                <li><strong>Rse (Exterior):</strong> Represents the resistance at the outdoor surface
+                                    (influenced by wind). Standard value for walls: <strong>0.04 m²K/W</strong>.</li>
+                            </ul>
+                            <p
+                                style="color: var(--text-muted); margin-top: 1rem; font-size: 0.9em; font-style: italic;">
+                                KOALA automatically adds these layers to your construction stack. You do not need to
+                                model them as material layers, but you can adjust their values in the Properties Panel
+                                if simulating floors or roofs.
+                            </p>
+                        </article>
+
+                            <article id="solver" style="margin-bottom: 4rem;">
+                                <h2>Running the Solver</h2>
+                                <p style="margin-bottom: 1rem; color: var(--text-muted);">
+                                    KOALA performs two types of thermal simulations simultaneously: a
+                                    <strong>Steady-State
+                                        Analysis</strong> and a <strong>Dynamic Analysis (ISO 13786)</strong>.
+                                </p>
+
+                                <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">Boundary Conditions</h3>
+                                <p style="color: var(--text-muted); margin-bottom: 1rem;">
+                                    The solver calculates heat flow based on the temperature difference (ΔT) between the
+                                    indoor and outdoor environments.
+                                </p>
+                                <ul style="list-style: disc; margin-left: 20px; color: var(--text-muted);">
+                                    <li><strong>Temperature:</strong> Set the Interior (e.g., 20°C) and Exterior (e.g.,
+                                        -10°C) air temperatures. The solver uses these to calculate the temperature
+                                        gradient through the assembly.</li>
+                                    <li><strong>Relative Humidity (RH):</strong> Define the moisture content of the air
+                                        on both sides. This is critical for <strong>Glaser Method</strong> condensation
+                                        risk analysis.</li>
+                                </ul>
+                           
+                                <p style="color: var(--text-muted); margin-bottom: 1rem;">
+                                    The solver discretizes your construction into a 2D mesh of rectangular finite
+                                    elements.
+                                    It solves the steady-state heat diffusion equation to determine the temperature at
+                                    every
+                                    node. This is crucial for identifying <strong>thermal bridges</strong>—areas where
+                                    heat
+                                    bypasses insulation (like through steel or wood studs), significantly reducing the
+                                    wall's effective performance.
+                                </p>
+
+                                <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">Dynamic Analysis</h3>
+                                <p style="color: var(--text-muted);">
+                                    In addition to the static U-value, KOALA computes dynamic thermal properties
+                                    according
+                                    to the ISO 13786 standard. This simulates how the wall reacts to fluctuating outdoor
+                                    temperatures over a 24-hour cycle, which is essential for understanding
+                                    <strong>thermal
+                                        mass</strong> and time lag.
+                                </p>
+                            </article>
+
+                            <article id="results" style="margin-bottom: 4rem;">
+                                <h2>Results</h2>
+                                <ul
+                                    style="list-style: disc; margin-left: 20px; color: var(--text-muted); margin-bottom: 1.5rem;">
+                                    <li style="margin-bottom: 0.5rem;">
+                                        <strong>U-Value (Thermal Transmittance):</strong> Represents the rate of heat
+                                        transfer through the assembly. Lower values mean better insulation. KOALA
+                                        calculates
+                                        the <span style="font-family: monospace;">U_Simulated</span>, which accurately
+                                        accounts
+                                        for 2D thermal bridging effects that simple 1D calculations miss. <span style="font-family: monospace;">U_Estimated</span> uses a simple parallel path U-Value calculation that is only valid if there is little to no lateral conducion the the inhomogeneous layers.
+                                    </li>
+                                     <li style="margin-bottom: 0.5rem;"><strong>Decrement Factor:</strong> How much the
+                                        exterior temperature wave is dampened before reaching the interior. Lower is
+                                        better
+                                        for stable indoor temperatures.</li>
+                                    <li style="margin-bottom: 0.5rem;"><strong>Time Shift (Phase Lag):</strong> The time
+                                        delay (in hours) for the peak outdoor temperature to reach the inside. A high
+                                        time
+                                        shift (e.g., 8-12 hours) can delay heat gain until night when it can be flushed
+                                        out.
+                                    </li>
+                                    <!-- <li style="margin-bottom: 0.5rem;">
+                                        <strong>Temperature Field:</strong> Creating a color gradient map helps
+                                        visualize
+                                        the temperature distribution. Use this to spot cold spots on the interior
+                                        surface
+                                        where <strong>condensation</strong> might occur.
+                                    </li>
+                                    <li style="margin-bottom: 0.5rem;">
+                                        <strong>Heat Flux</strong> Arrows show the path of least resistance for
+                                        heat flow. Large arrows through studs indicate significant thermal bridging.
+                                    </li>
+                                        <li style="margin-bottom: 0.5rem;">
+                                        <strong>Condensation Risk</strong> Arrows show the path of least resistance for
+                                        heat flow. Large arrows through studs indicate significant thermal bridging.
+                                    </li> -->
+                                </ul>
+
+                
+                            </article>
+
+                            <article id="idf-export" style="margin-bottom: 4rem;">
+                                <h2>EnergyPlus Integration (IDF Export)</h2>
+                                <p style="margin-bottom: 1rem; color: var(--text-muted);">
+                                    KOALA bridges the gap between detailed component analysis and whole-building energy
+                                    simulation.
+                                </p>
+                                <p style="color: var(--text-muted); margin-bottom: 1rem;">
+                                    You can export your construction as an <strong>EnergyPlus Input File
+                                        (.idf)</strong>.
+                                    This export generates an approximate "equivalent layer" representation of your
+                                    complex
+                                    2D assembly that can be used in energy models.
+                                </p>
+
+                                <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">How to Use in Energy Modeling
+                                </h3>
+                                <ol style="list-style: decimal; margin-left: 20px; color: var(--text-muted);">
+                                    <li style="margin-bottom: 0.5rem;"><strong>Export:</strong> in KOALA, go to `File >
+                                        Export > EnergyPlus IDF`.</li>
+                                    <li style="margin-bottom: 0.5rem;"><strong>Import:</strong> Open your primary energy
+                                        model (in tools like OpenStudio, ClimateStudio, or DesignBuilder).</li>
+                                    <li style="margin-bottom: 0.5rem;"><strong>Copy Objects:</strong> Copy the
+                                        `Material`
+                                        and `Construction` definitions from the exported IDF text file into your model's
+                                        IDF
+                                        file.</li>
+                                    <li style="margin-bottom: 0.5rem;"><strong>Assign:</strong> Assign the new
+                                        construction
+                                        to surfaces (Walls, Roofs) in your building energy model.</li>
+                                </ol>
+                                <p
+                                    style="color: var(--text-muted); margin-top: 1rem; font-size: 0.9em; font-style: italic;">
+                                    Note: This export uses "equivalent homogeneous layers" to mimic the thermal mass and
+                                    resistance of the 2D assembly.
+                                </p>
+                            </article>
+
+<!-- 
+                            <article id="under-the-hood" style="margin-bottom: 4rem;">
+                                <h2>Simulations Under the Hood</h2>
+                                <p style="margin-bottom: 1rem; color: var(--text-muted);">
+                                    KOALA combines two advanced numerical methods to provide a complete picture of
+                                    thermal performance.
+                                </p>
+
+                                <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">The Finite Element Method (FEM)
+                                </h3>
+                                <p style="color: var(--text-muted); margin-bottom: 1rem;">
+                                    For steady-state analysis, KOALA solves the 2D heat diffusion equation:
+                                </p>
+                                <div class="math-block"
+                                    style="background: var(--dark-surface); padding: 1.5rem; border-radius: 8px; margin: 1rem 0; border-left: 3px solid var(--secondary); color: var(--text-muted); font-family: 'Fira Code', monospace; overflow-x: auto;">
+                                    \[ \frac{\partial}{\partial x} \left( k_x \frac{\partial T}{\partial x} \right) +
+                                    \frac{\partial}{\partial y} \left( k_y \frac{\partial T}{\partial y} \right) = 0 \]
+                                </div>
+                                <p style="color: var(--text-muted); margin-bottom: 1rem;">
+                                    <strong>Discretization:</strong> The geometry is decomposed into a structured mesh
+                                    of 4-node rectangular elements.
+                                </p>
+                                <p style="color: var(--text-muted); margin-bottom: 1rem;">
+                                    <strong>System Solution:</strong> The global stiffness matrix \([K]\) is assembled
+                                    from local element properties, and the system \([K]\{T\} = \{F\}\) is solved, where
+                                    \(\{T\}\) is the nodal temperature vector and \(\{F\}\) represents boundary fluxes.
+                                </p>
+
+                                <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">ISO 13786 Matrix Method</h3>
+                                <p style="color: var(--text-muted); margin-bottom: 1rem;">
+                                    For dynamic analysis, we treat the wall as a multi-layer system responding to a
+                                    sinusoidal temperature wave with a period of 24 hours (86400 seconds).
+                                </p>
+                                <p style="color: var(--text-muted); margin-bottom: 1rem;">
+                                    Each layer is represented by a <strong>transfer matrix</strong> \(Z\) that relates
+                                    temperature (\(T\)) and heat flux (\(q\)) on one side to the other:
+                                </p>
+                                <div class="math-block"
+                                    style="background: var(--dark-surface); padding: 1.5rem; border-radius: 8px; margin: 1rem 0; border-left: 3px solid var(--secondary); color: var(--text-muted); font-family: 'Fira Code', monospace; overflow-x: auto;">
+                                    \[
+                                    \begin{pmatrix} T_{out} \\ q_{out} \end{pmatrix} =
+                                    \begin{pmatrix} Z_{11} & Z_{12} \\ Z_{21} & Z_{22} \end{pmatrix}
+                                    \begin{pmatrix} T_{in} \\ q_{in} \end{pmatrix}
+                                    \]
+                                </div>
+                                <p style="color: var(--text-muted);">
+                                    By multiplying these matrices for all layers, we determine the <strong>periodic
+                                        thermal transmittance</strong> (\(Y_{mn}\)), which directly yields the decrement
+                                    factor and time shift.
+                                </p>
+                            </article> -->
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Timur Dogan. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
