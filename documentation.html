@@ -54,6 +54,8 @@
                         <ul style="list-style: none;">
                             <li style="margin-bottom: 1rem;"><a href="#getting-started"
                                     style="font-weight: 600;">Getting Started</a></li>
+                            <li style="margin-bottom: 1rem;"><a href="#mac-installation"
+                                    style="font-weight: 600;">Mac Installation</a></li>
                             <li style="margin-bottom: 1rem;"><a href="#interface" style="font-weight: 600;">Interface
                                     Overview</a></li>
                             <li style="margin-bottom: 1rem;"><a href="#materials" style="font-weight: 600;">Material
@@ -79,6 +81,28 @@
                             <p style="margin-bottom: 1rem; color: var(--text-muted);">
                                 KOALA is a standalone application for Windows and macOS that is distributed as MSI installer or DMG.
                             </p>
+                        </article>
+
+                        <article id="mac-installation" style="margin-bottom: 4rem;">
+                            <h2>Mac Installation</h2>
+                            <p style="margin-bottom: 1rem; color: var(--text-muted);">
+                                Since app notarization requires a paid Apple Developer account, users will have to use the following workaround.
+                            </p>
+
+                            <h3 style="margin-top: 2rem; margin-bottom: 1rem;">The "Open Anyway" Workaround</h3>
+                            <p style="margin-bottom: 1rem; color: var(--text-muted);">
+                                This method allows you to manually authorize a specific app without lowering your overall security settings.
+                            </p>
+
+                            <ol style="list-style: decimal; margin-left: 20px; color: var(--text-muted);">
+                                <li style="margin-bottom: 0.5rem;"><strong>Attempt to open the app:</strong> Try launching the app normally. When the warning dialog appears, click <em>Done</em> or <em>Cancel</em> to dismiss it.</li>
+                                <li style="margin-bottom: 0.5rem;"><strong>Go to System Settings:</strong> Open the Apple menu and select <em>System Settings</em> (or <em>System Preferences</em> on older macOS versions).</li>
+                                <li style="margin-bottom: 0.5rem;"><strong>Navigate to Privacy & Security:</strong> Click <em>Privacy & Security</em> in the sidebar and scroll down to the Security section.</li>
+                                <li style="margin-bottom: 0.5rem;"><strong>Click Open Anyway:</strong> Look for a message stating that the app was blocked. Click the <em>Open Anyway</em> button next to it.</li>
+                                <li style="margin-bottom: 0.5rem;"><strong>Note:</strong> This button only remains visible for about one hour after the failed attempt to open the app.</li>
+                                <li style="margin-bottom: 0.5rem;"><strong>Authenticate:</strong> Enter your Mac's login password or use Touch ID when prompted.</li>
+                                <li style="margin-bottom: 0.5rem;"><strong>Confirm:</strong> A final warning will appear asking if you are sure. Click <em>Open</em> to launch the app.</li>
+                            </ol>
                         </article>
 
                         <article id="interface" style="margin-bottom: 4rem;">
