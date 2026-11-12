@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Standalone construction editor – KOALA</title>
+<meta content="Layered assemblies, materials, boundary conditions, calculations and results." name="description"/>
+<meta content="KOALA documentation, thermal analysis tutorial, Rhino 3D, U-value calculation, heat transfer analysis, standalone app" name="keywords"/>
+<meta content="Timur Dogan" name="author"/>
+<meta content="Standalone construction editor – KOALA" property="og:title"/>
+<meta content="Layered assemblies, materials, boundary conditions, calculations and results." property="og:description"/>
+<meta content="website" property="og:type"/>
+<script src="theme.js?v=2026-11-01"></script>
+<link href="style.css?v=2026-11-11-nav" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<!-- MathJax for rendering equations -->
+<script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']]
+            }
+        };
+    </script>
+<script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- Umami Analytics -->
+<script data-website-id="d8ea1a0b-7c84-4131-9d98-2c71283b3c57" defer="" src="https://cloud.umami.is/script.js"></script>
+<script defer src="docs.js?v=2026-11-11-nav"></script>
+</head>
+<body class="documentation-page">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header><div class="container"><nav aria-label="Main navigation">
+<a class="logo" href="index.html"><img alt="KOALA home" src="img/KLogo.png" style="height:40px;width:auto"/></a>
+<div class="nav-links">
+<a href="index.html">Overview</a><a aria-current="true" class="active" href="documentation.html">Documentation</a>
+<a href="validation.html">Validation</a><a class="btn btn-primary" href="index.html#download">Download</a>
+<button aria-label="Switch theme" class="theme-toggle" type="button"><i class="fas fa-moon"></i></button>
+</div>
+<!-- docs:mobile:start -->
+<details class="mobile-site-menu"><summary>Menu</summary><div class="mobile-site-links"><a href="index.html">Overview</a>
+<a aria-current="true" class="active" href="documentation.html">Documentation</a>
+<a href="validation.html">Validation</a>
+<a class="btn btn-primary" href="index.html#download">Download</a></div></details>
+<!-- docs:mobile:end -->
+</nav></div></header>
+<main id="main-content">
+<section class="hero docs-hero"><div class="container">
+<!-- docs:breadcrumbs:start -->
+<nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="documentation.html">Documentation</a></li><li><a href="documentation.html#standalone">Standalone editor</a></li><li aria-current="page">Construction editor</li></ol></nav>
+<!-- docs:breadcrumbs:end -->
+<h1>Standalone construction editor</h1><p>Layered assemblies, materials, boundary conditions, calculations and results.</p>
+</div></section>
+<section class="documentation-content"><div class="container docs-grid docs-layout">
+<!-- docs:navigation:start -->
+<aside class="docs-sidebar"><details class="docs-menu" open>
+<summary>Documentation navigation</summary>
+<nav class="docs-nav" aria-label="Documentation chapters">
+<a class="docs-overview" href="documentation.html">Documentation overview</a>
+<details class="docs-group"><summary>Getting started</summary><ul>
+<li><a href="getting-started.html">Application choice and first calculation</a></li>
+<li><a href="installation.html">Installation</a></li>
+</ul></details>
+<details class="docs-group" open><summary>Standalone editor</summary><ul>
+<li><a href="standalone-editor.html" aria-current="page">Construction editor</a></li>
+</ul></details>
+<details class="docs-group"><summary>Rhino workflows</summary><ul>
+<li><a href="rhino-guide.html">Model setup</a></li>
+<li><a href="examples.html">Example setups</a></li>
+<li><a href="psi-chi-workflow.html">Thermal bridge analysis (Ψ / χ)</a></li>
+<li><a href="window-analysis.html">Window analysis</a></li>
+<li><a href="window-components.html">Window and IGU components</a></li>
+<li><a href="frame-assessment.html">Custom frame assessment</a></li>
+</ul></details>
+<details class="docs-group"><summary>Results and reporting</summary><ul>
+<li><a href="reporting.html">Results, reports and exports</a></li>
+</ul></details>
+<details class="docs-group"><summary>Methods and validation</summary><ul>
+<li><a href="methods.html">Calculation methods</a></li>
+<li><a href="validation.html">Validation</a></li>
+</ul></details>
+<details class="docs-group"><summary>Reference</summary><ul>
+<li><a href="reference.html">Commands, inputs and files</a></li>
+<li><a href="frame-library.html">Frame configurations and sources</a></li>
+</ul></details>
+</nav></details></aside>
+<!-- docs:navigation:end -->
+<div class="docs-main guide-copy">
+<!-- docs:contents:start -->
+<details class="page-toc" open><summary>On this page</summary>
+<nav aria-label="On this page"><ol>
+<li><a href="#interface">Interface Overview</a>
+</li>
+<li><a href="#materials">Material Library</a>
+</li>
+<li><a href="#constructions">Building Constructions</a>
+<ol>
+<li><a href="#adding-layers">Adding Layers</a></li>
+<li><a href="#editing-and-partial-cavity-fill">Editing and partial cavity fill</a></li>
+<li><a href="#surface-resistances-rsi-rse">Surface Resistances (Rsi/Rse)</a></li>
+</ol>
+</li>
+<li><a href="#solver">Running the Solver</a>
+<ol>
+<li><a href="#boundary-conditions">Boundary Conditions</a></li>
+<li><a href="#dynamic-analysis">Dynamic Analysis</a></li>
+</ol>
+</li>
+<li><a href="#results">Results</a>
+</li>
+<li><a href="#saving-and-recovery">Saving and recovery</a>
+</li>
+<li><a href="#exports">Exports</a>
+</li>
+</ol></nav></details>
+<!-- docs:contents:end -->
+<article style="margin-bottom: 4rem;">
+<h2 id="interface">Interface Overview</h2>
+<p style="margin-bottom: 1rem; color: var(--text-muted);">
+                                The standalone application has three main areas:
+                            </p>
+<ol style="list-style: decimal; margin-left: 20px; color: var(--text-muted);">
+<li style="margin-bottom: 0.5rem;"><strong>Construction editor:</strong> The left panel contains the construction name,
+                                    exterior and interior boundary rows, physical layers, editing actions, and analysis settings.</li>
+<li style="margin-bottom: 0.5rem;"><strong>Drawing:</strong> The right panel shows geometry, temperature, heat flux,
+                                    or humidity. Zoom, pan, and click the drawing to inspect a layer or calculated point.</li>
+<li style="margin-bottom: 0.5rem;"><strong>Results:</strong> Calculated values appear in the results panel below the drawing;
+                                    progress, timings and warnings are written to the console.</li>
+</ol>
+<figure class="docs-shot"><img alt="Standalone construction editor with steel-stud layers and a temperature field" class="theme-light" loading="lazy" src="img/generated/standalone_SteelStudWall_temperature.png?v=2026-11-11"/><img alt="Standalone construction editor with steel-stud layers and a temperature field" class="theme-dark" loading="lazy" src="img/generated/standalone_SteelStudWall_temperature_dark.png?v=2026-11-11"/></figure></article><article style="margin-bottom: 4rem;">
+<h2 id="materials">Material Library</h2>
+<p style="margin-bottom: 1rem; color: var(--text-muted);">
+                                The material library includes supplied records and user-defined materials.
+                            </p>
+<p style="color: var(--text-muted);">
+                                Open <strong>Settings → Material and boundary libraries</strong>, or use a layer’s
+                                material selector. Add a custom material to define
+                                properties like Thermal Conductivity (λ), Density (ρ), and Specific Heat Capacity (cp).
+                            </p>
+</article><article style="margin-bottom: 4rem;">
+<h2 id="constructions">Building Constructions</h2>
+<p style="margin-bottom: 1rem; color: var(--text-muted);">
+                                The <strong>Construction Editor</strong> is where you define the geometry of your
+                                building assembly.
+                            </p>
+<h3 id="adding-layers" style="margin-top: 2rem; margin-bottom: 1rem;">Adding Layers</h3>
+<p style="color: var(--text-muted);">
+                                You can add layers to your assembly. Each layer can be:
+                            </p>
+<ul style="list-style: disc; margin-left: 20px; color: var(--text-muted);">
+<li><strong>Homogeneous:</strong> A single material slab.</li>
+<li><strong>Inhomogeneous:</strong> A layer with repeating thermal bridges (e.g.,
+                                    studs). You can define the stud spacing and width parametrically.</li>
+</ul>
+<h3 id="editing-and-partial-cavity-fill" style="margin-top: 2rem; margin-bottom: 1rem;">Editing and partial cavity fill</h3>
+<p style="color: var(--text-muted); margin-bottom: 1rem;">
+                                Added and duplicated layers remain selected. Reorder with Up/Down, Alt+Up/Down,
+                                drag and drop, or Move to; Undo/Redo restores edits. The exterior and interior boundary
+                                rows stay fixed. Stud and profile layers can specify insulation depth independently
+                                of stud depth, filling from either face and leaving a remainder that is sealed air by default or any material you assign. Profile
+                                layers keep a separate material for the inside of the profile.
+                            </p>
+<p style="color: var(--text-muted); margin-bottom: 1rem;">
+                                Save writes to the current file; Save as chooses another. Unsaved work is protected
+                                before closing or replacing a construction. Current files use format version 2;
+                                this build continues to read legacy constructions. Run analysis explicitly after
+                                input changes; CSV and IDF exports require a completed, current analysis.
+                            </p>
+<h3 id="surface-resistances-rsi-rse" style="margin-top: 2rem; margin-bottom: 1rem;">Surface Resistances (Rsi/Rse)</h3>
+<p style="color: var(--text-muted); margin-bottom: 1rem;">
+                                Every construction requires <strong>Surface Film Resistances</strong> to account for the
+                                thin layer of air clinging to the surface.
+                            </p>
+<ul style="list-style: disc; margin-left: 20px; color: var(--text-muted);">
+<li><strong>Rsi (Interior):</strong> Represents the resistance at the indoor surface
+                                    (convection + radiation). Standard value for walls: <strong>0.13 m²K/W</strong>.
+                                </li>
+<li><strong>Rse (Exterior):</strong> Represents the resistance at the outdoor surface
+                                    (influenced by wind). Standard value for walls: <strong>0.04 m²K/W</strong>.</li>
+</ul>
+<p style="color: var(--text-muted); margin-top: 1rem; font-size: 0.9em; font-style: italic;">
+                                KOALA automatically adds these layers to your construction stack. You do not need to
+                                model them as material layers. Select an exterior/interior boundary row and use Edit,
+                                Enter, or double-click to adjust temperature, humidity, and surface resistance.
+                            </p>
+</article><article style="margin-bottom: 4rem;">
+<h2 id="solver">Running the Solver</h2>
+<p style="margin-bottom: 1rem; color: var(--text-muted);">
+                                KOALA performs two types of thermal simulations simultaneously: a
+                                <strong>Steady-State
+                                    Analysis</strong> and a <strong>Dynamic Analysis (ISO 13786)</strong>.
+                            </p>
+<h3 id="boundary-conditions" style="margin-top: 1.5rem; margin-bottom: 0.5rem;">Boundary Conditions</h3>
+<p style="color: var(--text-muted); margin-bottom: 1rem;">
+                                The solver calculates heat flow based on the temperature difference (ΔT) between the
+                                indoor and outdoor environments.
+                            </p>
+<ul style="list-style: disc; margin-left: 20px; color: var(--text-muted);">
+<li><strong>Temperature:</strong> Set the Interior (e.g., 20°C) and Exterior (e.g.,
+                                    -10°C) air temperatures. The solver uses these to calculate the temperature
+                                    gradient through the assembly.</li>
+<li><strong>Relative Humidity (RH):</strong> Define the moisture content of the air
+                                    on both sides. This is critical for <strong>Glaser Method</strong> condensation
+                                    risk analysis.</li>
+</ul>
+<p style="color: var(--text-muted); margin-bottom: 1rem;">
+                                The solver discretizes your construction into a graded 2D grid of rectangular
+                                cells (see <a href="methods.html#mesh">The Mesh</a>) and solves the steady-state heat conduction
+                                equation to determine the temperature at every node (see
+                                <a href="methods.html#solver-internals">How the Solver Works</a>). This is crucial for identifying <strong>thermal bridges</strong>—areas where
+                                heat
+                                bypasses insulation (like through steel or wood studs), significantly reducing the
+                                wall's effective performance.
+                            </p>
+<h3 id="dynamic-analysis" style="margin-top: 1.5rem; margin-bottom: 0.5rem;">Dynamic Analysis</h3>
+<p style="color: var(--text-muted);">
+                                In addition to the static U-value, KOALA computes dynamic thermal properties
+                                according
+                                to the ISO 13786 standard. This simulates how the wall reacts to fluctuating outdoor
+                                temperatures over a 24-hour cycle, which is essential for understanding
+                                <strong>thermal
+                                    mass</strong> and time lag.
+                            </p>
+</article><article style="margin-bottom: 4rem;">
+<h2 id="results">Results</h2>
+<ul style="list-style: disc; margin-left: 20px; color: var(--text-muted); margin-bottom: 1.5rem;">
+<li style="margin-bottom: 0.5rem;">
+<strong>U-Value (Thermal Transmittance):</strong> Represents the rate of heat
+                                    transfer through the assembly. Lower values mean better insulation. KOALA
+                                    calculates
+                                    the <span style="font-family: monospace;">U_Simulated</span>, which accurately
+                                    accounts
+                                    for 2D thermal bridging effects that simple 1D calculations miss. <span style="font-family: monospace;">U_Estimated</span> uses a simple parallel path
+                                    U-Value calculation that is only valid if there is little to no lateral conducion
+                                    the the inhomogeneous layers.
+                                </li>
+<li style="margin-bottom: 0.5rem;"><strong>Decrement Factor:</strong> How much the
+                                    exterior temperature wave is dampened before reaching the interior. Lower is
+                                    better
+                                    for stable indoor temperatures.</li>
+<li style="margin-bottom: 0.5rem;"><strong>Time Shift (Phase Lag):</strong> The time
+                                    delay (in hours) for the peak outdoor temperature to reach the inside. A high
+                                    time
+                                    shift (e.g., 8-12 hours) can delay heat gain until night when it can be flushed
+                                    out.
+                                </li>
+<!-- <li style="margin-bottom: 0.5rem;">
+                                        <strong>Temperature Field:</strong> Creating a color gradient map helps
+                                        visualize
+                                        the temperature distribution. Use this to spot cold spots on the interior
+                                        surface
+                                        where <strong>condensation</strong> might occur.
+                                    </li>
+                                    <li style="margin-bottom: 0.5rem;">
+                                        <strong>Heat Flux</strong> Arrows show the path of least resistance for
+                                        heat flow. Large arrows through studs indicate significant thermal bridging.
+                                    </li>
+                                        <li style="margin-bottom: 0.5rem;">
+                                        <strong>Condensation Risk</strong> Arrows show the path of least resistance for
+                                        heat flow. Large arrows through studs indicate significant thermal bridging.
+                                    </li> -->
+</ul>
+</article>
+<article><h2 id="saving-and-recovery">Saving and recovery</h2><p><strong>Save</strong> writes the current construction; <strong>Save as</strong> selects another file. Unsaved changes are checked before opening another construction, closing or quitting. A recovery draft can restore work after an interrupted session.</p>
+<p>Material and boundary libraries are saved separately. Existing assignments retain their own material and boundary values.</p></article>
+<article><h2 id="exports">Exports</h2><p>For CSV results, construction figures and EnergyPlus IDF export, see <a href="reporting.html#standalone-exports">Standalone exports</a>. The <a href="methods.html">methods guide</a> describes the mesh, steady-state heat transfer, vapour diffusion screening and dynamic estimates.</p></article>
+</div>
+</div></section>
+</main>
+<footer>
+<div class="container">
+<p>© 2026 Timur Dogan. All rights reserved.</p>
+</div>
+</footer>
+</body>
+</html>

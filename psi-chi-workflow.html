@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Thermal bridge analysis (Ψ / χ) – KOALA</title>
+<meta content="Reference dimensions, linear and point thermal transmittance, and calculation procedures in Rhino." name="description"/>
+<meta content="KOALA documentation, thermal analysis tutorial, Rhino 3D, U-value calculation, heat transfer analysis, standalone app" name="keywords"/>
+<meta content="Timur Dogan" name="author"/>
+<meta content="Thermal bridge analysis (Ψ / χ) – KOALA" property="og:title"/>
+<meta content="Reference dimensions, linear and point thermal transmittance, and calculation procedures in Rhino." property="og:description"/>
+<meta content="website" property="og:type"/>
+<script src="theme.js?v=2026-11-01"></script>
+<link href="style.css?v=2026-11-11-nav" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<!-- MathJax for rendering equations -->
+<script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']]
+            }
+        };
+    </script>
+<script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- Umami Analytics -->
+<script data-website-id="d8ea1a0b-7c84-4131-9d98-2c71283b3c57" defer="" src="https://cloud.umami.is/script.js"></script>
+<script defer src="docs.js?v=2026-11-11-nav"></script>
+</head>
+<body class="documentation-page">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header><div class="container"><nav aria-label="Main navigation">
+<a class="logo" href="index.html"><img alt="KOALA home" src="img/KLogo.png" style="height:40px;width:auto"/></a>
+<div class="nav-links">
+<a href="index.html">Overview</a><a aria-current="true" class="active" href="documentation.html">Documentation</a>
+<a href="validation.html">Validation</a><a class="btn btn-primary" href="index.html#download">Download</a>
+<button aria-label="Switch theme" class="theme-toggle" type="button"><i class="fas fa-moon"></i></button>
+</div>
+<!-- docs:mobile:start -->
+<details class="mobile-site-menu"><summary>Menu</summary><div class="mobile-site-links"><a href="index.html">Overview</a>
+<a aria-current="true" class="active" href="documentation.html">Documentation</a>
+<a href="validation.html">Validation</a>
+<a class="btn btn-primary" href="index.html#download">Download</a></div></details>
+<!-- docs:mobile:end -->
+</nav></div></header>
+<main id="main-content">
+<section class="hero docs-hero"><div class="container">
+<!-- docs:breadcrumbs:start -->
+<nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="documentation.html">Documentation</a></li><li><a href="documentation.html#rhino-workflows">Rhino workflows</a></li><li aria-current="page">Thermal bridge analysis (Ψ / χ)</li></ol></nav>
+<!-- docs:breadcrumbs:end -->
+<h1>Thermal bridge analysis (Ψ / χ)</h1><p>Reference dimensions, linear and point thermal transmittance, and calculation procedures in Rhino.</p>
+</div></section>
+<section class="documentation-content"><div class="container docs-grid docs-layout">
+<!-- docs:navigation:start -->
+<aside class="docs-sidebar"><details class="docs-menu" open>
+<summary>Documentation navigation</summary>
+<nav class="docs-nav" aria-label="Documentation chapters">
+<a class="docs-overview" href="documentation.html">Documentation overview</a>
+<details class="docs-group"><summary>Getting started</summary><ul>
+<li><a href="getting-started.html">Application choice and first calculation</a></li>
+<li><a href="installation.html">Installation</a></li>
+</ul></details>
+<details class="docs-group"><summary>Standalone editor</summary><ul>
+<li><a href="standalone-editor.html">Construction editor</a></li>
+</ul></details>
+<details class="docs-group" open><summary>Rhino workflows</summary><ul>
+<li><a href="rhino-guide.html">Model setup</a></li>
+<li><a href="examples.html">Example setups</a></li>
+<li><a href="psi-chi-workflow.html" aria-current="page">Thermal bridge analysis (Ψ / χ)</a></li>
+<li><a href="window-analysis.html">Window analysis</a></li>
+<li><a href="window-components.html">Window and IGU components</a></li>
+<li><a href="frame-assessment.html">Custom frame assessment</a></li>
+</ul></details>
+<details class="docs-group"><summary>Results and reporting</summary><ul>
+<li><a href="reporting.html">Results, reports and exports</a></li>
+</ul></details>
+<details class="docs-group"><summary>Methods and validation</summary><ul>
+<li><a href="methods.html">Calculation methods</a></li>
+<li><a href="validation.html">Validation</a></li>
+</ul></details>
+<details class="docs-group"><summary>Reference</summary><ul>
+<li><a href="reference.html">Commands, inputs and files</a></li>
+<li><a href="frame-library.html">Frame configurations and sources</a></li>
+</ul></details>
+</nav></details></aside>
+<!-- docs:navigation:end -->
+<div class="docs-main guide-copy">
+<!-- docs:contents:start -->
+<details class="page-toc" open><summary>On this page</summary>
+<nav aria-label="On this page"><ol>
+<li><a href="#theory">Thermal bridge definitions</a>
+</li>
+<li><a href="#measuring-area">Dimension conventions and reference area (A_total)</a>
+<ol>
+<li><a href="#for-point-bridges">For Point Bridges (χ)</a></li>
+<li><a href="#for-linear-bridges">For Linear Bridges (Ψ)</a></li>
+</ol>
+</li>
+<li><a href="#effective-u-value">Calculating the Effective U-Value (\(U_{eff}\))</a>
+<ol>
+<li><a href="#terms-in-the-calculation">Terms in the calculation:</a></li>
+</ol>
+</li>
+<li><a href="#using-calculator">Using the Koala Thermal Bridges Form</a>
+<ol>
+<li><a href="#calculation-procedure">Calculation procedure:</a></li>
+</ol>
+</li>
+<li><a href="#report">The shared calculation report</a>
+</li>
+<li><a href="#didactic-math">Understanding the Underlying Math</a>
+<ol>
+<li><a href="#1-calculating-psi-for-linear-bridges">1. Calculating Psi (Ψ) for Linear Bridges</a></li>
+<li><a href="#2-calculating-chi-for-point-bridges">2. Calculating Chi (χ) for Point Bridges</a></li>
+</ol>
+</li>
+</ol></nav></details>
+<!-- docs:contents:end -->
+<article style="margin-bottom: 4rem;">
+<h2 id="theory">Thermal bridge definitions</h2>
+<p style="margin-bottom: 1rem; color: var(--text-muted);">
+                                One-dimensional heat transfer represents the undisturbed, or <strong>clear-field</strong>, portion of a layered wall or roof. Junctions such as balconies, corners and structural penetrations introduce geometric or material variations that require two- or three-dimensional analysis.
+                            </p>
+<p style="margin-bottom: 1rem; color: var(--text-muted);">
+                                At a junction, geometry and material conductivity affect the direction and distribution of heat flux. A calculation based only on clear-field U-values does not account for these local effects.
+                            </p>
+<div style="margin-bottom: 2rem; display: flex; justify-content: center;">
+<svg height="auto" style="background:#ffffff; border:1px solid var(--border-color); border-radius:8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); max-width: 700px;" viewbox="0 0 700 400" width="100%">
+<defs>
+<marker id="arrow" markerheight="6" markerwidth="6" orient="auto-start-reverse" refx="5" refy="5" viewbox="0 0 10 10">
+<path d="M 0 0 L 10 5 L 0 10 z" fill="#333"></path>
+</marker>
+<marker id="arrow-flux" markerheight="5" markerwidth="5" orient="auto-start-reverse" refx="5" refy="5" viewbox="0 0 10 10">
+<path d="M 0 0 L 10 5 L 0 10 z" fill="#e74c3c"></path>
+</marker>
+<marker id="arrow-label" markerheight="6" markerwidth="6" orient="auto-start-reverse" refx="5" refy="5" viewbox="0 0 10 10">
+<path d="M 0 0 L 10 5 L 0 10 z" fill="#d35400"></path>
+</marker>
+</defs>
+<!-- Title -->
+<text fill="#333" font-size="16" font-weight="bold" text-anchor="middle" x="350" y="30">Influence of a Thermal Bridge on Heat Loss</text>
+<!-- Physical Model Area -->
+<g transform="translate(0, 50)">
+<!-- Inside/Outside Labels -->
+<text fill="#e74c3c" font-size="14" font-weight="bold" x="70" y="25">Warm Inside</text>
+<text fill="#3498db" font-size="14" font-weight="bold" x="70" y="110">Cold Outside</text>
+<!-- Wall Geometry -->
+<!-- Concrete Layer -->
+<rect fill="#d5d8dc" height="25" stroke="#999" stroke-width="1" width="400" x="150" y="30"></rect>
+<!-- Insulation Layer -->
+<rect fill="#fdebd0" height="35" stroke="#999" stroke-width="1" width="400" x="150" y="55"></rect>
+<!-- Text for layers -->
+<text fill="#7f8c8d" font-size="12" x="560" y="47">Structural Wall</text>
+<text fill="#7f8c8d" font-size="12" x="560" y="77">Insulation</text>
+<!-- Penetrating Slab (Balcony) -->
+<rect fill="#bdc3c7" height="70" stroke="#7f8c8d" stroke-width="1" width="40" x="330" y="30"></rect>
+<text fill="#7f8c8d" font-size="12" text-anchor="middle" x="350" y="15">Concrete Slab</text>
+<!-- Heat Flux Arrows -->
+<!-- 1D Flow (Small arrows through insulation) -->
+<line marker-end="url(#arrow-flux)" stroke="#e74c3c" stroke-dasharray="4" stroke-width="1.5" x1="200" x2="200" y1="20" y2="100"></line>
+<line marker-end="url(#arrow-flux)" stroke="#e74c3c" stroke-dasharray="4" stroke-width="1.5" x1="250" x2="250" y1="20" y2="100"></line>
+<line marker-end="url(#arrow-flux)" stroke="#e74c3c" stroke-dasharray="4" stroke-width="1.5" x1="450" x2="450" y1="20" y2="100"></line>
+<line marker-end="url(#arrow-flux)" stroke="#e74c3c" stroke-dasharray="4" stroke-width="1.5" x1="500" x2="500" y1="20" y2="100"></line>
+<!-- 2D Flow (Large arrows funneling into slab) -->
+<path d="M 310 20 Q 340 40 340 100" fill="none" marker-end="url(#arrow-flux)" stroke="#e74c3c" stroke-width="2.5"></path>
+<path d="M 390 20 Q 360 40 360 100" fill="none" marker-end="url(#arrow-flux)" stroke="#e74c3c" stroke-width="2.5"></path>
+<line marker-end="url(#arrow-flux)" stroke="#e74c3c" stroke-width="3" x1="350" x2="350" y1="20" y2="100"></line>
+</g>
+<!-- Graph Area -->
+<g transform="translate(0, 180)">
+<!-- Axes -->
+<line marker-end="url(#arrow)" stroke="#333" stroke-width="1.5" x1="120" x2="570" y1="180" y2="180"></line>
+<line marker-end="url(#arrow)" stroke="#333" stroke-width="1.5" x1="150" x2="150" y1="190" y2="20"></line>
+<!-- Axis Labels -->
+<text fill="#333" font-size="12" x="580" y="184">Position</text>
+<text fill="#333" font-size="12" text-anchor="middle" x="140" y="10">Heat Flow Density</text>
+<!-- Blue Area: 1D Heat Loss -->
+<!-- From x=150 to x=550. Height is up to y=130 -->
+<rect fill="#3498db" height="50" opacity="0.3" width="400" x="150" y="130"></rect>
+<!-- Yellow Area: Psi (Additional Heat Loss) -->
+<!-- Base is y=130. Bell curve up to y=40, peaking at x=350 -->
+<path d="M 150 130 L 270 130 C 310 130, 330 40, 350 40 C 370 40, 390 130, 430 130 L 550 130 Z" fill="#f1c40f" opacity="0.6"></path>
+<!-- Graph Outlines -->
+<line stroke="#2980b9" stroke-dasharray="5" stroke-width="2" x1="150" x2="550" y1="130" y2="130"></line>
+<path d="M 150 130 L 270 130 C 310 130, 330 40, 350 40 C 370 40, 390 130, 430 130 L 550 130" fill="none" stroke="#f39c12" stroke-width="3"></path>
+<!-- Labels for Areas -->
+<text fill="#2980b9" font-size="12" font-weight="bold" x="210" y="160">Planar Heat Loss (1D U-value area)</text>
+<text fill="#d35400" font-size="12" font-weight="bold" x="440" y="80">Additional Heat Loss (Ψ)</text>
+<line marker-end="url(#arrow-label)" stroke="#d35400" stroke-width="1.5" x1="435" x2="380" y1="80" y2="85"></line>
+<!-- Vertical Guides linking model to graph -->
+<line stroke="#999" stroke-dasharray="3" stroke-width="1" x1="330" x2="330" y1="-30" y2="130"></line>
+<line stroke="#999" stroke-dasharray="3" stroke-width="1" x1="370" x2="370" y1="-30" y2="130"></line>
+</g>
+</svg>
+</div>
+<p style="margin-bottom: 1rem; color: var(--text-muted);">
+                                As illustrated in the figure above, one can view the influence of the thermal bridge as an <strong>additional heat loss</strong> (the yellow area under the curve) that is added to the uniform planar heat loss of the wall without the slab (the blue area).
+                            </p>
+<p style="margin-bottom: 1rem; color: var(--text-muted);">
+                                Linear thermal transmittance (<strong>Ψ</strong>) and point thermal transmittance (<strong>χ</strong>) describe the difference between the calculated thermal coupling coefficient and the reference contributions. These quantities express the junction contribution rather than the total heat flow. For χ, any specified linear-bridge contributions are also subtracted.
+                            </p>
+</article>
+<article style="margin-bottom: 4rem;">
+<h2 id="measuring-area">Dimension conventions and reference area (A_total)</h2>
+<p style="margin-bottom: 1rem; color: var(--text-muted);">
+                                The reference heat-flow terms in Ψ and χ depend on the U-values, lengths and areas used in the calculation. Apply a consistent <strong>dimension convention</strong> to the junction calculation and the building energy model.
+                            </p>
+<h3 style="margin-top: 2rem; margin-bottom: 0.5rem;" id="for-point-bridges">For Point Bridges (χ)</h3>
+<p style="margin-bottom: 1rem; color: var(--text-muted);">
+                                For the rectangular planar assembly illustrated below, the reference area is its width multiplied by its height. Use the modelled reference face and the stated dimension convention when determining this area.
+                            </p>
+<div style="margin-bottom: 2rem;">
+<svg height="200" style="background:#f9f9f9; border:1px solid var(--border-color); border-radius:4px; max-width: 300px;" viewbox="0 0 200 200" width="100%">
+<!-- Base wall -->
+<rect fill="#e0e0e0" height="100" stroke="#999" stroke-width="2" width="100" x="50" y="50"></rect>
+<!-- Fastener -->
+<circle cx="100" cy="100" fill="#e74c3c" r="8"></circle>
+<!-- Dimension lines -->
+<line marker-end="url(#area-arrow)" marker-start="url(#area-arrow)" stroke="#333" stroke-width="1" x1="50" x2="150" y1="40" y2="40"></line>
+<text fill="#333" font-size="12" text-anchor="middle" x="100" y="32">Width (W)</text>
+<line marker-end="url(#area-arrow)" marker-start="url(#area-arrow)" stroke="#333" stroke-width="1" x1="160" x2="160" y1="50" y2="150"></line>
+<text fill="#333" font-size="12" x="165" y="105">Height (H)</text>
+<text fill="#333" font-size="14" font-weight="bold" text-anchor="middle" x="100" y="180">A_total = W × H</text>
+<defs>
+<marker id="area-arrow" markerheight="6" markerwidth="6" orient="auto-start-reverse" refx="5" refy="5" viewbox="0 0 10 10">
+<path d="M 0 0 L 10 5 L 0 10 z" fill="#333"></path>
+</marker>
+</defs>
+</svg>
+</div>
+<h3 style="margin-top: 2rem; margin-bottom: 0.5rem;" id="for-linear-bridges">For Linear Bridges (Ψ)</h3>
+<p style="margin-bottom: 1rem; color: var(--text-muted);">
+                                At junctions such as corners, internal and external reference dimensions differ. State whether the calculation uses <strong>internal dimensions</strong> or <strong>external dimensions</strong>, consistent with the building energy model.
+                            </p>
+<ul style="color: var(--text-muted); margin-left: 2rem; margin-bottom: 1rem;">
+<li><strong>External Dimensions:</strong> You measure the length of the element along the extreme <strong>outer</strong> face of the building envelope.</li>
+<li><strong>Internal Dimensions:</strong> You measure the length of the element along the <strong>inner</strong> face of the room.</li>
+</ul>
+<div style="margin-bottom: 2rem;">
+<svg height="200" style="background:#f9f9f9; border:1px solid var(--border-color); border-radius:4px; max-width: 450px;" viewbox="0 0 350 200" width="100%">
+<!-- Corner Wall Geometry -->
+<!-- Wall 1 (Top horizontal) -->
+<rect fill="#e0e0e0" height="40" stroke="#999" stroke-width="2" width="200" x="50" y="50"></rect>
+<!-- Wall 2 (Right vertical) -->
+<rect fill="#e0e0e0" height="90" stroke="#999" stroke-width="2" width="40" x="210" y="90"></rect>
+<!-- Internal Dimensions -->
+<line stroke="#3498db" stroke-dasharray="4" stroke-width="2" x1="50" x2="200" y1="100" y2="100"></line>
+<line stroke="#3498db" stroke-dasharray="4" stroke-width="2" x1="200" x2="200" y1="100" y2="180"></line>
+<text fill="#3498db" font-size="12" text-anchor="middle" x="125" y="115">Internal L1</text>
+<text fill="#3498db" font-size="12" text-anchor="end" x="195" y="150">Internal L2</text>
+<!-- External Dimensions -->
+<line stroke="#e74c3c" stroke-dasharray="4" stroke-width="2" x1="50" x2="260" y1="40" y2="40"></line>
+<line stroke="#e74c3c" stroke-dasharray="4" stroke-width="2" x1="260" x2="260" y1="40" y2="180"></line>
+<text fill="#e74c3c" font-size="12" text-anchor="middle" x="155" y="30">External L1</text>
+<text fill="#e74c3c" font-size="12" x="270" y="120">External L2</text>
+<text fill="#333" font-size="12" font-weight="bold" text-anchor="middle" x="175" y="195">A_total = (L1 + L2) × Extruded Length</text>
+</svg>
+</div>
+<p style="margin-bottom: 1rem; color: var(--text-muted);">
+                                For the corner shown, external dimensions give larger reference lengths and therefore larger one-dimensional reference heat-flow terms. The corresponding Ψ is lower and may be negative. Both conventions can describe the same total heat flow when applied consistently.
+                            </p>
+</article>
+<article style="margin-bottom: 4rem;">
+<h2 id="effective-u-value">Calculating the Effective U-Value (\(U_{eff}\))</h2>
+<p style="margin-bottom: 1rem; color: var(--text-muted);">
+                                The <strong>effective U-value (\(U_{eff}\))</strong> combines clear-field heat transfer with the contributions of linear and point thermal bridges over a specified envelope area, as described in the BC Hydro Building Envelope Thermal Bridging (BETB) Guide.
+                            </p>
+<div style="margin-bottom: 2rem; display: flex; justify-content: center;">
+<svg height="auto" style="background:#ffffff; border:1px solid var(--border-color); border-radius:8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); max-width: 700px;" viewbox="0 0 700 450" width="100%">
+<!-- Title -->
+<text fill="#333" font-size="16" font-weight="bold" text-anchor="middle" x="350" y="30">Building Envelope Thermal Bridging Components</text>
+<g transform="translate(50, 50)">
+<!-- Facade / Clear Wall (Planar) -->
+<rect fill="#ebf5fb" height="350" stroke="#3498db" stroke-width="2" width="350" x="0" y="0"></rect>
+<!-- Windows (Clear Field, treated separately or as holes) -->
+<rect fill="#ffffff" height="100" stroke="#e67e22" stroke-width="3" width="100" x="50" y="50"></rect>
+<rect fill="#ffffff" height="100" stroke="#e67e22" stroke-width="3" width="100" x="200" y="50"></rect>
+<rect fill="#ffffff" height="100" stroke="#e67e22" stroke-width="3" width="100" x="50" y="200"></rect>
+<rect fill="#ffffff" height="100" stroke="#e67e22" stroke-width="3" width="100" x="200" y="200"></rect>
+<!-- Linear Bridges (Psi) -->
+<!-- Roof Parapet -->
+<line stroke="#e67e22" stroke-linecap="round" stroke-width="5" x1="0" x2="350" y1="0" y2="0"></line>
+<!-- Floor Slab Penetration / Balcony Edge -->
+<line stroke="#e67e22" stroke-linecap="round" stroke-width="5" x1="0" x2="350" y1="175" y2="175"></line>
+<!-- Point Bridges (Chi) -->
+<!-- Structural Canopy Anchors / Stand-offs -->
+<circle cx="50" cy="320" fill="#e74c3c" r="6" stroke="#c0392b" stroke-width="1"></circle>
+<circle cx="150" cy="320" fill="#e74c3c" r="6" stroke="#c0392b" stroke-width="1"></circle>
+<circle cx="250" cy="320" fill="#e74c3c" r="6" stroke="#c0392b" stroke-width="1"></circle>
+<circle cx="350" cy="320" fill="#e74c3c" r="6" stroke="#c0392b" stroke-width="1"></circle>
+</g>
+<!-- Callouts & Legend -->
+<g transform="translate(450, 80)">
+<!-- Planar -->
+<rect fill="#ebf5fb" height="20" stroke="#3498db" stroke-width="2" width="20" x="0" y="0"></rect>
+<text fill="#2980b9" font-size="14" font-weight="bold" x="30" y="15">Planar Transmittance (U)</text>
+<text fill="#7f8c8d" font-size="12" x="30" y="32">Clear-field walls and roofs.</text>
+<path d="M -50 145 L -10 10" fill="none" stroke="#2980b9" stroke-dasharray="4" stroke-width="1.5"></path>
+<!-- Linear -->
+<line stroke="#e67e22" stroke-linecap="round" stroke-width="5" x1="0" x2="20" y1="80" y2="80"></line>
+<text fill="#d35400" font-size="14" font-weight="bold" x="30" y="75">Linear Bridges (Ψ)</text>
+<text fill="#7f8c8d" font-size="12" x="30" y="92">Slabs, parapets, window perimeters.</text>
+<!-- Pointers for Linear -->
+<path d="M -50 20 L 0 75" fill="none" stroke="#e67e22" stroke-dasharray="4" stroke-width="1.5"></path>
+<path d="M -50 90 L 0 75" fill="none" stroke="#e67e22" stroke-dasharray="4" stroke-width="1.5"></path>
+<path d="M -50 225 L 0 75" fill="none" stroke="#e67e22" stroke-dasharray="4" stroke-width="1.5"></path>
+<!-- Point -->
+<circle cx="10" cy="140" fill="#e74c3c" r="6" stroke="#c0392b" stroke-width="1"></circle>
+<text fill="#c0392b" font-size="14" font-weight="bold" x="30" y="135">Point Bridges (χ)</text>
+<text fill="#7f8c8d" font-size="12" x="30" y="152">Anchors, canopy supports.</text>
+<!-- Pointers for Point -->
+<path d="M -100 370 L 0 145" fill="none" stroke="#e74c3c" stroke-dasharray="4" stroke-width="1.5"></path>
+</g>
+</svg>
+</div>
+<p style="margin-bottom: 1rem; color: var(--text-muted);">
+                                The formula to calculate the overall effective U-value of a building assembly is:
+                            </p>
+<div style="background-color: var(--bg-alt); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border: 1px solid var(--border-color); overflow-x: auto;">
+                                \[U_{effective} = \frac{\sum (U_{clear} \cdot A) + \sum (\Psi \cdot L) + \sum (\chi \cdot n)}{A_{total}}\]
+                            </div>
+<h3 style="margin-top: 2rem; margin-bottom: 0.5rem;" id="terms-in-the-calculation">Terms in the calculation:</h3>
+<ul style="color: var(--text-muted); margin-left: 2rem; margin-bottom: 1rem;">
+<li><strong style="color:#3498db">\(\sum (U_{clear} \cdot A)\) [Clear Field]:</strong> The sum of the planar heat flows through the basic wall/roof assemblies (\(U\)-value \(\times\) Area).</li>
+<li><strong style="color:#e67e22">\(\sum (\Psi \cdot L)\) [Linear Bridges]:</strong> The sum of all linear thermal bridges (e.g., slab edges, window perimeters, parapets) multiplied by their continuous <strong>Length (\(L\))</strong>.</li>
+<li><strong style="color:#e74c3c">\(\sum (\chi \cdot n)\) [Point Bridges]:</strong> The sum of all point thermal bridges (e.g., canopy structural beams, pipe penetrations, anchors) multiplied by their <strong>Quantity (\(n\))</strong>.</li>
+<li><strong>\(A_{total}\):</strong> The total opaque surface area of the building envelope being calculated.</li>
+</ul>
+</article>
+<article style="margin-bottom: 4rem;">
+<h2 id="using-calculator">Using the Koala Thermal Bridges Form</h2>
+<p style="margin-bottom: 1rem; color: var(--text-muted);">
+                                The Rhino plugin calculates Ψ and χ after ISO 10211 and writes the calculation report. Assign materials and indoor/outdoor boundary conditions to your layers, then click <strong>Bridge Analysis…</strong> above the layer table in the KOALA panel. The form stays open while you pick points and distances in the model.
+                            </p>
+<figure class="docs-shot">
+<img alt="Bridge Analysis form with measurement inputs and a junction diagram" class="theme-light" loading="lazy" src="img/generated/thermal_bridges_form_light.png?v=2026-11-11">
+<img alt="Bridge Analysis form with measurement inputs and a junction diagram" class="theme-dark" loading="lazy" src="img/generated/thermal_bridges_form_dark.png?v=2026-11-11"/>
+<figcaption>Review the current study in Bridge Analysis.</figcaption>
+</img></figure>
+<p style="color: var(--text-muted); margin-bottom: 1rem;">For frame Uf, glazing-edge Ψg, installation Ψ or whole-window Uw, use the adjacent <strong>Window Analysis…</strong> control. Follow the <a href="window-analysis.html">window analysis workflow</a> for its reference measurements. Both forms use the same study and report.</p>
+<h3 style="margin-top: 2rem; margin-bottom: 0.5rem;" id="calculation-procedure">Calculation procedure:</h3>
+<ol style="color: var(--text-muted); margin-left: 2rem; margin-bottom: 1rem;">
+<li><strong>Add a calculation:</strong> a linear bridge (Ψ) or a point bridge (χ), and choose whether it is reported in external or internal dimensions.</li>
+<li><strong>Describe the flanking elements:</strong> for each undisturbed wall, roof or floor next to the bridge, either pick a point on it so Koala detects the axis and traces its layers and surface resistances from the model, or enter a U-value with its source.</li>
+<li><strong>Give the dimensions:</strong> the length (Ψ) or area (χ) of each element inside the model, to internal and to external surfaces, and the distance from the bridge to its cut-off plane. Lengths can be measured between two points in the model.</li>
+<li><strong>For a point bridge:</strong> add the linear bridges that are inside the model, with their Ψ and length, so they are not counted as part of χ.</li>
+<li><strong>Calculate:</strong> Koala solves the model once: heat flow, and surface temperatures with the surface resistances you assigned. The ISO 13788 surface check (a second solve with an indoor resistance of 0.25 m²K/W) is an option of the report window. With <em>Verify</em> on in the panel it also solves at half the cell size.</li>
+<li><strong>Export report:</strong> open <strong>Report…</strong> to enter project information, review figures and export PDF, CSV tables or JSON in the document’s units. The report lists the declarations and checks still needed.</li>
+</ol>
+<p style="margin-bottom: 1rem; color: var(--text-muted);">
+                                A model that is one uniform extrusion is solved as a 2D section and gives \(L^{2D}\) directly. A 3D model gives \(L^{3D}\): use it for χ, or give its length along the bridge to read it as Ψ. The result shows every term of the subtraction, the value in both dimension systems where both sets of lengths are given, the change at half the cell size, and the lowest indoor surface temperature with its \(f_{Rsi}\) and location.
+                            </p>
+</article>
+<article><h2 id="report">The shared calculation report</h2><p>Window and bridge assessments use the same report window. Project details, named views, section drawings, surface-temperature checks and PDF, CSV and JSON export are described in <a href="reporting.html#report">Results and reporting</a>.</p></article>
+<article style="margin-bottom: 4rem;">
+<h2 id="didactic-math">Understanding the Underlying Math</h2>
+<p style="margin-bottom: 1rem; color: var(--text-muted);">
+                                The following sections detail the mathematical procedures defined in ISO 10211. These principles form the basis of the Koala calculator's internal logic and serve as a reference for verifying calculations or performing manual analysis.
+                            </p>
+<h3 style="margin-top: 2rem; margin-bottom: 0.5rem;" id="1-calculating-psi-for-linear-bridges">1. Calculating Psi (Ψ) for Linear Bridges</h3>
+<p style="margin-bottom: 1rem; color: var(--text-muted);">
+                                Subtract the reference contributions of the flanking constructions from the calculated two-dimensional thermal coupling coefficient (\(L^{2D}\)).
+                            </p>
+<div style="background-color: var(--bg-alt); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border: 1px solid var(--border-color); overflow-x: auto;">
+                                \[\Psi = L^{2D} - \sum_{i=1}^{N} (U_i \cdot l_i)\]
+                            </div>
+<ul style="color: var(--text-muted); margin-left: 2rem; margin-bottom: 1rem;">
+<li><strong>\(L^{2D}\)</strong> is derived from the 3D simulation: \(L^{2D} = \frac{Q_{total}}{\Delta T \cdot L_{extruded}}\). It represents the thermal coupling coefficient per meter of length.</li>
+<li><strong>\(U_i\)</strong> is the 1D clear-field U-value of the flanking element \(i\).</li>
+<li><strong>\(l_i\)</strong> is the measured cross-sectional length (Internal or External) of the flanking element \(i\).</li>
+</ul>
+<h3 style="margin-top: 2rem; margin-bottom: 0.5rem;" id="2-calculating-chi-for-point-bridges">2. Calculating Chi (χ) for Point Bridges</h3>
+<p style="margin-bottom: 1rem; color: var(--text-muted);">
+                                Subtract the planar reference contributions from the calculated three-dimensional thermal coupling coefficient (\(L^{3D}\)). Subtract any specified linear-bridge contributions within the model to isolate the point-bridge contribution.
+                            </p>
+<div style="background-color: var(--bg-alt); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border: 1px solid var(--border-color); overflow-x: auto;">
+                                \[\chi = L^{3D} - \sum (U_{clear} \cdot A_{total}) - \sum (\Psi_j \cdot l_j)\]
+                            </div>
+<ul style="color: var(--text-muted); margin-left: 2rem; margin-bottom: 1rem;">
+<li><strong>\(L^{3D}\)</strong> is the thermal coupling coefficient directly from the 3D simulation: \(L^{3D} = \frac{Q_{total}}{\Delta T}\).</li>
+<li><strong>\(U_{clear}\)</strong> is the 1D U-value of the clear assembly.</li>
+<li><strong>\(A_{total}\)</strong> is the area of the assembly (Width × Height).</li>
+<li><strong>\(\Psi_j \cdot l_j\)</strong> accounts for any linear bridges present in the same model (if applicable).</li>
+</ul>
+</article>
+</div>
+</div></section>
+</main>
+<footer>
+<div class="container">
+<p>© 2026 Timur Dogan. All rights reserved.</p>
+</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Window analysis – KOALA</title>
+<meta content="Reference measurements, calculation cases and reporting for frames, glazing edges, installation details and whole windows." name="description"/>
+<meta content="KOALA documentation, thermal analysis tutorial, Rhino 3D, U-value calculation, heat transfer analysis, standalone app" name="keywords"/>
+<meta content="Timur Dogan" name="author"/>
+<meta content="Window analysis – KOALA" property="og:title"/>
+<meta content="Reference measurements, calculation cases and reporting for frames, glazing edges, installation details and whole windows." property="og:description"/>
+<meta content="website" property="og:type"/>
+<script src="theme.js?v=2026-11-01"></script>
+<link href="style.css?v=2026-11-11-nav" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<!-- MathJax for rendering equations -->
+<script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']]
+            }
+        };
+    </script>
+<script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- Umami Analytics -->
+<script data-website-id="d8ea1a0b-7c84-4131-9d98-2c71283b3c57" defer="" src="https://cloud.umami.is/script.js"></script>
+<script defer src="docs.js?v=2026-11-11-nav"></script>
+</head>
+<body class="documentation-page">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header><div class="container"><nav aria-label="Main navigation">
+<a class="logo" href="index.html"><img alt="KOALA home" src="img/KLogo.png" style="height:40px;width:auto"/></a>
+<div class="nav-links">
+<a href="index.html">Overview</a><a aria-current="true" class="active" href="documentation.html">Documentation</a>
+<a href="validation.html">Validation</a><a class="btn btn-primary" href="index.html#download">Download</a>
+<button aria-label="Switch theme" class="theme-toggle" type="button"><i class="fas fa-moon"></i></button>
+</div>
+<!-- docs:mobile:start -->
+<details class="mobile-site-menu"><summary>Menu</summary><div class="mobile-site-links"><a href="index.html">Overview</a>
+<a aria-current="true" class="active" href="documentation.html">Documentation</a>
+<a href="validation.html">Validation</a>
+<a class="btn btn-primary" href="index.html#download">Download</a></div></details>
+<!-- docs:mobile:end -->
+</nav></div></header>
+<main id="main-content">
+<section class="hero docs-hero"><div class="container">
+<!-- docs:breadcrumbs:start -->
+<nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="documentation.html">Documentation</a></li><li><a href="documentation.html#rhino-workflows">Rhino workflows</a></li><li aria-current="page">Window analysis</li></ol></nav>
+<!-- docs:breadcrumbs:end -->
+<h1>Window analysis</h1><p>Reference measurements, calculation cases and reporting for frames, glazing edges, installation details and whole windows.</p>
+</div></section>
+<section class="documentation-content"><div class="container docs-grid docs-layout">
+<!-- docs:navigation:start -->
+<aside class="docs-sidebar"><details class="docs-menu" open>
+<summary>Documentation navigation</summary>
+<nav class="docs-nav" aria-label="Documentation chapters">
+<a class="docs-overview" href="documentation.html">Documentation overview</a>
+<details class="docs-group"><summary>Getting started</summary><ul>
+<li><a href="getting-started.html">Application choice and first calculation</a></li>
+<li><a href="installation.html">Installation</a></li>
+</ul></details>
+<details class="docs-group"><summary>Standalone editor</summary><ul>
+<li><a href="standalone-editor.html">Construction editor</a></li>
+</ul></details>
+<details class="docs-group" open><summary>Rhino workflows</summary><ul>
+<li><a href="rhino-guide.html">Model setup</a></li>
+<li><a href="examples.html">Example setups</a></li>
+<li><a href="psi-chi-workflow.html">Thermal bridge analysis (Ψ / χ)</a></li>
+<li><a href="window-analysis.html" aria-current="page">Window analysis</a></li>
+<li><a href="window-components.html">Window and IGU components</a></li>
+<li><a href="frame-assessment.html">Custom frame assessment</a></li>
+</ul></details>
+<details class="docs-group"><summary>Results and reporting</summary><ul>
+<li><a href="reporting.html">Results, reports and exports</a></li>
+</ul></details>
+<details class="docs-group"><summary>Methods and validation</summary><ul>
+<li><a href="methods.html">Calculation methods</a></li>
+<li><a href="validation.html">Validation</a></li>
+</ul></details>
+<details class="docs-group"><summary>Reference</summary><ul>
+<li><a href="reference.html">Commands, inputs and files</a></li>
+<li><a href="frame-library.html">Frame configurations and sources</a></li>
+</ul></details>
+</nav></details></aside>
+<!-- docs:navigation:end -->
+<div class="docs-main guide-copy">
+<!-- docs:contents:start -->
+<details class="page-toc" open><summary>On this page</summary>
+<nav aria-label="On this page"><ol>
+<li><a href="#choose">Choose a starting point</a>
+</li>
+<li><a href="#library">1. Place a window or IGU</a>
+</li>
+<li><a href="#measure">2. Draw the reference measurements</a>
+</li>
+<li><a href="#whole-window">Whole-window Uw</a>
+</li>
+<li><a href="#own-frame">Assess a frame you have drawn</a>
+</li>
+<li><a href="#calculate">3. Calculate and report</a>
+</li>
+<li><a href="#repair">Save and repair references</a>
+</li>
+<li><a href="#limits">Scope and limits</a>
+</li>
+</ol></nav></details>
+<!-- docs:contents:end -->
+<article>
+<h2 id="choose">Choose a starting point</h2>
+<p><strong>Library…</strong> chooses and places geometry. <strong>Window Analysis…</strong> reviews its assessment and reference measurements. <strong>Bridge Analysis…</strong> sets up general linear and point bridges. These controls sit together above the layer table in the KOALA panel.</p>
+<div class="docs-table-wrap"><table class="guide-table">
+<thead><tr><th>Starting point</th><th>Where to begin</th><th>Assessment</th></tr></thead>
+<tbody>
+<tr><td>Window in a wall</td><td>Library… → Examples</td><td>Jamb, head or sill: Uf, Ψg and installation Ψ. Whole window: Uw and installed heat flow.</td></tr>
+<tr><td>Library component</td><td>Library… → Windows / IGUs → IGU + frame</td><td>Place it, then choose Set up window analysis… in Window Analysis.</td></tr>
+<tr><td>Frame you model yourself</td><td>Window Analysis… → ＋ Frame of my own</td><td>Uf and Ψg of a uniform section with assigned materials and indoor/outdoor boundaries.</td></tr>
+</tbody>
+</table></div>
+<p>Use one example per Rhino document. A study solves everything on assigned layers together. The library and analysis forms stay open while you work in the document that owns them.</p>
+</article>
+<article>
+<h2 id="library">1. Place a window or IGU</h2>
+<p>Open <strong>Library…</strong>. The <strong>Examples</strong> tab provides complete editable setups, including window jamb, head, sill and whole-window examples with a wall, installation joint, boundary volumes and assessment cases.</p>
+<figure class="docs-shot">
+<img alt="KOALA Library Examples tab with complete editable thermal-bridge and window setups" class="theme-light" loading="lazy" src="img/generated/library_examples_light.png?v=2026-11-11">
+<img alt="KOALA Library Examples tab with complete editable thermal-bridge and window setups" class="theme-dark" loading="lazy" src="img/generated/library_examples_dark.png?v=2026-11-11"/>
+<figcaption>Examples include geometry, boundaries and their assessment.</figcaption>
+</img></figure>
+<p>The <strong>Windows / IGUs</strong> tab places a component into your own model. Choose <strong>IGU + frame</strong> or <strong>IGU only</strong>, then a full 3D window or cut detail. Choose the frame system and compatible glazing, check the pane stack and dimensions, then click the placement button and an insertion point in Rhino.</p>
+<figure class="docs-shot">
+<img alt="KOALA Library Windows / IGUs tab with frame, pane stack and glazing choices" class="theme-light" loading="lazy" src="img/generated/library_windows_light.png?v=2026-11-11"/>
+<img alt="KOALA Library Windows / IGUs tab with frame, pane stack and glazing choices" class="theme-dark" loading="lazy" src="img/generated/library_windows_dark.png?v=2026-11-11"/>
+<figcaption>Choose a component for your own model; review its glazing and source information before placing.</figcaption>
+</figure>
+<p>The IGU and frame form a read-only library unit on one layer; surrounding walls, installation joints and boundary volumes remain editable. An IGU-only component lets you model a frame around the glazing. Component placement adds no wall or assessment. Select the placed IGU + frame in <strong>Window Analysis…</strong> and choose <strong>Set up window analysis…</strong> to add its boundary volumes, measurement guides and calculation cases once.</p>
+<p><strong>Import from WINDOW…</strong> accepts reviewed <code>koala.glazing-system</code> version 1 JSON. Imported glazing is stored in the document and available in both library tabs where it fits the frame. Native WINDOW <code>.w4</code> and <code>.mdb</code> files need conversion first; they cannot be opened directly. Existing placed units keep their own property snapshots.</p>
+<p>Command shortcuts: <code>KoalaExamples</code> and <code>KoalaWindows</code> open the corresponding tab in the same library window.</p>
+</article>
+<article>
+<h2 id="measure">2. Draw the reference measurements</h2>
+<p>Choose <strong>Window Analysis…</strong> or run <code>KoalaWindowAnalysis</code>. Select the window, then <strong>Frame and glazing edge · Uf, Ψg</strong> or <strong>Installation in the wall · Ψ</strong>. Selecting an assessment view keeps the other cases.</p>
+<figure class="docs-shot">
+<img alt="Window analysis form with reference widths, coloured diagram and readiness checks" class="theme-light" loading="lazy" src="img/generated/window_analysis_light.png?v=2026-11-11"/>
+<img alt="Window analysis form with reference widths, coloured diagram and readiness checks" class="theme-dark" loading="lazy" src="img/generated/window_analysis_dark.png?v=2026-11-11"/>
+<figcaption>Draw the references in Rhino using the buttons beside the measurements.</figcaption>
+</figure>
+<p>Each input has a coloured label and an explanation matching the diagram. Choose <strong>Draw line…</strong> beside a length and click its two ends in Rhino. The same button creates a measurement or replaces an existing or missing one.</p>
+<div class="docs-table-wrap"><table class="guide-table">
+<thead><tr><th>Reference</th><th>What to measure</th></tr></thead>
+<tbody>
+<tr><td><strong>bf · Projected frame width</strong></td><td>From the outer frame edge to the visible-glazing edge (sightline).</td></tr>
+<tr><td><strong>bg · Visible glazing width</strong></td><td>From the sightline to the model’s glazing cut. Keep at least 190 mm of visible glazing.</td></tr>
+<tr><td><strong>bp · Panel reference width</strong></td><td>The visible reference width used when the glazing is replaced by an insulation panel for Uf.</td></tr>
+<tr><td><strong>Wall reference length</strong></td><td>For installation Ψ, from the wall’s cut to the frame’s outer edge, using the assessment’s stated dimension convention.</td></tr>
+</tbody>
+</table></div>
+<p>New picks remember their endpoints inside the assessment and add no Rhino point, curve, dimension or layer. Temporary viewport dimensions show extension lines, ticks, names and values in the document’s units. Focus an input or choose <strong>Highlight</strong> to identify its guide. Typing a number instead makes a <strong>Fixed value</strong> with no spatial guide.</p>
+<p>In <strong>Legend Settings → Measurement guides</strong>, choose <strong>While editing measurements</strong> (default), <strong>Always show</strong>, or <strong>Hidden</strong>. Always-visible guides work with the dialogs closed and before a simulation. The preference is saved with the document and is independent of thermal-result visibility.</p>
+</article>
+<article>
+<h2 id="whole-window">Whole-window Uw</h2>
+<p>Select <strong>Whole window · Uw</strong>. Its reference is the <strong>projected outer-frame area</strong>: the area inside the outer frame, excluding the wall and installation joint.</p>
+<figure class="docs-shot">
+<img alt="Whole-window analysis with projected outer-frame area and outline controls" class="theme-light" loading="lazy" src="img/generated/window_analysis_whole_light.png?v=2026-11-11"/>
+<img alt="Whole-window analysis with projected outer-frame area and outline controls" class="theme-dark" loading="lazy" src="img/generated/window_analysis_whole_dark.png?v=2026-11-11"/>
+<figcaption>Uw uses the projected outer-frame area, excluding the surrounding wall.</figcaption>
+</figure>
+<p><strong>Draw outline…</strong> takes three outer-frame corners to define a rectangle. <strong>Pick outline…</strong> copies an existing closed planar curve. The outline is remembered in the assessment, or you can enter a fixed area. Whole-window cases report Uw and installed heat flow separately; a 3D corner or mullion crossing does not automatically provide separate Uf, Ψ or χ values.</p>
+</article>
+<article>
+<h2 id="own-frame">Assess a frame you have drawn</h2>
+<ol>
+<li>Place an <strong>IGU only → Cut detail</strong> from the library. Model the frame as solids around its edge, with at least 190 mm of visible glazing. Place the IGU’s layer above the frame layers so that the glazing unit takes precedence in overlapping regions.</li>
+<li>Assign frame materials and indoor/outdoor boundary volumes. Every solid and boundary must describe the same uniform extrusion.</li>
+<li>Choose <strong>Window Analysis… → ＋ Frame of my own</strong>, name the assessment, and draw its projected frame width and visible glazing width.</li>
+<li>Use <strong>Pick point…</strong> on plain glazing away from the frame and spacer. KOALA traces the centre-glass Ug and reference-panel Up at that point.</li>
+<li>Complete the missing items, then choose <strong>Calculate window analysis</strong>. Existing frame assessments appear in the same list and are edited in place.</li>
+</ol>
+<p>Uf uses a second case with the glazing replaced in the background by an insulation panel, λ = 0.035 W/(m K). No panel solid is added to the model. For frame-profile voids, the layer menu’s <strong>Assign frame air cavities (automatic)…</strong> resolves each connected cavity on the grid; local layer cell sizes help resolve thin profile walls.</p>
+</article>
+<article>
+<h2 id="calculate">3. Calculate and report</h2>
+<p>The form lists what is still needed. Once the references are complete, choose <strong>Calculate window analysis</strong>. It runs the configured cases of the shared thermal study, including any other thermal bridges. Results appear in the form, panel log, viewport and <strong>Report…</strong> window. With <strong>Verify</strong> enabled, the cases are also solved at half the cell size.</p>
+<p><strong>Simulate model</strong> in the form, or <strong>Simulate</strong> in the panel, still solves heat flow and temperatures when window measurements are incomplete. KOALA reports that window analysis is unavailable and withholds Uf, Ψg, installation Ψ and Uw instead of reusing old reference values. The setup remains available for repair.</p>
+<p>Open <strong>Report…</strong> to enter project information, add named views and section drawings, and review the pages. Export PDF, CSV tables, report JSON or the complete study with its inputs. An optional <strong>ISO 13788 check</strong> in the report runs a separate surface-temperature calculation. See <a href="reporting.html">Results and reporting</a> for report preparation, saved fields and export procedures.</p>
+<p>The <strong>EnergyPlus IDF</strong> export can write a <code>WindowProperty:FrameAndDivider</code> object from a section’s Uf and Ψg. A window-in-wall detail can export the wall construction with its installation Ψ distributed over the stated perimeter and wall area. Whole-window Uw is stated in the report.</p>
+</article>
+<article>
+<h2 id="repair">Save and repair references</h2>
+<p>Measurements, outline and setup survive switching details and reopening the Rhino document. Remembered measurements are snapshots of your picks: draw them again after geometry changes. Older object-backed guides show <strong>Follows its measurement in Rhino</strong> and follow edits to their source objects.</p>
+<p>A missing reference shows a question mark and a repair instruction. Use its <strong>Draw line…</strong>, <strong>Pick point…</strong> or outline control to replace it, then calculate again. Changes to geometry, assignments, cell size or setup make an existing result obsolete. Recalculate after reopening; use the panel’s <code>.kvox</code> controls when you also need to save or load a solved field.</p>
+</article>
+<article>
+<h2 id="limits">Scope and limits</h2>
+<p>Library dimensions and material recipes are illustrative unless their source record states otherwise. They are starting points for modelling, not certified complete windows. Source classifications do not certify your edits, generated corners or installation details.</p>
+<p>Glazing uses the selected recipe’s fixed gap properties and reference conditions; changing temperature or tilt does not automatically recalculate gas and coating performance. Window and cavity calculations are thermal-only and skip Glaser vapour diffusion. Uf and Ψg need a uniform section; independent reference comparisons and mesh refinement remain necessary for detailed frames.</p>
+<p>For general linear and point bridges on your own geometry, follow the <a href="psi-chi-workflow.html">Ψ / χ workflow</a>. For the panel, layers and mesh controls, return to the <a href="rhino-guide.html#rhino-plugin">Rhino guide</a>.</p>
+</article>
+</div>
+</div></section>
+</main>
+<footer>
+<div class="container">
+<p>© 2026 Timur Dogan. All rights reserved.</p>
+</div>
+</footer>
+</body>
+</html>

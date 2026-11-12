@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Window and IGU components – KOALA</title>
+<meta content="Component placement, geometry rules, glazing imports and reference definitions." name="description"/>
+<meta content="KOALA documentation, thermal analysis tutorial, Rhino 3D, U-value calculation, heat transfer analysis, standalone app" name="keywords"/>
+<meta content="Timur Dogan" name="author"/>
+<meta content="Window and IGU components – KOALA" property="og:title"/>
+<meta content="Component placement, geometry rules, glazing imports and reference definitions." property="og:description"/>
+<meta content="website" property="og:type"/>
+<script src="theme.js?v=2026-11-01"></script>
+<link href="style.css?v=2026-11-11-nav" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<!-- MathJax for rendering equations -->
+<script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']]
+            }
+        };
+    </script>
+<script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- Umami Analytics -->
+<script data-website-id="d8ea1a0b-7c84-4131-9d98-2c71283b3c57" defer="" src="https://cloud.umami.is/script.js"></script>
+<script defer src="docs.js?v=2026-11-11-nav"></script>
+</head>
+<body class="documentation-page">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header><div class="container"><nav aria-label="Main navigation">
+<a class="logo" href="index.html"><img alt="KOALA home" src="img/KLogo.png" style="height:40px;width:auto"/></a>
+<div class="nav-links">
+<a href="index.html">Overview</a><a aria-current="true" class="active" href="documentation.html">Documentation</a>
+<a href="validation.html">Validation</a><a class="btn btn-primary" href="index.html#download">Download</a>
+<button aria-label="Switch theme" class="theme-toggle" type="button"><i class="fas fa-moon"></i></button>
+</div>
+<!-- docs:mobile:start -->
+<details class="mobile-site-menu"><summary>Menu</summary><div class="mobile-site-links"><a href="index.html">Overview</a>
+<a aria-current="true" class="active" href="documentation.html">Documentation</a>
+<a href="validation.html">Validation</a>
+<a class="btn btn-primary" href="index.html#download">Download</a></div></details>
+<!-- docs:mobile:end -->
+</nav></div></header>
+<main id="main-content">
+<section class="hero docs-hero"><div class="container">
+<!-- docs:breadcrumbs:start -->
+<nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="documentation.html">Documentation</a></li><li><a href="documentation.html#rhino-workflows">Rhino workflows</a></li><li aria-current="page">Window and IGU components</li></ol></nav>
+<!-- docs:breadcrumbs:end -->
+<h1>Window and IGU components</h1><p>Component placement, geometry rules, glazing imports and reference definitions.</p>
+</div></section>
+<section class="documentation-content"><div class="container docs-grid docs-layout">
+<!-- docs:navigation:start -->
+<aside class="docs-sidebar"><details class="docs-menu" open>
+<summary>Documentation navigation</summary>
+<nav class="docs-nav" aria-label="Documentation chapters">
+<a class="docs-overview" href="documentation.html">Documentation overview</a>
+<details class="docs-group"><summary>Getting started</summary><ul>
+<li><a href="getting-started.html">Application choice and first calculation</a></li>
+<li><a href="installation.html">Installation</a></li>
+</ul></details>
+<details class="docs-group"><summary>Standalone editor</summary><ul>
+<li><a href="standalone-editor.html">Construction editor</a></li>
+</ul></details>
+<details class="docs-group" open><summary>Rhino workflows</summary><ul>
+<li><a href="rhino-guide.html">Model setup</a></li>
+<li><a href="examples.html">Example setups</a></li>
+<li><a href="psi-chi-workflow.html">Thermal bridge analysis (Ψ / χ)</a></li>
+<li><a href="window-analysis.html">Window analysis</a></li>
+<li><a href="window-components.html" aria-current="page">Window and IGU components</a></li>
+<li><a href="frame-assessment.html">Custom frame assessment</a></li>
+</ul></details>
+<details class="docs-group"><summary>Results and reporting</summary><ul>
+<li><a href="reporting.html">Results, reports and exports</a></li>
+</ul></details>
+<details class="docs-group"><summary>Methods and validation</summary><ul>
+<li><a href="methods.html">Calculation methods</a></li>
+<li><a href="validation.html">Validation</a></li>
+</ul></details>
+<details class="docs-group"><summary>Reference</summary><ul>
+<li><a href="reference.html">Commands, inputs and files</a></li>
+<li><a href="frame-library.html">Frame configurations and sources</a></li>
+</ul></details>
+</nav></details></aside>
+<!-- docs:navigation:end -->
+<div class="docs-main guide-copy">
+<!-- docs:contents:start -->
+<details class="page-toc" open><summary>On this page</summary>
+<nav aria-label="On this page"><ol>
+<li><a href="#the-window-component-browser">The window component browser</a>
+</li>
+<li><a href="#igu-and-frame-inspector">IGU and frame inspector</a>
+</li>
+<li><a href="#use-existing-geometry">Use existing geometry</a>
+</li>
+<li><a href="#reference-terms-and-edits">Reference terms and edits</a>
+</li>
+<li><a href="#import-window-data">Import WINDOW data</a>
+</li>
+<li><a href="#scope">Scope and current limitations</a>
+</li>
+</ol></nav></details>
+<!-- docs:contents:end -->
+<p>Choose <strong>Library…</strong> in the KOALA panel's toolbar. Its two tabs offer windows in two ways:</p>
+<ul>
+<li><strong>Windows / IGUs</strong> (or <code>KoalaWindows</code>) is the browser of window <strong>components</strong>: a glazing unit with its frame (<strong>IGU + frame</strong>) or the glazing unit alone (<strong>IGU only</strong>), placed without wall, boundary conditions or assessments, for a model of your own. It also manages the glazing imported from LBNL WINDOW. After placement, <a href="window-analysis.html"><strong>Window Analysis…</strong></a> sets up or reviews the assessment and its reference measurements.</li>
+<li><strong>Examples</strong> (or <code>KoalaExamples</code>) has the window <strong>in its wall</strong>: jamb, head and sill cuts and a whole window, with wall, installation joint, boundary conditions and assessments. See <a href="examples.html">example setups</a>. The steps below that mention example walls, joints and assessments apply to those.</li>
+</ul>
+<p>The library is modeless: keep it open while working in Rhino. Each document has one library window; the commands select the corresponding tab in that same window. Imported glazing is available in both tabs where it fits the frame.</p>
+<h2 id="the-window-component-browser">The window component browser</h2>
+<ol>
+<li>Choose <strong>IGU + frame</strong> or <strong>IGU only</strong>. With a frame, <strong>Full 3D window</strong> is the default geometry and <strong>Cut detail</strong> offers jamb, head and sill plus a physical extrusion depth; full windows accept width and height as either overall frame or clear glazing dimensions. A glazing unit alone can have any thickness because no frame rebate has to fit. As <strong>Full 3D window</strong> it is the whole rectangular unit with spacer and edge seal all round, its width and height those of the glass. As <strong>Cut detail</strong> it is the unit's edge: a strip with seal and spacer at one end, the uniform section for <a href="frame-assessment.html">a frame of your own</a>. All dimension fields use the Rhino document's units.</li>
+<li>Choose a frame system: illustrative PVC, timber, timber with aluminium cladding, or thermally broken aluminium. Compare the read-only glazing table on the left: setup, outside-to-inside build-up, gas fill and reference Ug. The right pane shows previews, total thickness, coating faces/emissivity and reference conditions for the selected row. Gas names are abbreviated in the table; hover for the full mixture. All four systems have 20/24 mm double and 36/44 mm triple configurations; PVC also has 4/6/8 mm single configurations. Choices resolve to recorded profile/bead/gasket combinations by overall glazing thickness. See <a href="frame-library.html">frame configuration sources</a>.</li>
+<li>Inspect the section or 3D construction preview and pane/gap diagram. Orange lines identify low-e faces. <strong>Source details…</strong> shows the frame configuration and its provenance, plus glazing conductivities, emissivities and reference conditions. Browsing creates no Rhino objects and runs no simulations.</li>
+<li>Choose the <strong>Place … in Rhino…</strong> button (to get Uf, Ψg or Uw for a placed unit afterwards, see <a href="frame-assessment.html">assessing a frame</a>), then click an insertion point; Escape cancels. A component keeps the cell size of a model that already has assigned layers. A full window lies in world XZ, with outside toward −Y. A jamb has its section in XY and extrudes along Z; head and sill sections extrude along X. The framed IGU is one managed block on one <strong>IGU + frame</strong> layer in Rhino and one special material row in KOALA. Its panes, gaps, frame profiles/cavities, gaskets, spacers and seals expand internally for the solver. Example walls, joints and boundary volumes are separate closed Breps on ordinary assigned layers. Reference guides are excluded from the KOALA layer table. The browser closes after placement.</li>
+<li>Edit example walls, joints and boundary solids directly in Rhino; double-click their ordinary KOALA rows to change assignments. Put additional supports on assigned child layers under <strong>Supports</strong>. Those objects participate in installed assessments, while standalone reference cases exclude external context. Keep new geometry within the modeled boundary extent and specimen depth, or extend those volumes deliberately. The IGU and frame remain a read-only library component.</li>
+<li>Select the example's managed unit and choose <strong>Simulate</strong> in the main KOALA panel. Full windows default to a 20 mm target cell; cut details default to 4 mm, both with a half-size refinement check. Unit-only insertion in your own model uses the normal full-model 3D simulation and your material/boundary assignments. Before solving example assessments, KOALA logs actual graded cell/node counts and a working-memory estimate, and rejects oversized meshes. Copying a unit copies its IGU/frame only; use the library to place another complete example.</li>
+<li>After <strong>Simulate</strong>, the calculated values (Uf, Ψg, Uw, installation Ψ, lowest surface temperature) appear in the panel's log and the main result is shown in the viewport. A placed window is an ordinary thermal study created from a template; add Ψ/χ calculations of your own with <strong>Bridge Analysis…</strong>. <strong>Report…</strong> opens the report window with a preview of the pages and the export.</li>
+</ol>
+<p>Cut details resolve a <strong>full 3D grid through the physical extrusion depth</strong>. Uniform extrusions can still report Uf and glazing/installation Ψ per metre through the configured reference calculations. A finite support or depth variation removes that section normalization: the finite 3D specimen reports Q and H. The slice slider and index stepper stay synchronized when the plane, assessment or grid changes. A direction containing only one cell is disabled with an explanation; choose another plane for saved section-only results.</p>
+<p>Full-window heat-flow assessments report <strong>Uw</strong> from the projected outer frame area, excluding wall and joint. Separate installed assessments report Q/H including the surrounding construction; all newly placed example assessments use the currently assigned boundary temperatures, resistances and humidity. Surface-temperature assessments report under those assigned conditions. Analytic subtractions use the same films as the numerical case. Full windows do not automatically derive separate Uf/Ψ/χ decompositions. The four frame members use illustrative mitered profiles with distinct head-drip and sill-base features, rather than manufacturer-specific corner fabrication.</p>
+<p>The browser only selects, inspects, imports and places geometry. It has no calculation, case, formula or material editor. Its dimensional controls describe generated geometry. A draggable divider starts with 65% of the body devoted to choices and the comparison table. Previews and specifications stack vertically on the right. The opening size fits the complete built-in catalogue and selected setup without scrollbars on a sufficiently large screen; each pane can scroll independently when the window is reduced or content grows. Wall and installation dimensions expand when needed. Placement remains visible in the footer. The glazing replacement picker uses the same selection/details split.</p>
+<h2 id="igu-and-frame-inspector">IGU and frame inspector</h2>
+<p>Double-click the <strong>IGU + frame</strong> row in the KOALA layer table, or select its block and run <strong><code>KoalaGlazingProperties</code></strong>. The inspector shows the frame description, each component's assigned material and conductivity (or effective cavity conductivity), the pane/gap drawing and glazing source/reference properties. All fields are read-only. Choose a different construction in the library to place another unit.</p>
+<p>Modifying component meshes with BlockEdit, exploding the unit, deleting members, or scaling the assembly invalidates the managed definition and blocks calculation. Translation and upright rotation are supported; tilted glazing requires a matching thermal recipe. A full-window glazing-height mismatch is reported because gap properties remain fixed at their recorded reference state. Ordinary example walls and boundary conditions can be edited independently of the unit.</p>
+<p>The thirteen built-in glazing sets are computed by Berkeley Lab's WINDOW CalcEngine using pyWinCalc 3.3.1: three clear single panes (4/6/8 mm), five double-pane and five triple-pane stacks, including clear/low-e and air/90% argon alternatives. They use generic glass conductivity and emissivities at a recorded zero-solar reference condition. They are labelled <strong>CalcEngine reference; generic thermal recipe</strong>. They are not measured IGDB products or verified desktop-WINDOW exports. The actual per-gap outputs are preserved, including unequal values in the two triple-glazing gaps. Optical/solar performance is not supplied. Single glazing has no gap or edge spacer.</p>
+<h2 id="use-existing-geometry">Use existing geometry</h2>
+<p>Assign solids and indoor/outdoor boundary volumes through the layer table. Use its context menu to <strong>Assign sealed cavity…</strong>, <strong>Set component / boundary role…</strong>, and <strong>Select objects</strong>. A cavity can use supplied equivalent conductivity, a one-gap calibration from Ug, or a specific gap from a glazing set. Thickness-axis checks compare the stored gap thickness with the geometry. For imported/calibrated gaps with an axis check enabled, mark the adjacent panes with the <code>glass</code> role: their geometry and conductivity must match the selected recipe, outside-to-inside along the positive axis. An imported gap already includes radiation; no extra radiation term is added.</p>
+<p>For managed windows, frame members remain within the read-only IGU/frame block, and example walls/boundaries and additional supports remain loose on assigned context layers. The insulation panel of the Uf cases is not an object: those cases solve the glazing unit as the panel. The browser configures example assessments automatically; it does not author arbitrary cases or point-bridge reference decompositions. Existing legacy individual-solid and outer-block studies remain readable; reinsert a legacy example from the library to adopt the new placement layout.</p>
+<h2 id="reference-terms-and-edits">Reference terms and edits</h2>
+<p>The main panel's window result details and JSON report preserve dependencies, analytic references, sources, conventions and units. Cyclic or missing dependencies and obsolete case results cannot be evaluated. Generated presets link panel, wall and centre-glass references to their source solids and the reference case's films. Their series resistances use current conductivities and thicknesses after a run.</p>
+<p>Tagged setup curves in existing examples provide reference lengths in metres and follow edits in Rhino. <strong>Window analysis…</strong> provides <strong>Draw line…</strong> buttons to replace each reference with remembered endpoints and a temporary viewport dimension, including in older document-based details. New measurement picks create no model objects. <strong>Legend Settings → Measurement guides</strong> controls whether the previews appear while editing, remain visible with the dialogs closed, or are hidden. Incomplete measurements disable the window assessment, while thermal simulation and its report remain available; window transmittances are withheld until their measurements are complete. Setup objects are excluded from voxelization. Managed unit copies receive per-instance source identities; their example context is not copied. Legacy individual components with duplicated source markers require rebinding or a fresh placement.</p>
+<p>Material, cavity, boundary, geometry and mesh edits obsolete results. <strong>Simulate</strong> rechecks fingerprints and runs the defined assessments. A geometry change during a solve causes its outputs to be rejected. Cancellation cannot publish partial verification as a current result. On reopening a document, run the study before accessing its scalar reports; result fields remain available through saved <code>.kvox</code> files.</p>
+<p><strong>Report…</strong> → <strong>Export report…</strong> writes the ISO 10211 report (PDF, CSV or JSON), or the complete study with its reference definitions, input-volume snapshot and result summary (JSON). Each case records its target mesh and refinement results. Export requires current cases. <code>.kvox</code> stores the selected solved field and its thermal summary. Nonconverged fields cannot be saved as solved results. Window/cavity runs skip Glaser diffusion; the opaque-construction IDF export is disabled for these thermal-only results.</p>
+<p>Placed windows and exported studies retain a snapshot of the frame configuration, its profile/bead/gasket identifiers, glazing thickness and source record. Source status describes the supplied section; it does not certify later frame edits, generated corners, installation details or the complete window. Older sections without configuration metadata still load, without gaining a source classification.</p>
+<h2 id="import-window-data">Import WINDOW data</h2>
+<p><strong>Import from WINDOW…</strong> in the window component browser accepts <code>koala.glazing-system</code> version 1 JSON. Imported entries are saved in the document and selected immediately, with their pane diagram and properties visible; the line under the table says when the selected glazing is an import. A matching frame rebate enables placement with a frame. An unsupported overall thickness remains available for inspection and cavity assignments and can be placed as <strong>IGU only</strong>. <strong>Remove import</strong> takes the selected import out of the document's list; units already placed keep their own snapshot. The window examples of the example browser offer the same imports where they fit the frame. Imported glazing does not replace the properties of an already placed detail. Documents embed their used property snapshots; changing a library file does not silently update a placed assembly.</p>
+<p>Native WINDOW <code>.w4</code> and <code>.mdb</code> files are not directly parsed. No verified binary-layout fixture was available during implementation. Use a reviewed manifest containing the actual pane stack, independent gap conductivities and U-factor reference conditions, then normalize it with:</p>
+<pre><code class="language-sh">python tools/windows/normalize_window_glazing.py manifest.json original-window-export normalized-glazing.json
+</code></pre>
+<p>The manifest uses the <code>Data</code> schema illustrated by the JSON files under <code>KOALASolver/Windows/Glazing</code>. Replace all generic inputs with the actual WINDOW records and reference outputs. The normalizer records the original source file's SHA-256 hash. Import validation rejects unsupported versions, incomplete stacks, invalid properties, nonzero-solar references and a Ug mismatch exceeding 0.5% under the recorded films. It does not award a desktop-WINDOW verification badge.</p>
+<section><h2 id="scope">Scope and current limitations</h2><p>Glazing uses recorded gap properties and reference conditions. Temperature or tilt changes do not automatically recalculate gas and coating performance. Detailed cavity radiosity, native WINDOW binary import, nonrectangular generated windows and manufacturer-specific frame corners are not provided by the current library workflow.</p><p>Review <a href="window-analysis.html#limits">window assessment limits</a>, <a href="frame-library.html">frame source classifications</a> and <a href="methods.html#verification">mesh verification</a> with the model inputs.</p></section></div>
+</div></section>
+</main>
+<footer>
+<div class="container">
+<p>© 2026 Timur Dogan. All rights reserved.</p>
+</div>
+</footer>
+</body>
+</html>

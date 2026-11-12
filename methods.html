@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Calculation methods – KOALA</title>
+<meta content="Mesh construction, steady-state heat transfer, moisture screening and dynamic estimates." name="description"/>
+<meta content="KOALA documentation, thermal analysis tutorial, Rhino 3D, U-value calculation, heat transfer analysis, standalone app" name="keywords"/>
+<meta content="Timur Dogan" name="author"/>
+<meta content="Calculation methods – KOALA" property="og:title"/>
+<meta content="Mesh construction, steady-state heat transfer, moisture screening and dynamic estimates." property="og:description"/>
+<meta content="website" property="og:type"/>
+<script src="theme.js?v=2026-11-01"></script>
+<link href="style.css?v=2026-11-11-nav" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<!-- MathJax for rendering equations -->
+<script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']]
+            }
+        };
+    </script>
+<script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- Umami Analytics -->
+<script data-website-id="d8ea1a0b-7c84-4131-9d98-2c71283b3c57" defer="" src="https://cloud.umami.is/script.js"></script>
+<script defer src="docs.js?v=2026-11-11-nav"></script>
+</head>
+<body class="documentation-page">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header><div class="container"><nav aria-label="Main navigation">
+<a class="logo" href="index.html"><img alt="KOALA home" src="img/KLogo.png" style="height:40px;width:auto"/></a>
+<div class="nav-links">
+<a href="index.html">Overview</a><a aria-current="true" class="active" href="documentation.html">Documentation</a>
+<a href="validation.html">Validation</a><a class="btn btn-primary" href="index.html#download">Download</a>
+<button aria-label="Switch theme" class="theme-toggle" type="button"><i class="fas fa-moon"></i></button>
+</div>
+<!-- docs:mobile:start -->
+<details class="mobile-site-menu"><summary>Menu</summary><div class="mobile-site-links"><a href="index.html">Overview</a>
+<a aria-current="true" class="active" href="documentation.html">Documentation</a>
+<a href="validation.html">Validation</a>
+<a class="btn btn-primary" href="index.html#download">Download</a></div></details>
+<!-- docs:mobile:end -->
+</nav></div></header>
+<main id="main-content">
+<section class="hero docs-hero"><div class="container">
+<!-- docs:breadcrumbs:start -->
+<nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="documentation.html">Documentation</a></li><li><a href="documentation.html#methods-validation">Methods and validation</a></li><li aria-current="page">Calculation methods</li></ol></nav>
+<!-- docs:breadcrumbs:end -->
+<h1>Calculation methods</h1><p>Mesh construction, steady-state heat transfer, moisture screening and dynamic estimates.</p>
+</div></section>
+<section class="documentation-content"><div class="container docs-grid docs-layout">
+<!-- docs:navigation:start -->
+<aside class="docs-sidebar"><details class="docs-menu" open>
+<summary>Documentation navigation</summary>
+<nav class="docs-nav" aria-label="Documentation chapters">
+<a class="docs-overview" href="documentation.html">Documentation overview</a>
+<details class="docs-group"><summary>Getting started</summary><ul>
+<li><a href="getting-started.html">Application choice and first calculation</a></li>
+<li><a href="installation.html">Installation</a></li>
+</ul></details>
+<details class="docs-group"><summary>Standalone editor</summary><ul>
+<li><a href="standalone-editor.html">Construction editor</a></li>
+</ul></details>
+<details class="docs-group"><summary>Rhino workflows</summary><ul>
+<li><a href="rhino-guide.html">Model setup</a></li>
+<li><a href="examples.html">Example setups</a></li>
+<li><a href="psi-chi-workflow.html">Thermal bridge analysis (Ψ / χ)</a></li>
+<li><a href="window-analysis.html">Window analysis</a></li>
+<li><a href="window-components.html">Window and IGU components</a></li>
+<li><a href="frame-assessment.html">Custom frame assessment</a></li>
+</ul></details>
+<details class="docs-group"><summary>Results and reporting</summary><ul>
+<li><a href="reporting.html">Results, reports and exports</a></li>
+</ul></details>
+<details class="docs-group" open><summary>Methods and validation</summary><ul>
+<li><a href="methods.html" aria-current="page">Calculation methods</a></li>
+<li><a href="validation.html">Validation</a></li>
+</ul></details>
+<details class="docs-group"><summary>Reference</summary><ul>
+<li><a href="reference.html">Commands, inputs and files</a></li>
+<li><a href="frame-library.html">Frame configurations and sources</a></li>
+</ul></details>
+</nav></details></aside>
+<!-- docs:navigation:end -->
+<div class="docs-main guide-copy">
+<!-- docs:contents:start -->
+<details class="page-toc" open><summary>On this page</summary>
+<nav aria-label="On this page"><ol>
+<li><a href="#mesh">The Mesh</a>
+<ol>
+<li><a href="#every-interface-is-a-grid-line">Every interface is a grid line</a></li>
+<li><a href="#grading">Grading</a></li>
+<li><a href="#recommended-cell-size">Recommended cell size</a></li>
+<li><a href="#voxelization-in-3d">Voxelization in 3D</a></li>
+<li><a href="#mesh-independence-check">Mesh independence check</a></li>
+</ol>
+</li>
+<li><a href="#solver-internals">How the Solver Works</a>
+<ol>
+<li><a href="#discretization">Discretization</a></li>
+<li><a href="#boundary-conditions">Boundary conditions</a></li>
+<li><a href="#solving-the-system">Solving the system</a></li>
+<li><a href="#u-value-and-heat-flux">U-value and heat flux</a></li>
+<li><a href="#moisture-glaser-method">Moisture (Glaser method)</a></li>
+<li><a href="#dynamic-properties-iso-13786">Dynamic properties (ISO 13786)</a></li>
+</ol>
+</li>
+<li><a href="#verification">Mesh verification and reference cases</a>
+</li>
+</ol></nav></details>
+<!-- docs:contents:end -->
+<article style="margin-bottom: 4rem;">
+<h2 id="mesh">The Mesh</h2>
+<p style="margin-bottom: 1rem; color: var(--text-muted);">
+                                Both the standalone editor (2D) and the Rhino plugin (3D) discretize the geometry into
+                                a <strong>graded rectilinear grid</strong>: a structured grid of rectangular (2D) or
+                                box-shaped (3D) cells whose spacing varies along each axis. The same mesher is used in
+                                both.
+                            </p>
+<h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;" id="every-interface-is-a-grid-line">Every interface is a grid line</h3>
+<p style="color: var(--text-muted); margin-bottom: 1rem;">
+                                In 2D, every material interface (layer and fill boundaries, stud edges, profile
+                                flanges and webs) becomes a grid line in both directions. In 3D, every axis-aligned
+                                face of the Rhino volumes, plus each volume's bounding planes, becomes a grid plane.
+                                As a result each cell holds exactly one material, and thin parts are never skipped or
+                                widened by where the grid happens to fall: a 1 mm steel plate is resolved at its exact
+                                thickness even with a 10 mm cell size. Faces closer together than a small tolerance
+                                are merged, so modelling noise does not create sliver cells.
+                            </p>
+<h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;" id="grading">Grading</h3>
+<p style="color: var(--text-muted); margin-bottom: 1rem;">
+                                Next to an interface, the cell size starts at the width of the thinner neighbouring
+                                part (so a 1.5 mm strip gets roughly 1.5 mm neighbours), but never smaller than 1/16 of
+                                the target size. Away from the interface it grows by at most 30 % from one cell to the
+                                next until it reaches the target size. Thick, uniform regions are meshed evenly at the
+                                target size. This puts small cells where temperature gradients are steep and keeps
+                                the cell count low everywhere else.
+                            </p>
+<h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;" id="recommended-cell-size">Recommended cell size</h3>
+<p style="color: var(--text-muted); margin-bottom: 1rem;">
+                                The recommended (Auto) size is <strong>a tenth of the characteristic thickness, at
+                                most 10 mm</strong>, rounded down to 1, 2, 2.5 or 5 × 10ⁿ. In 2D the characteristic
+                                thickness is the total construction thickness. In 3D it is the smallest extent of the
+                                material volumes along an axis on which the geometry changes; an axis without internal
+                                faces (such as the length of an extruded section) does not count. Thin parts do not
+                                need to be considered, because the mesh resolves every interface anyway. In the
+                                standalone editor, the mesh size button turns red when you choose a size coarser than
+                                recommended.
+                            </p>
+<h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;" id="voxelization-in-3d">Voxelization in 3D</h3>
+<p style="color: var(--text-muted); margin-bottom: 1rem;">
+                                Each 3D cell gets the material or boundary condition of the highest-priority volume
+                                that contains the cell's centre (see <a href="rhino-guide.html#rhino-plugin">layer order</a>). Cells
+                                inside no volume are empty and act as adiabatic (no heat flow). Sloped faces add no
+                                grid planes; they are sampled by the cell centres.
+                            </p>
+<h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;" id="mesh-independence-check">Mesh independence check</h3>
+<p style="color: var(--text-muted); margin-bottom: 1rem;">
+                                ISO 10211 requires that doubling the number of subdivisions changes the heat flow by
+                                less than 1 %. With the check turned on (<em>Verify</em> in Rhino, the mesh check
+                                toggle in the standalone editor), Koala solves the model again at half the cell size
+                                and warns if the U-value changes by 1 % or more. The refined run takes roughly 4× the
+                                time in 2D and has up to 8× the cells in 3D.
+                            </p>
+<p style="color: var(--text-muted); margin-bottom: 1rem;">
+                                Because thin parts are resolved exactly, coarse grids are now far more accurate than
+                                with a uniform voxel grid. Results on the validation models:
+                            </p>
+<table style="width: 100%; border-collapse: collapse; text-align: left; color: var(--text-muted); margin-bottom: 1rem;">
+<thead>
+<tr style="border-bottom: 1px solid var(--border-color);">
+<th style="padding: 0.5rem;">Model</th>
+<th style="padding: 0.5rem;">Cell size</th>
+<th style="padding: 0.5rem;">Uniform grid (before)</th>
+<th style="padding: 0.5rem;">Graded grid</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-bottom: 1px solid var(--border-color);">
+<td style="padding: 0.5rem;">3D test case</td>
+<td style="padding: 0.5rem;">20 mm</td>
+<td style="padding: 0.5rem;">U = 1.107 W/m²K (9 % off)</td>
+<td style="padding: 0.5rem;">U = 1.225 W/m²K (0.3 % off)</td>
+</tr>
+<tr style="border-bottom: 1px solid var(--border-color);">
+<td style="padding: 0.5rem;">3D test case, fine reference</td>
+<td style="padding: 0.5rem;">5 mm</td>
+<td style="padding: 0.5rem;">1.2226 W/m²K</td>
+<td style="padding: 0.5rem;">1.2223 W/m²K</td>
+</tr>
+<tr style="border-bottom: 1px solid var(--border-color);">
+<td style="padding: 0.5rem;">ISO 10211 case 2 (reference 9.5 W/m)</td>
+<td style="padding: 0.5rem;">2.5 mm (recommended)</td>
+<td style="padding: 0.5rem;">9.492 W/m at 0.5 mm, 9 s</td>
+<td style="padding: 0.5rem;">9.511 W/m, about 0.1 s</td>
+</tr>
+</tbody>
+</table>
+</article><article style="margin-bottom: 4rem;">
+<h2 id="solver-internals">How the Solver Works</h2>
+<p style="margin-bottom: 1rem; color: var(--text-muted);">
+                                The 2D and 3D analyses share one numerical core. For steady-state heat transfer, Koala
+                                solves the heat conduction equation
+                            </p>
+<div class="math-block" style="background: var(--dark-surface); padding: 1.5rem; border-radius: 8px; margin: 1rem 0; border-left: 3px solid var(--secondary); color: var(--text-muted); overflow-x: auto;">
+                                \[ \nabla \cdot \left( \lambda \, \nabla T \right) = 0 \]
+                            </div>
+<h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;" id="discretization">Discretization</h3>
+<p style="color: var(--text-muted); margin-bottom: 1rem;">
+                                Temperatures are calculated at the grid nodes (the cell corners). Each cell connects
+                                neighbouring nodes along every axis with a thermal conductance
+                                \(G = \lambda A / L\), where \(A\) is the share of the cell face belonging to the node
+                                pair and \(L\) the cell length along that axis. Summing the conductances of all cells
+                                gives a sparse, symmetric system \([K]\{T\} = \{F\}\) with 5 entries per row in 2D and 7
+                                in 3D. Because conductances are formed per cell, a sharp contrast such as steel
+                                (λ ≈ 50 W/mK) next to insulation (λ ≈ 0.035 W/mK) is represented exactly at the
+                                interface.
+                            </p>
+<h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;" id="boundary-conditions">Boundary conditions</h3>
+<ul style="list-style: disc; margin-left: 20px; color: var(--text-muted); margin-bottom: 1rem;">
+<li style="margin-bottom: 0.5rem;"><strong>Surface films:</strong> Surface nodes on a
+                                    boundary are connected to the boundary air temperature through a conductance
+                                    \(A / R_s\) (Rsi or Rse), where \(A\) is the node's share of the surface. Uneven
+                                    spacing is accounted for.</li>
+<li style="margin-bottom: 0.5rem;"><strong>Adiabatic edges:</strong> In 2D, the top
+                                    and bottom edges of the repeating unit are adiabatic (symmetry planes). In 3D, any
+                                    material face that touches neither another material nor a boundary is
+                                    adiabatic.</li>
+<li style="margin-bottom: 0.5rem;"><strong>Floating parts:</strong> Parts that are not
+                                    connected to any boundary through conduction have no defined temperature. They are
+                                    reported and left out instead of making the solve fail.</li>
+</ul>
+<h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;" id="solving-the-system">Solving the system</h3>
+<p style="color: var(--text-muted); margin-bottom: 1rem;">
+                                When the problem fits in memory, the system is solved <strong>directly</strong> with a
+                                banded Cholesky factorization. The nodes are ordered with the largest grid direction
+                                outermost, which keeps the band narrow. A direct solve is exact up to rounding, and
+                                its cost does not depend on the conductivity contrast or a convergence tolerance.
+                                Larger 3D grids fall back to an <strong>iterative</strong> conjugate gradient solver
+                                with an incomplete Cholesky preconditioner; the console warns if it does not converge.
+                                Typical 2D sections solve in a fraction of a second; 3D grids of around 3 million nodes
+                                take a few seconds.
+                            </p>
+<h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;" id="u-value-and-heat-flux">U-value and heat flux</h3>
+<p style="color: var(--text-muted); margin-bottom: 1rem;">
+                                The heat flow \(Q\) is summed over every surface film on the interior side, and the
+                                U-value follows as
+                            </p>
+<div class="math-block" style="background: var(--dark-surface); padding: 1.5rem; border-radius: 8px; margin: 1rem 0; border-left: 3px solid var(--secondary); color: var(--text-muted); overflow-x: auto;">
+                                \[ U = \frac{Q}{A \, (T_{i} - T_{e})} \]
+                            </div>
+<p style="color: var(--text-muted); margin-bottom: 1rem;">
+                                where \(A\) is the interior contact area (in 3D, the area of all material faces
+                                touching interior boundaries). The heat flux view shows \(q = -\lambda \nabla T\) per
+                                cell.
+                            </p>
+<h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;" id="moisture-glaser-method">Moisture (Glaser method)</h3>
+<p style="color: var(--text-muted); margin-bottom: 1rem;">
+                                After the temperatures are known, the saturation vapour pressure is calculated at every
+                                node. A second steady-state system of the same form is solved for the vapour pressure,
+                                using the vapour permeability \(\delta_{air} / \mu\) of each material and the relative
+                                humidity of the boundaries. Relative humidity is the ratio of the two pressures; nodes
+                                where the vapour pressure would exceed saturation indicate a condensation risk.
+                            </p>
+<h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;" id="dynamic-properties-iso-13786">Dynamic properties (ISO 13786)</h3>
+<p style="color: var(--text-muted); margin-bottom: 1rem;">
+                                For dynamic analysis in the standalone editor, the construction is treated as a
+                                multi-layer system responding to a sinusoidal temperature wave with a period of 24
+                                hours. Each layer is represented by a <strong>transfer matrix</strong> \(Z\) that relates
+                                temperature and heat flux on one side to the other:
+                            </p>
+<div class="math-block" style="background: var(--dark-surface); padding: 1.5rem; border-radius: 8px; margin: 1rem 0; border-left: 3px solid var(--secondary); color: var(--text-muted); overflow-x: auto;">
+                                \[
+                                \begin{pmatrix} T_{out} \\ q_{out} \end{pmatrix} =
+                                \begin{pmatrix} Z_{11} &amp; Z_{12} \\ Z_{21} &amp; Z_{22} \end{pmatrix}
+                                \begin{pmatrix} T_{in} \\ q_{in} \end{pmatrix}
+                                \]
+                            </div>
+<p style="color: var(--text-muted);">
+                                Multiplying these matrices for all layers gives the <strong>periodic thermal
+                                transmittance</strong> \(Y_{mn}\), which yields the decrement factor and time shift.
+                            </p>
+</article><article><h2 id="verification">Mesh verification and reference cases</h2>
+<p>Mesh refinement evaluates sensitivity to grid resolution. In Rhino, <strong>Verify</strong> repeats the calculation at half the target cell size. Review the reported changes in heat flow and any other quantities used by the assessment.</p>
+<p>The <a href="validation.html">validation page</a> documents the ISO 10211 reference cases and the THERM comparison. Reference-case verification and refinement of a project model serve different purposes; both should be reviewed within the scope of the calculation.</p>
+<p>For window-specific assumptions and source classifications, see <a href="window-analysis.html#limits">window analysis limits</a> and <a href="frame-library.html">frame configurations and sources</a>.</p></article>
+</div>
+</div></section>
+</main>
+<footer>
+<div class="container">
+<p>© 2026 Timur Dogan. All rights reserved.</p>
+</div>
+</footer>
+</body>
+</html>

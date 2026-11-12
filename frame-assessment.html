@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Custom frame assessment – KOALA</title>
+<meta content="Uf and glazing-edge assessment, frame air cavities and local cell size." name="description"/>
+<meta content="KOALA documentation, thermal analysis tutorial, Rhino 3D, U-value calculation, heat transfer analysis, standalone app" name="keywords"/>
+<meta content="Timur Dogan" name="author"/>
+<meta content="Custom frame assessment – KOALA" property="og:title"/>
+<meta content="Uf and glazing-edge assessment, frame air cavities and local cell size." property="og:description"/>
+<meta content="website" property="og:type"/>
+<script src="theme.js?v=2026-11-01"></script>
+<link href="style.css?v=2026-11-11-nav" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<!-- MathJax for rendering equations -->
+<script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']]
+            }
+        };
+    </script>
+<script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- Umami Analytics -->
+<script data-website-id="d8ea1a0b-7c84-4131-9d98-2c71283b3c57" defer="" src="https://cloud.umami.is/script.js"></script>
+<script defer src="docs.js?v=2026-11-11-nav"></script>
+</head>
+<body class="documentation-page">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header><div class="container"><nav aria-label="Main navigation">
+<a class="logo" href="index.html"><img alt="KOALA home" src="img/KLogo.png" style="height:40px;width:auto"/></a>
+<div class="nav-links">
+<a href="index.html">Overview</a><a aria-current="true" class="active" href="documentation.html">Documentation</a>
+<a href="validation.html">Validation</a><a class="btn btn-primary" href="index.html#download">Download</a>
+<button aria-label="Switch theme" class="theme-toggle" type="button"><i class="fas fa-moon"></i></button>
+</div>
+<!-- docs:mobile:start -->
+<details class="mobile-site-menu"><summary>Menu</summary><div class="mobile-site-links"><a href="index.html">Overview</a>
+<a aria-current="true" class="active" href="documentation.html">Documentation</a>
+<a href="validation.html">Validation</a>
+<a class="btn btn-primary" href="index.html#download">Download</a></div></details>
+<!-- docs:mobile:end -->
+</nav></div></header>
+<main id="main-content">
+<section class="hero docs-hero"><div class="container">
+<!-- docs:breadcrumbs:start -->
+<nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="documentation.html">Documentation</a></li><li><a href="documentation.html#rhino-workflows">Rhino workflows</a></li><li aria-current="page">Custom frame assessment</li></ol></nav>
+<!-- docs:breadcrumbs:end -->
+<h1>Custom frame assessment</h1><p>Uf and glazing-edge assessment, frame air cavities and local cell size.</p>
+</div></section>
+<section class="documentation-content"><div class="container docs-grid docs-layout">
+<!-- docs:navigation:start -->
+<aside class="docs-sidebar"><details class="docs-menu" open>
+<summary>Documentation navigation</summary>
+<nav class="docs-nav" aria-label="Documentation chapters">
+<a class="docs-overview" href="documentation.html">Documentation overview</a>
+<details class="docs-group"><summary>Getting started</summary><ul>
+<li><a href="getting-started.html">Application choice and first calculation</a></li>
+<li><a href="installation.html">Installation</a></li>
+</ul></details>
+<details class="docs-group"><summary>Standalone editor</summary><ul>
+<li><a href="standalone-editor.html">Construction editor</a></li>
+</ul></details>
+<details class="docs-group" open><summary>Rhino workflows</summary><ul>
+<li><a href="rhino-guide.html">Model setup</a></li>
+<li><a href="examples.html">Example setups</a></li>
+<li><a href="psi-chi-workflow.html">Thermal bridge analysis (Ψ / χ)</a></li>
+<li><a href="window-analysis.html">Window analysis</a></li>
+<li><a href="window-components.html">Window and IGU components</a></li>
+<li><a href="frame-assessment.html" aria-current="page">Custom frame assessment</a></li>
+</ul></details>
+<details class="docs-group"><summary>Results and reporting</summary><ul>
+<li><a href="reporting.html">Results, reports and exports</a></li>
+</ul></details>
+<details class="docs-group"><summary>Methods and validation</summary><ul>
+<li><a href="methods.html">Calculation methods</a></li>
+<li><a href="validation.html">Validation</a></li>
+</ul></details>
+<details class="docs-group"><summary>Reference</summary><ul>
+<li><a href="reference.html">Commands, inputs and files</a></li>
+<li><a href="frame-library.html">Frame configurations and sources</a></li>
+</ul></details>
+</nav></details></aside>
+<!-- docs:navigation:end -->
+<div class="docs-main guide-copy">
+<!-- docs:contents:start -->
+<details class="page-toc" open><summary>On this page</summary>
+<nav aria-label="On this page"><ol>
+<li><a href="#assessing-a-frame">Assessing a frame</a>
+<ol>
+<li><a href="#the-insulation-panel">The insulation panel</a></li>
+</ol>
+</li>
+<li><a href="#measurement-objects">Measurement objects</a>
+</li>
+<li><a href="#air-cavities-in-frame-profiles">Air cavities in frame profiles</a>
+</li>
+<li><a href="#cell-size-in-a-layer">Cell size in a layer</a>
+</li>
+</ol></nav></details>
+<!-- docs:contents:end -->
+<p>The window examples come with their assessment. These tools give the same to a model you build yourself: a library unit placed as a component, or a frame you draw around a glazing unit.</p>
+<h2 id="assessing-a-frame">Assessing a frame</h2>
+<p>Choose <strong>Window Analysis…</strong> beside <strong>Bridge Analysis…</strong>, or <strong>Window analysis…</strong> from a row's menu in the KOALA layer table. The <a href="window-analysis.html">window analysis form</a> shows existing assessments, their measurements and guides, a schematic and anything still needed. The older <code>KoalaAssessFrame</code> command remains available as a point-picking shortcut.</p>
+<p><strong>A library IGU + frame</strong> (placed from <strong>Library… → Windows / IGUs</strong>) gets what a window example has, without the wall: indoor and outdoor boundary volumes as editable solids, the guide curves its widths are read from, and the cases for Uf and Ψg of a cut or Uw of a whole window. Choose it in <strong>Window Analysis…</strong>, then <strong>Set up window analysis…</strong>. Review the measurements and choose <strong>Calculate window analysis</strong>. The document's cell size is set to 4 mm for a cut and 20 mm for a whole window, with verification on. Opening an existing assessment edits it in place.</p>
+<p><strong>A frame you have drawn</strong> is assessed as a uniform section:</p>
+<ol>
+<li>In <strong>Library… → Windows / IGUs</strong> choose <strong>IGU only</strong> and <strong>Cut detail</strong>. This places the edge of a glazing unit: a strip from the unit's edge, with edge seal and spacer there, extruded along Z. Leave at least 190 mm of it visible beside your frame (ISO 10077-2).</li>
+<li>Draw the frame's solids around that edge with the same extrusion, assign their materials, and add indoor and outdoor boundary volumes. Keep the glazing unit's row above the frame's in the layer table, so the unit wins where they overlap.</li>
+<li>In <strong>Window Analysis…</strong>, choose <strong>＋ Frame of my own</strong>. Draw the projected frame width and visible glazing width with their <strong>Draw line…</strong> buttons, then <strong>Pick point…</strong> on the plain glazing. Existing assessments use the same controls.</li>
+<li>Choose <strong>Calculate window analysis</strong>, or press <strong>Simulate</strong> once the measurements are complete. The log and the report give Uf and Ψg:
+   <code>Uf = (L2D with panel − Up · bg) / bf</code> and <code>Ψg = L2D − Uf · bf − Ug · bg</code>, with Up and Ug traced through the glazing at the point you clicked.</li>
+</ol>
+<p><code>KoalaClearFrameAssessment</code> removes these assessments and their lines. Uf and Ψg are per metre of frame: a model with corners or a mullion crossing is not a uniform section and gives heat flow and Uw, not Uf.</p>
+<h3 id="the-insulation-panel">The insulation panel</h3>
+<p>Uf is defined with an insulation panel (λ 0.035 W/(m K)) in place of the glazing. The panel is not an object of the model. For the Uf case KOALA solves the same geometry with every part of the glazing unit (panes, gaps, spacer, seal) as the panel. Window examples work the same way now: they no longer place a panel solid.</p>
+<h2 id="measurement-objects">Measurement objects</h2>
+<p>New measurements remember their endpoints and reference-point locations in the analysis settings. They add no point, line or dimension objects to the Rhino model. Color-coded viewport dimensions and labeled clear-field U-value points show what was measured; focusing a field emphasizes its guide. Measure again to change a location, or type a fixed length to remove its spatial guide. <strong>Legend Settings → Measurement guides</strong> selects <strong>While editing measurements</strong>, <strong>Always show</strong>, or <strong>Hidden</strong>. Always-visible guides work without an open dialog or a thermal result, and the preference is saved with the document.</p>
+<p>Existing measurements stored as objects on <strong>KOALA Setup</strong> remain supported: their values still follow native edits to those objects. Missing window or frame references disable their window assessment until repaired; thermal simulation remains available. Older opaque bridge markers retain their fallback to fixed values when deleted.</p>
+<h2 id="air-cavities-in-frame-profiles">Air cavities in frame profiles</h2>
+<p>Choose <strong>Assign frame air cavities (automatic)…</strong> on the layer that holds the air of a profile. Draw the air as <strong>one solid over the whole profile</strong> and keep the profile's walls above it in the layer table. The cavities are found on the grid, after the layer order has decided which cells are air: each connected group of air cells is one cavity and gets its own equivalent conductivity from its size,</p>
+<p><code>λeq = d · (ha + hr)</code>, <code>ha = max(0.025 / d, 0.73 · ΔT^⅓)</code> (conduction only where b &lt; 5 mm), <code>hr = 4 σ Tm³ · E · F</code>,</p>
+<p>with d along the heat flow and b across it, ΔT = 10 K and Tm = 283 K: the single equivalent conductivity method of ISO 10077-2. In a section a cavity is the rectangle with the area of the cavity and the proportions of its bounding rectangle. In 3D, d and b are the mean lengths of its cells' runs along and across the heat flow, so a cavity running around a whole window is handled too. The log and the report's notes state how many cavities were found and their range of λeq.</p>
+<p>Options: one bare metal surface (emissivity 0.1), a slightly ventilated cavity (λeq doubled), and the direction of the heat flow where it should not be taken from the boundary conditions.</p>
+<p>Limits: every cavity is treated as unventilated and rectangular in the sense above. Cavities joined by a slit are one cavity, where the standard separates them at slits up to 2 mm; draw a wall across such a slit. The formula is implemented from the standard's published method and checked against hand calculations, not against the standard's reference frames. Library frames keep the fixed cavity values of their records.</p>
+<h2 id="cell-size-in-a-layer">Cell size in a layer</h2>
+<p><strong>Cell size in this layer…</strong> makes the cells inside a layer's solids at most ½, ¼, ⅛ or 1/16 of the model's cell size; outside they grow back to it. A detailed frame can so have 1 mm cells in a wall meshed at 16 mm. The grid's lines run through the whole model, so the finer cells also cross what lies beside those solids along each axis: this is local refinement of the existing graded grid, not an adaptive mesh. Verification halves the local size with the rest.</p>
+</div>
+</div></section>
+</main>
+<footer>
+<div class="container">
+<p>© 2026 Timur Dogan. All rights reserved.</p>
+</div>
+</footer>
+</body>
+</html>

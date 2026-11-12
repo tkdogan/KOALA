@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Results and reporting – KOALA</title>
+<meta content="Result inspection, surface-temperature checks, report preparation, saved fields and exports." name="description"/>
+<meta content="KOALA documentation, thermal analysis tutorial, Rhino 3D, U-value calculation, heat transfer analysis, standalone app" name="keywords"/>
+<meta content="Timur Dogan" name="author"/>
+<meta content="Results and reporting – KOALA" property="og:title"/>
+<meta content="Result inspection, surface-temperature checks, report preparation, saved fields and exports." property="og:description"/>
+<meta content="website" property="og:type"/>
+<script src="theme.js?v=2026-11-01"></script>
+<link href="style.css?v=2026-11-11-nav" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<!-- MathJax for rendering equations -->
+<script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']]
+            }
+        };
+    </script>
+<script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- Umami Analytics -->
+<script data-website-id="d8ea1a0b-7c84-4131-9d98-2c71283b3c57" defer="" src="https://cloud.umami.is/script.js"></script>
+<script defer src="docs.js?v=2026-11-11-nav"></script>
+</head>
+<body class="documentation-page">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header><div class="container"><nav aria-label="Main navigation">
+<a class="logo" href="index.html"><img alt="KOALA home" src="img/KLogo.png" style="height:40px;width:auto"/></a>
+<div class="nav-links">
+<a href="index.html">Overview</a><a aria-current="true" class="active" href="documentation.html">Documentation</a>
+<a href="validation.html">Validation</a><a class="btn btn-primary" href="index.html#download">Download</a>
+<button aria-label="Switch theme" class="theme-toggle" type="button"><i class="fas fa-moon"></i></button>
+</div>
+<!-- docs:mobile:start -->
+<details class="mobile-site-menu"><summary>Menu</summary><div class="mobile-site-links"><a href="index.html">Overview</a>
+<a aria-current="true" class="active" href="documentation.html">Documentation</a>
+<a href="validation.html">Validation</a>
+<a class="btn btn-primary" href="index.html#download">Download</a></div></details>
+<!-- docs:mobile:end -->
+</nav></div></header>
+<main id="main-content">
+<section class="hero docs-hero"><div class="container">
+<!-- docs:breadcrumbs:start -->
+<nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="documentation.html">Documentation</a></li><li><a href="documentation.html#results-reporting">Results and reporting</a></li><li aria-current="page">Results, reports and exports</li></ol></nav>
+<!-- docs:breadcrumbs:end -->
+<h1>Results and reporting</h1><p>Result inspection, surface-temperature checks, report preparation, saved fields and exports.</p>
+</div></section>
+<section class="documentation-content"><div class="container docs-grid docs-layout">
+<!-- docs:navigation:start -->
+<aside class="docs-sidebar"><details class="docs-menu" open>
+<summary>Documentation navigation</summary>
+<nav class="docs-nav" aria-label="Documentation chapters">
+<a class="docs-overview" href="documentation.html">Documentation overview</a>
+<details class="docs-group"><summary>Getting started</summary><ul>
+<li><a href="getting-started.html">Application choice and first calculation</a></li>
+<li><a href="installation.html">Installation</a></li>
+</ul></details>
+<details class="docs-group"><summary>Standalone editor</summary><ul>
+<li><a href="standalone-editor.html">Construction editor</a></li>
+</ul></details>
+<details class="docs-group"><summary>Rhino workflows</summary><ul>
+<li><a href="rhino-guide.html">Model setup</a></li>
+<li><a href="examples.html">Example setups</a></li>
+<li><a href="psi-chi-workflow.html">Thermal bridge analysis (Ψ / χ)</a></li>
+<li><a href="window-analysis.html">Window analysis</a></li>
+<li><a href="window-components.html">Window and IGU components</a></li>
+<li><a href="frame-assessment.html">Custom frame assessment</a></li>
+</ul></details>
+<details class="docs-group" open><summary>Results and reporting</summary><ul>
+<li><a href="reporting.html" aria-current="page">Results, reports and exports</a></li>
+</ul></details>
+<details class="docs-group"><summary>Methods and validation</summary><ul>
+<li><a href="methods.html">Calculation methods</a></li>
+<li><a href="validation.html">Validation</a></li>
+</ul></details>
+<details class="docs-group"><summary>Reference</summary><ul>
+<li><a href="reference.html">Commands, inputs and files</a></li>
+<li><a href="frame-library.html">Frame configurations and sources</a></li>
+</ul></details>
+</nav></details></aside>
+<!-- docs:navigation:end -->
+<div class="docs-main guide-copy">
+<!-- docs:contents:start -->
+<details class="page-toc" open><summary>On this page</summary>
+<nav aria-label="On this page"><ol>
+<li><a href="#result-inspection">Inspect the calculated results</a>
+</li>
+<li><a href="#surface-check">Surface temperatures and ISO 13788 check</a>
+</li>
+<li><a href="#report">Report preparation and export</a>
+</li>
+<li><a href="#saved-fields">Save and load result fields</a>
+</li>
+<li><a href="#standalone-exports">Standalone exports</a>
+</li>
+<li><a href="#energyplus-export">EnergyPlus export</a>
+<ol>
+<li><a href="#idf-export">Standalone IDF construction</a></li>
+<li><a href="#rhino-idf">EnergyPlus export from Rhino</a></li>
+</ol>
+</li>
+</ol></nav></details>
+<!-- docs:contents:end -->
+<article><h2 id="result-inspection">Inspect the calculated results</h2>
+<p>In the standalone editor, select geometry, temperature, heat flux or vapour diffusion to inspect the construction. In Rhino, use the result mode, plane and slice controls to inspect the solved field.</p>
+<p>Review the material assignments, boundary conditions, reference quantities and mesh checks with the reported result. Window and bridge assessments use the document’s shared thermal study and report.</p>
+<p>Continue with <a href="standalone-editor.html#results">standalone results</a>, <a href="rhino-guide.html#rhino-plugin">Rhino result controls</a>, <a href="psi-chi-workflow.html#using-calculator">bridge calculations</a> or <a href="window-analysis.html#calculate">window calculations</a>.</p></article>
+<article><h2 id="surface-check">Surface temperatures and ISO 13788 check</h2>
+<p>The heat-flow calculation reports indoor surface temperatures and fRsi under the assigned boundary conditions. A separate surface-temperature case is available in <strong>Report… → Surface temperatures and mould risk → ISO 13788 check</strong>. Choose <strong>Solve now</strong> to run it with the stated indoor surface resistance; the heat-flow result is retained.</p>
+<p>Later simulations include that check until <strong>As simulated</strong> is selected again. The report states the conditions used for each result.</p></article><article style="margin-bottom: 4rem;">
+<h2 id="report">Report preparation and export</h2>
+<p style="margin-bottom: 1rem; color: var(--text-muted);">
+                                Preparing the report is a step of its own, after the model is solved. <strong>Report…</strong> in the Koala panel opens a window with the project details and figures on the left and the pages, exactly as they will be written, on the right. A simulation needs no thermal bridge setup to be reported: every model with one indoor and one outdoor temperature gets its thermal coupling coefficient, mean U-value, surface temperatures with \(f_{Rsi}\) and drawings.
+                            </p>
+<figure class="docs-shot">
+<img alt="Report window with project details and a live page preview" class="theme-light" loading="lazy" src="img/generated/report_window_light.png?v=2026-11-11"/>
+<img alt="Report window with project details and a live page preview" class="theme-dark" loading="lazy" src="img/generated/report_window_dark.png?v=2026-11-11">
+<figcaption>Review the current study in the shared Report window.</figcaption>
+</img></figure>
+<ul style="color: var(--text-muted); margin-left: 2rem; margin-bottom: 1rem;">
+<li><strong>3D pictures</strong> come from Rhino named views: set up a viewport, save it as a named view, and the report takes its picture when you export.</li>
+<li><strong>2D drawings</strong> are cut planes through the solved model, each drawn with its materials, temperature, heat flux or humidity. Pick the plane's position in the model, or take over the slice shown in the panel.</li>
+<li><strong>Export</strong> writes a PDF with the figures and every table ISO 10211 clause 14 asks for, or the tables as CSV and JSON. The preview says what is still missing for a complete report.</li>
+</ul>
+<img alt="First page of the PDF report of the balcony showcase: project, results and the model view" src="img/generated/report_pdf_page1.png?v=2026-11-11" style="max-width: 48%; border-radius: 8px; margin: 1rem 1% 1.5rem 0; display: inline-block; border: 1px solid var(--border-color);"/>
+<img alt="A page of section drawings through the balcony connections" src="img/generated/report_pdf_sections.png?v=2026-11-11" style="max-width: 48%; border-radius: 8px; margin: 1rem 0 1.5rem 1%; display: inline-block; border: 1px solid var(--border-color);"/>
+<p style="margin-bottom: 1rem; color: var(--text-muted);">
+                                The example is the showcase model <a href="downloads/KoalaShowcase_Balcony.3dm">KoalaShowcase_Balcony.3dm</a>: two cantilevered balconies on an insulated masonry wall, one cast straight through the insulation and one on a thermal-break module. Its complete report: <a href="downloads/KoalaShowcase_Balcony_report.pdf">KoalaShowcase_Balcony_report.pdf</a>.
+                            </p>
+</article>
+<article><h2 id="saved-fields">Save and load result fields</h2>
+<p>The Rhino document stores geometry, assignments, assessments and reference measurements. The panel’s <strong>Save results (.kvox)</strong> and <strong>Load results (.kvox)</strong> controls store and restore a converged solved field and its thermal summary.</p>
+<p>A saved field is separate from the assessment inputs. After changes to geometry, assignments, mesh settings or reference measurements, calculate again to obtain current assessment results. Recalculate after reopening the document before using its scalar report.</p></article>
+<article><h2 id="standalone-exports">Standalone exports</h2>
+<p>CSV and IDF export require a successful calculation for the current construction. Geometry-only figure export does not require a thermal solve. Figure export provides view selection, image width, palette and legend-range controls.</p></article>
+<article><h2 id="energyplus-export">EnergyPlus export</h2>
+<p>EnergyPlus exports depend on the model and assessment. The standalone editor exports an equivalent layered construction. Rhino can export an opaque construction, a wall construction adjusted for window installation Ψ, or frame and glazing-edge properties from a suitable section assessment.</p>
+<p>A whole-window Uw result is stated in the report. Window and cavity calculations are thermal-only; the applicable export depends on the available assessment quantities.</p></article><article style="margin-bottom: 4rem;">
+<h3 id="idf-export">Standalone IDF construction</h3>
+<p style="margin-bottom: 1rem; color: var(--text-muted);">
+                                KOALA bridges the gap between detailed component analysis and whole-building energy
+                                simulation.
+                            </p>
+<p style="color: var(--text-muted); margin-bottom: 1rem;">
+                                You can export your construction as an <strong>EnergyPlus Input File
+                                    (.idf)</strong>.
+                                This export generates an approximate "equivalent layer" representation of your
+                                complex
+                                2D assembly that can be used in energy models.
+                            </p>
+<h4 id="how-to-use-in-energy-modeling" style="margin-top: 1.5rem; margin-bottom: 0.5rem;">How to Use in Energy Modeling
+                            </h4>
+<ol style="list-style: decimal; margin-left: 20px; color: var(--text-muted);">
+<li style="margin-bottom: 0.5rem;"><strong>Export:</strong> in KOALA, go to `File &gt;
+                                    Export &gt; EnergyPlus IDF`.</li>
+<li style="margin-bottom: 0.5rem;"><strong>Import:</strong> Open your primary energy
+                                    model (in tools like OpenStudio, ClimateStudio, or DesignBuilder).</li>
+<li style="margin-bottom: 0.5rem;"><strong>Copy Objects:</strong> Copy the
+                                    `Material`
+                                    and `Construction` definitions from the exported IDF text file into your model's
+                                    IDF
+                                    file.</li>
+<li style="margin-bottom: 0.5rem;"><strong>Assign:</strong> Assign the new
+                                    construction
+                                    to surfaces (Walls, Roofs) in your building energy model.</li>
+</ol>
+<p style="color: var(--text-muted); margin-top: 1rem; font-size: 0.9em; font-style: italic;">
+                                Note: This export uses "equivalent homogeneous layers" to mimic the thermal mass and
+                                resistance of the 2D assembly.
+                            </p>
+</article><article><h3 id="rhino-idf">EnergyPlus export from Rhino</h3>
+<p style="color: var(--text-muted); margin-bottom: 1rem;">
+                                The <strong>IDF</strong> button turns a 3D detail into a layered construction for
+                                whole-building energy models. Koala traces the layer stack from the model itself:
+                            </p>
+<ol style="list-style: decimal; margin-left: 20px; color: var(--text-muted); margin-bottom: 1rem;">
+<li style="margin-bottom: 0.5rem;"><strong>Tracing:</strong> From every material face
+                                    that touches an interior boundary, a ray is sent straight through the material to
+                                    the exterior boundary. Rays that pass the same materials with similar thicknesses
+                                    (within 2 mm or 5 %) are grouped.</li>
+<li style="margin-bottom: 0.5rem;"><strong>Base construction:</strong> The group
+                                    that covers the largest interior area is offered as the base construction (the
+                                    clear wall); thermal bridges usually cover only a small share of the surface. Up
+                                    to five alternatives covering at least 2 % of the area can be picked instead.
+                                    Rsi, Rse and the temperatures are taken from the boundaries the rays hit.</li>
+<li style="margin-bottom: 0.5rem;"><strong>Review and edit:</strong> The export
+                                    window lists the layers (exterior → interior) and compares the base U-value with
+                                    the 3D U-value. <em>Edit in 2D editor…</em> opens the traced construction in the
+                                    full standalone editor, for example to add a membrane that was thinner than a
+                                    grid cell. The edited construction is read back when the editor closes; if its
+                                    U-value moves more than 5 % from the traced one, a warning says it no longer
+                                    matches the 3D model. The export window does not block Rhino.</li>
+<li style="margin-bottom: 0.5rem;"><strong>Scaling:</strong> <em>Export IDF…</em>
+                                    writes the construction with all layer thicknesses and masses unchanged. Only the
+                                    conductivity of the most insulating layer (or of the stud layer, where there is
+                                    one) is scaled so that the construction's U-value equals the 3D U-value,
+                                    including the extra heat loss of the thermal bridges. The base U, 3D U, reference
+                                    area and extra heat loss are written as comments into the IDF.</li>
+</ol>
+<p style="color: var(--text-muted); margin-top: 1rem; margin-bottom: 1.5rem; font-size: 0.9em; font-style: italic;">
+                                Limits: rays follow the X, Y and Z axes, so the thicknesses of a slanted wall are
+                                approximate, and a layer thinner than a grid cell can go missing; use the 2D editor
+                                step to correct both. The scaled construction is only valid for surfaces with the
+                                same thermal bridge density as the modelled piece, which the IDF notes in a comment.
+                            </p>
+<p>For a window-in-wall section, the export can apply installation Ψ over the stated window perimeter and wall area. A section with Uf and Ψg can provide a <code>WindowProperty:FrameAndDivider</code> object. The glazing construction is supplied by the building energy model.</p></article>
+</div>
+</div></section>
+</main>
+<footer>
+<div class="container">
+<p>© 2026 Timur Dogan. All rights reserved.</p>
+</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Rhino model setup – KOALA</title>
+<meta content="Geometry, layer assignments, boundary volumes, mesh settings and result inspection in Rhino." name="description"/>
+<meta content="KOALA documentation, thermal analysis tutorial, Rhino 3D, U-value calculation, heat transfer analysis, standalone app" name="keywords"/>
+<meta content="Timur Dogan" name="author"/>
+<meta content="Rhino model setup – KOALA" property="og:title"/>
+<meta content="Geometry, layer assignments, boundary volumes, mesh settings and result inspection in Rhino." property="og:description"/>
+<meta content="website" property="og:type"/>
+<script src="theme.js?v=2026-11-01"></script>
+<link href="style.css?v=2026-11-11-nav" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<!-- MathJax for rendering equations -->
+<script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']]
+            }
+        };
+    </script>
+<script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- Umami Analytics -->
+<script data-website-id="d8ea1a0b-7c84-4131-9d98-2c71283b3c57" defer="" src="https://cloud.umami.is/script.js"></script>
+<script defer src="docs.js?v=2026-11-11-nav"></script>
+</head>
+<body class="documentation-page">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header><div class="container"><nav aria-label="Main navigation">
+<a class="logo" href="index.html"><img alt="KOALA home" src="img/KLogo.png" style="height:40px;width:auto"/></a>
+<div class="nav-links">
+<a href="index.html">Overview</a><a aria-current="true" class="active" href="documentation.html">Documentation</a>
+<a href="validation.html">Validation</a><a class="btn btn-primary" href="index.html#download">Download</a>
+<button aria-label="Switch theme" class="theme-toggle" type="button"><i class="fas fa-moon"></i></button>
+</div>
+<!-- docs:mobile:start -->
+<details class="mobile-site-menu"><summary>Menu</summary><div class="mobile-site-links"><a href="index.html">Overview</a>
+<a aria-current="true" class="active" href="documentation.html">Documentation</a>
+<a href="validation.html">Validation</a>
+<a class="btn btn-primary" href="index.html#download">Download</a></div></details>
+<!-- docs:mobile:end -->
+</nav></div></header>
+<main id="main-content">
+<section class="hero docs-hero"><div class="container">
+<!-- docs:breadcrumbs:start -->
+<nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="documentation.html">Documentation</a></li><li><a href="documentation.html#rhino-workflows">Rhino workflows</a></li><li aria-current="page">Model setup</li></ol></nav>
+<!-- docs:breadcrumbs:end -->
+<h1>Rhino model setup</h1><p>Geometry, layer assignments, boundary volumes, mesh settings and result inspection in Rhino.</p>
+</div></section>
+<section class="documentation-content"><div class="container docs-grid docs-layout">
+<!-- docs:navigation:start -->
+<aside class="docs-sidebar"><details class="docs-menu" open>
+<summary>Documentation navigation</summary>
+<nav class="docs-nav" aria-label="Documentation chapters">
+<a class="docs-overview" href="documentation.html">Documentation overview</a>
+<details class="docs-group"><summary>Getting started</summary><ul>
+<li><a href="getting-started.html">Application choice and first calculation</a></li>
+<li><a href="installation.html">Installation</a></li>
+</ul></details>
+<details class="docs-group"><summary>Standalone editor</summary><ul>
+<li><a href="standalone-editor.html">Construction editor</a></li>
+</ul></details>
+<details class="docs-group" open><summary>Rhino workflows</summary><ul>
+<li><a href="rhino-guide.html" aria-current="page">Model setup</a></li>
+<li><a href="examples.html">Example setups</a></li>
+<li><a href="psi-chi-workflow.html">Thermal bridge analysis (Ψ / χ)</a></li>
+<li><a href="window-analysis.html">Window analysis</a></li>
+<li><a href="window-components.html">Window and IGU components</a></li>
+<li><a href="frame-assessment.html">Custom frame assessment</a></li>
+</ul></details>
+<details class="docs-group"><summary>Results and reporting</summary><ul>
+<li><a href="reporting.html">Results, reports and exports</a></li>
+</ul></details>
+<details class="docs-group"><summary>Methods and validation</summary><ul>
+<li><a href="methods.html">Calculation methods</a></li>
+<li><a href="validation.html">Validation</a></li>
+</ul></details>
+<details class="docs-group"><summary>Reference</summary><ul>
+<li><a href="reference.html">Commands, inputs and files</a></li>
+<li><a href="frame-library.html">Frame configurations and sources</a></li>
+</ul></details>
+</nav></details></aside>
+<!-- docs:navigation:end -->
+<div class="docs-main guide-copy">
+<!-- docs:contents:start -->
+<details class="page-toc" open><summary>On this page</summary>
+<nav aria-label="On this page"><ol>
+<li><a href="#rhino-plugin">Rhino model setup</a>
+<ol>
+<li><a href="#start-from-an-example">Start from an example</a></li>
+<li><a href="#modeling-for-koala">Modeling for Koala</a></li>
+<li><a href="#layer-editor-and-voxelization">Layer Editor and Voxelization</a></li>
+<li><a href="#mesh-settings-and-running-a-simulation">Mesh Settings and Running a Simulation</a></li>
+<li><a href="#viewing-and-exporting-results">Viewing and Exporting Results</a></li>
+</ol>
+</li>
+</ol></nav></details>
+<!-- docs:contents:end -->
+<article style="margin-bottom: 4rem;">
+<h2 id="rhino-plugin">Rhino model setup</h2>
+<p style="margin-bottom: 1rem; color: var(--text-muted);">
+                                The standalone application uses a construction table for layered assemblies.
+                                <strong>KOALA for Rhino</strong> calculates three-dimensional heat transfer
+                                using geometry and material assignments in a Rhino document.
+                            </p>
+<p style="color: var(--text-muted); margin-bottom: 1rem;">
+                                The Rhino plugin supports junctions with geometric or material variations in three
+                                dimensions, including corners, structural penetrations and window installations.
+                                Model the materials and boundary environments as volumes on assigned layers.
+                            </p>
+<h3 style="margin-top: 2rem; margin-bottom: 1rem;" id="start-from-an-example">Start from an example</h3>
+<p style="color: var(--text-muted); margin-bottom: 1rem;">Open <strong>Library… → Examples</strong> for complete bridge and window-in-wall setups, or download <a download="" href="downloads/3DTestCase_Balcony.3dm">3DTestCase_Balcony.3dm</a>, the balcony model shown in the interface screenshots. Assignments and study settings belong to the Rhino document.</p>
+<h3 style="margin-top: 2rem; margin-bottom: 1rem;" id="modeling-for-koala">Modeling for Koala</h3>
+<ul style="list-style: disc; margin-left: 20px; color: var(--text-muted); margin-bottom: 1.5rem;">
+<li style="margin-bottom: 0.5rem;"><strong>Geometry:</strong> Closed polysurfaces,
+                                    extrusions, surfaces and meshes are all accepted. Each object is meshed and tested
+                                    as a closed volume, so make sure solids are watertight.</li>
+<li style="margin-bottom: 0.5rem;"><strong>One layer per material:</strong> Koala
+                                    works with Rhino layers. Every object on a layer gets that layer's material or
+                                    boundary condition.</li>
+<li style="margin-bottom: 0.5rem;"><strong>Boundary volumes:</strong> Interior and
+                                    exterior climates are modeled as volumes too (for example a thin block of "room
+                                    air" against the inner face). Wherever a material touches a boundary volume, a
+                                    surface film with that boundary's surface resistance is applied. Material faces
+                                    that touch nothing are adiabatic.</li>
+<li style="margin-bottom: 0.5rem;"><strong>Grid alignment:</strong> Faces that
+                                    are parallel to the world X, Y or Z planes become exact grid planes (see
+                                    <a href="methods.html#mesh">The Mesh</a>). Sloped or curved faces are approximated by the
+                                    grid in a staircase fashion.</li>
+<li style="margin-bottom: 0.5rem;"><strong>Units:</strong> The panel follows the
+                                    document units, including feet and inches. Changing the model units keeps the
+                                    physical cell size; your standalone unit preference is not affected.</li>
+</ul>
+<h3 style="margin-top: 2rem; margin-bottom: 1rem;" id="layer-editor-and-voxelization">Layer Editor and Voxelization</h3>
+<p style="color: var(--text-muted); margin-bottom: 1rem;">
+                                The layer editor is used to assign materials and boundary conditions to the geometric
+                                volumes in your document. Double-click a layer, or right-click and choose
+                                <em>Assign Material/Boundary…</em>, to pick from the libraries; <em>Clear
+                                Assignment</em> excludes the layer from the simulation. During
+                                <strong>voxelization</strong>, layer priority determines the material assigned
+                                to overlapping volumes.
+                            </p>
+<p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+<strong>Layer priority:</strong> Layers higher in the list take precedence over
+                                lower layers. Drag layers to change their order. Intersecting volumes can therefore
+                                be assigned without Boolean subtraction. For example, place a metal-fastener layer
+                                above the insulation layer so that cells within the fasteners are assigned to metal.
+                            </p>
+<p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+                                Boundary conditions have a <strong>Zone</strong> (Interior or Exterior). The U-value
+                                sums the heat flow through <em>all</em> interior boundaries, so you can use several
+                                interior boundaries with different surface resistances in one model (for example
+                                Rsi = 0.13 m²K/W on the wall field and 0.20 m²K/W in a corner). The console reports
+                                the U-value, reference area and applied Rsi/Rse values for comparison with
+                                calculations using equivalent boundary conditions.
+                            </p>
+<h3 style="margin-top: 2rem; margin-bottom: 1rem;" id="mesh-settings-and-running-a-simulation">Mesh Settings and Running a Simulation</h3>
+<p style="color: var(--text-muted); margin-bottom: 1rem;">
+                                The toolbar under the layer list holds the mesh settings. They are saved with the
+                                Rhino document.
+                            </p>
+<ul style="list-style: disc; margin-left: 20px; color: var(--text-muted); margin-bottom: 1.5rem;">
+<li style="margin-bottom: 0.5rem;"><strong>Cell:</strong> The maximum cell size, in
+                                    document units. Cells next to thin parts are smaller; this is the size they grow
+                                    to in thick parts.</li>
+<li style="margin-bottom: 0.5rem;"><strong>Auto:</strong> Uses the recommended cell
+                                    size for the geometry (a tenth of its characteristic thickness, at most 10 mm).
+                                    Recommended for most models.</li>
+<li style="margin-bottom: 0.5rem;"><strong>Verify:</strong> Runs the mesh
+                                    independence check after every simulation: the model is solved again at half the
+                                    cell size and the two U-values are compared (ISO 10211: less than 1 %
+                                    difference). The refined run can have up to 8× the cells.</li>
+<li style="margin-bottom: 0.5rem;"><strong>Cell estimate:</strong> The grey number
+                                    next to the settings shows roughly how many cells a manual cell size will
+                                    produce, so you can avoid accidentally huge runs.</li>
+</ul>
+<p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+                                Click <strong>Simulate</strong> to voxelize and solve. A progress bar appears with a
+                                <strong>Cancel</strong> button next to it, so long runs can be stopped at any time.
+                                Progress, timings, the U-value and any warnings are written to the console above
+                                the button.
+                            </p>
+<div style="margin-bottom: 2rem;">
+<h3 style="margin-top: 2rem; margin-bottom: 1rem;" id="viewing-and-exporting-results">Viewing and Exporting Results</h3>
+<img alt="Koala Rhino Interface" class="theme-light" src="img/generated/rhino_balcony_light.png?v=2026-11-11" style="max-width: 100%; border-radius: 8px; margin-bottom: 1.5rem;">
+<img alt="Koala Rhino Interface" class="theme-dark" src="img/generated/rhino_balcony_dark.png?v=2026-11-11" style="max-width: 100%; border-radius: 8px; margin-bottom: 1.5rem;"/>
+<p style="color: var(--text-muted); margin-bottom: 1rem;">
+                                    Once a simulation has finished, the results area at the bottom of the panel
+                                    shows the solution as a slice in the Rhino viewport:
+                                </p>
+<ul style="list-style: disc; margin-left: 20px; color: var(--text-muted); margin-bottom: 1.5rem;">
+<li style="margin-bottom: 0.5rem;"><strong>Geometry / Thermal / Flux / RH:</strong>
+                                        Switch between the voxelized materials, the temperature field, heat flux and
+                                        relative humidity.</li>
+<li style="margin-bottom: 0.5rem;"><strong>Plane and slider:</strong> Choose the
+                                        slice orientation (XY, XZ or YZ) and move through the model cell by cell. The
+                                        3D toggle shows or hides the slice in the viewport. Results are kept per
+                                        document, so switching between open files shows the right result.</li>
+<li style="margin-bottom: 0.5rem;"><strong>Bake Slice:</strong> Adds the current
+                                        slice, with its legend, to the Rhino document.</li>
+<li style="margin-bottom: 0.5rem;"><strong>Bake Points:</strong> Bakes the cell
+                                        centres as point clouds on a <code>KoalaResult</code> layer with
+                                        <em>Material</em>, <em>Temperature</em>, <em>Flux</em> and <em>Vapor</em>
+                                        sublayers, for further processing in Rhino or Grasshopper.</li>
+<li style="margin-bottom: 0.5rem;"><strong>Export Slice Drawing:</strong> Opens a
+                                        plot preview of the current slice where you can adjust the legend and save
+                                        it as an image for reports.</li>
+<li style="margin-bottom: 0.5rem;"><strong>Legend Settings:</strong> Fixes the
+                                        minimum and maximum of each result legend, so several slices or models can
+                                        be compared on one scale.</li>
+<li style="margin-bottom: 0.5rem;"><strong>Ψ/χ Calculator:</strong> Turns the 3D
+                                        result into linear (Ψ) or point (χ) thermal bridge coefficients. See
+                                        <a href="psi-chi-workflow.html">Psi (Ψ) &amp; Chi (χ) Workflows</a>.</li>
+<li style="margin-bottom: 0.5rem;"><strong>IDF Export:</strong> Exports an
+                                        EnergyPlus construction that matches the 3D result (see below).</li>
+<li style="margin-bottom: 0.5rem;"><strong>Save / Load .kvox:</strong> Stores a
+                                        finished simulation in a file and loads it again later without re-running
+                                        it.</li>
+</ul>
+</img></div>
+<p>For result storage, report preparation and EnergyPlus export, see <a href="reporting.html">Results and reporting</a>.</p></article>
+</div>
+</div></section>
+</main>
+<footer>
+<div class="container">
+<p>© 2026 Timur Dogan. All rights reserved.</p>
+</div>
+</footer>
+</body>
+</html>

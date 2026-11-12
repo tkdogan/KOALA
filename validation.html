@@ -1,16 +1,21 @@
 <!DOCTYPE html>
+
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Validation and Software Comparison - KOALA Thermal Analysis Tool</title>
-    <meta name="description"
-        content="Documentation demonstrating KOALA's validation and software comparisons for thermal analysis.">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Validation – KOALA</title>
+<meta content="ISO 10211 reference cases and comparison with THERM." name="description"/>
+<meta content="KOALA documentation, thermal analysis tutorial, Rhino 3D, U-value calculation, heat transfer analysis, standalone app" name="keywords"/>
+<meta content="Timur Dogan" name="author"/>
+<meta content="Validation – KOALA" property="og:title"/>
+<meta content="ISO 10211 reference cases and comparison with THERM." property="og:description"/>
+<meta content="website" property="og:type"/>
+<script src="theme.js?v=2026-11-01"></script>
+<link href="style.css?v=2026-11-11-nav" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<!-- MathJax for rendering equations -->
+<script>
         window.MathJax = {
             tex: {
                 inlineMath: [['\\(', '\\)']],
@@ -18,276 +23,383 @@
             }
         };
     </script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <!-- Umami Analytics -->
-    <script defer src="https://cloud.umami.is/script.js"
-        data-website-id="d8ea1a0b-7c84-4131-9d98-2c71283b3c57"></script>
+<script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- Umami Analytics -->
+<script data-website-id="d8ea1a0b-7c84-4131-9d98-2c71283b3c57" defer="" src="https://cloud.umami.is/script.js"></script>
+<script defer src="docs.js?v=2026-11-11-nav"></script>
 </head>
-
-<body>
-    <header>
-        <div class="container">
-            <nav>
-                <div class="logo">
-                    <a href="index.html" style="text-decoration: none; color: inherit;">
-                        <img src="img/KLogo.png" alt="KOALA" style="height: 40px; width: auto;">
-                    </a>
-                </div>
-                <div class="nav-links">
-                    <a href="index.html#features">Features</a>
-                    <a href="documentation.html" class="active" style="color: var(--secondary);">Documentation</a>
-                    <a href="index.html#download" class="btn btn-primary">Download</a>
-                </div>
-            </nav>
-        </div>
-    </header>
-
-    <main>
-        <section class="hero" style="padding-bottom: 50px; padding-top: 150px;">
-            <div class="container">
-                <h1 style="font-size: 2.5rem; line-height: 1.2;">Validation and Software Comparison</h1>
-            </div>
-        </section>
-
-        <section class="documentation-content">
-            <div class="container">
-                <div class="docs-grid" style="display: grid; grid-template-columns: 250px 1fr; gap: 4rem;">
-
-                    <!-- Sidebar Navigation -->
-                    <aside class="docs-nav" style="position: sticky; top: 100px; height: fit-content;">
-                        <ul style="list-style: none;">
-                            <li style="margin-bottom: 1rem;"><a href="documentation.html"
-                                    style="font-weight: 600;">&larr; Back to Docs</a></li>
-                            <li style="margin-bottom: 1rem;"><a href="#iso-case-1"
-                                    style="font-weight: 600; color: var(--secondary);">ISO Case 1</a></li>
-                            <li style="margin-bottom: 1rem;"><a href="#iso-case-2"
-                                    style="font-weight: 600; color: var(--secondary);">ISO Case 2</a></li>
-                            <li style="margin-bottom: 1rem;"><a href="#therm-comparison"
-                                    style="font-weight: 600; color: var(--secondary);">THERM Comparison</a></li>
-                        </ul>
-                    </aside>
-
-                    <!-- Main Content -->
-                    <div class="docs-main">
-                        <article id="iso-compliance" style="margin-bottom: 4rem;">
-                            <p style="margin-bottom: 1rem; color: var(--text-muted);">
-                                KOALA's 3D solver is validated against the standardized test cases provided by
-                                <strong>ISO 10211</strong> (Thermal bridges in building construction — Heat flows and
-                                surface temperatures).
-                                Below are the automated validation results executed in
-                                <code>KOALA.Test/Solver3DTests.cs</code>.
+<body class="documentation-page">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header><div class="container"><nav aria-label="Main navigation">
+<a class="logo" href="index.html"><img alt="KOALA home" src="img/KLogo.png" style="height:40px;width:auto"/></a>
+<div class="nav-links">
+<a href="index.html">Overview</a><a aria-current="true" class="active" href="documentation.html">Documentation</a>
+<a href="validation.html">Validation</a><a class="btn btn-primary" href="index.html#download">Download</a>
+<button aria-label="Switch theme" class="theme-toggle" type="button"><i class="fas fa-moon"></i></button>
+</div>
+<!-- docs:mobile:start -->
+<details class="mobile-site-menu"><summary>Menu</summary><div class="mobile-site-links"><a href="index.html">Overview</a>
+<a aria-current="true" class="active" href="documentation.html">Documentation</a>
+<a href="validation.html">Validation</a>
+<a class="btn btn-primary" href="index.html#download">Download</a></div></details>
+<!-- docs:mobile:end -->
+</nav></div></header>
+<main id="main-content">
+<section class="hero docs-hero"><div class="container">
+<!-- docs:breadcrumbs:start -->
+<nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="documentation.html">Documentation</a></li><li><a href="documentation.html#methods-validation">Methods and validation</a></li><li aria-current="page">Validation</li></ol></nav>
+<!-- docs:breadcrumbs:end -->
+<h1>Validation</h1><p>ISO 10211 reference cases and comparison with THERM.</p>
+</div></section>
+<section class="documentation-content"><div class="container docs-grid docs-layout">
+<!-- docs:navigation:start -->
+<aside class="docs-sidebar"><details class="docs-menu" open>
+<summary>Documentation navigation</summary>
+<nav class="docs-nav" aria-label="Documentation chapters">
+<a class="docs-overview" href="documentation.html">Documentation overview</a>
+<details class="docs-group"><summary>Getting started</summary><ul>
+<li><a href="getting-started.html">Application choice and first calculation</a></li>
+<li><a href="installation.html">Installation</a></li>
+</ul></details>
+<details class="docs-group"><summary>Standalone editor</summary><ul>
+<li><a href="standalone-editor.html">Construction editor</a></li>
+</ul></details>
+<details class="docs-group"><summary>Rhino workflows</summary><ul>
+<li><a href="rhino-guide.html">Model setup</a></li>
+<li><a href="examples.html">Example setups</a></li>
+<li><a href="psi-chi-workflow.html">Thermal bridge analysis (Ψ / χ)</a></li>
+<li><a href="window-analysis.html">Window analysis</a></li>
+<li><a href="window-components.html">Window and IGU components</a></li>
+<li><a href="frame-assessment.html">Custom frame assessment</a></li>
+</ul></details>
+<details class="docs-group"><summary>Results and reporting</summary><ul>
+<li><a href="reporting.html">Results, reports and exports</a></li>
+</ul></details>
+<details class="docs-group" open><summary>Methods and validation</summary><ul>
+<li><a href="methods.html">Calculation methods</a></li>
+<li><a href="validation.html" aria-current="page">Validation</a></li>
+</ul></details>
+<details class="docs-group"><summary>Reference</summary><ul>
+<li><a href="reference.html">Commands, inputs and files</a></li>
+<li><a href="frame-library.html">Frame configurations and sources</a></li>
+</ul></details>
+</nav></details></aside>
+<!-- docs:navigation:end -->
+<div class="docs-main guide-copy">
+<!-- docs:contents:start -->
+<details class="page-toc" open><summary>On this page</summary>
+<nav aria-label="On this page"><ol>
+<li><a href="#overview">Overview</a>
+</li>
+<li><a href="#iso-case-1">ISO 10211 Test Case 1</a>
+<ol>
+<li><a href="#2d-solver-standalone-app">2D solver (standalone app)</a></li>
+<li><a href="#3d-solver-rhino-plugin">3D solver (Rhino plugin)</a></li>
+</ol>
+</li>
+<li><a href="#iso-case-2">ISO 10211 Test Case 2</a>
+<ol>
+<li><a href="#2d-solver-standalone-app-section">2D solver (standalone app)</a></li>
+<li><a href="#3d-solver-rhino-plugin-section">3D solver (Rhino plugin)</a></li>
+</ol>
+</li>
+<li><a href="#iso-case-3">ISO 10211 Test Case 3</a>
+</li>
+<li><a href="#iso-case-4">ISO 10211 Test Case 4</a>
+</li>
+<li><a href="#therm-comparison">THERM Comparison</a>
+</li>
+</ol></nav></details>
+<!-- docs:contents:end -->
+<article style="margin-bottom: 4rem;">
+<h2 id="overview">Overview</h2>
+<p style="margin-bottom: 1rem; color: var(--text-muted);">
+<strong>ISO 10211</strong> (Thermal bridges in building construction — Heat flows and
+                                surface temperatures), Annex C, defines four test reference cases. A program counts as a
+                                <em>two-dimensional</em> steady-state high-precision method if it reproduces cases 1 and 2,
+                                and as a <em>three-dimensional</em> one if it reproduces all four.
                             </p>
-                        </article>
-
-                        <article id="iso-case-1" style="margin-bottom: 4rem;">
-                            <h2>ISO 10211 Test Case 1</h2>
-                            <img src="img/ISO Case 1.png" alt="ISO Case 1 Diagram"
-                                style="width: 100%; border-radius: 8px; margin-bottom: 1rem; border: 1px solid var(--border-color);">
-                            <p style="margin-bottom: 1rem; color: var(--text-muted);">
-                                <strong>Description:</strong> Half a square column with dimensions of 1.0 m width and
-                                2.0 m height. Boundary temperatures are prescribed as Top (20 °C), Left (0 °C), Bottom
-                                (0 °C), and Right (Adiabatic).
+<p style="margin-bottom: 1rem; color: var(--text-muted);">
+                                KOALA runs these cases as automated tests on every build: cases 1 and 2 with the 2D solver
+                                of the standalone app, and all four with the 3D solver used by the Rhino plugin. Each case
+                                is solved at the cell size KOALA recommends for the geometry (the <em>Auto</em> setting),
+                                not a hand-tuned grid. The ISO grid rule is checked as well: solving with twice the
+                                cell size may change the heat flow by less than 1 %. The tables on this page are generated
+                                directly from those test results.
                             </p>
-                            <p style="margin-bottom: 1rem; color: var(--text-muted);">
-                                <strong>Validation Criteria:</strong> The calculated temperatures at 28 equidistant
-                                points (dx=0.25, dy=0.25) must not differ from the reference temperatures by more than
+<!-- validation:summary:start -->
+<table class="validation-table" data-wrap="1">
+<thead><tr style="border-bottom: 1px solid var(--border-color);"><th style="padding: 0.5rem;">Case</th><th style="padding: 0.5rem;">Solver</th><th style="padding: 0.5rem;">Criterion</th><th style="padding: 0.5rem;">Result</th></tr></thead><tbody>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;"><a href="validation.html#iso-case-1">ISO 10211 case 1: half square column</a></td><td style="padding: 0.5rem;">2D</td><td style="padding: 0.5rem;">Temperatures at 28 points within 0.1 °C of the analytical solution</td><td style="padding: 0.5rem;"><span class="badge pass">✓ Complies with ISO 10211</span></td></tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;"><a href="validation.html#iso-case-1">ISO 10211 case 1: half square column</a></td><td style="padding: 0.5rem;">3D</td><td style="padding: 0.5rem;">Temperatures at 28 points within 0.1 °C of the analytical solution</td><td style="padding: 0.5rem;"><span class="badge pass">✓ Complies with ISO 10211</span></td></tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;"><a href="validation.html#iso-case-2">ISO 10211 case 2: frame with thin aluminium</a></td><td style="padding: 0.5rem;">2D</td><td style="padding: 0.5rem;">Temperatures A–I within 0.1 °C, heat flow within 0.1 W/m</td><td style="padding: 0.5rem;"><span class="badge pass">✓ Complies with ISO 10211</span></td></tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;"><a href="validation.html#iso-case-2">ISO 10211 case 2: frame with thin aluminium</a></td><td style="padding: 0.5rem;">3D</td><td style="padding: 0.5rem;">Temperatures A–I within 0.1 °C, heat flow within 0.1 W/m</td><td style="padding: 0.5rem;"><span class="badge pass">✓ Complies with ISO 10211</span></td></tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;"><a href="validation.html#iso-case-3">ISO 10211 case 3: rooms in a wall corner with a projecting slab</a></td><td style="padding: 0.5rem;">3D</td><td style="padding: 0.5rem;">Heat flows within 1 %, lowest surface temperatures within 0.1 °C</td><td style="padding: 0.5rem;"><span class="badge pass">✓ Complies with ISO 10211</span></td></tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;"><a href="validation.html#iso-case-4">ISO 10211 case 4: iron bar through insulation</a></td><td style="padding: 0.5rem;">3D</td><td style="padding: 0.5rem;">Heat flow within 1 %, highest external surface temperature within 0.005 °C</td><td style="padding: 0.5rem;"><span class="badge pass">✓ Complies with ISO 10211</span></td></tr>
+</tbody></table>
+<!-- validation:summary:end -->
+</article>
+<article style="margin-bottom: 4rem;">
+<h2 id="iso-case-1">ISO 10211 Test Case 1</h2>
+<img alt="ISO Case 1 Diagram" src="img/ISO Case 1.png" style="width: 100%; border-radius: 8px; margin-bottom: 1rem; border: 1px solid var(--border-color);">
+<p style="margin-bottom: 1rem; color: var(--text-muted);">
+<strong>Description:</strong> Half a square column, 1.0 m wide and 2.0 m high
+                                (λ = 1 W/(m·K)), with prescribed surface temperatures: top 20 °C, left and bottom
+                                0 °C, right side adiabatic.
+                            </p>
+<p style="margin-bottom: 1rem; color: var(--text-muted);">
+<strong>Criterion:</strong> The temperatures at 28 equidistant points may differ from
+                                the analytical solution by at most 0.1 °C. KOALA compares against the exact series
+                                solution, which ISO lists rounded to 0.1 °C.
+                            </p>
+<h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;" id="2d-solver-standalone-app">2D solver (standalone app)</h3>
+<!-- validation:iso-case-1-2d:start -->
+<p class="validation-meta">2D solver · cell size 10 mm · 20,502 nodes · <span class="badge pass">✓ Complies with ISO 10211</span></p>
+<table class="validation-table">
+<thead><tr style="border-bottom: 1px solid var(--border-color);"><th style="padding: 0.5rem;">y \ x (m)</th>
+<th style="padding: 0.5rem;">0.25</th>
+<th style="padding: 0.5rem;">0.50</th>
+<th style="padding: 0.5rem;">0.75</th>
+<th style="padding: 0.5rem;">1.00</th>
+</tr></thead><tbody>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;"><strong>1.75</strong></td>
+<td style="padding: 0.5rem;">9.66 <span class="ref">(9.66)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">13.38 <span class="ref">(13.38)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">14.73 <span class="ref">(14.73)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">15.09 <span class="ref">(15.09)</span> <span class="badge pass">✓</span></td>
+</tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;"><strong>1.50</strong></td>
+<td style="padding: 0.5rem;">5.25 <span class="ref">(5.25)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">8.64 <span class="ref">(8.64)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">10.32 <span class="ref">(10.32)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">10.81 <span class="ref">(10.81)</span> <span class="badge pass">✓</span></td>
+</tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;"><strong>1.25</strong></td>
+<td style="padding: 0.5rem;">3.19 <span class="ref">(3.19)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">5.61 <span class="ref">(5.61)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">7.01 <span class="ref">(7.01)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">7.47 <span class="ref">(7.47)</span> <span class="badge pass">✓</span></td>
+</tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;"><strong>1.00</strong></td>
+<td style="padding: 0.5rem;">2.01 <span class="ref">(2.01)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">3.64 <span class="ref">(3.64)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">4.66 <span class="ref">(4.66)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">5.00 <span class="ref">(5.00)</span> <span class="badge pass">✓</span></td>
+</tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;"><strong>0.75</strong></td>
+<td style="padding: 0.5rem;">1.26 <span class="ref">(1.26)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">2.31 <span class="ref">(2.31)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">2.99 <span class="ref">(2.99)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">3.22 <span class="ref">(3.22)</span> <span class="badge pass">✓</span></td>
+</tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;"><strong>0.50</strong></td>
+<td style="padding: 0.5rem;">0.74 <span class="ref">(0.74)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">1.36 <span class="ref">(1.36)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">1.77 <span class="ref">(1.77)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">1.91 <span class="ref">(1.91)</span> <span class="badge pass">✓</span></td>
+</tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;"><strong>0.25</strong></td>
+<td style="padding: 0.5rem;">0.34 <span class="ref">(0.34)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">0.63 <span class="ref">(0.63)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">0.82 <span class="ref">(0.82)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">0.89 <span class="ref">(0.89)</span> <span class="badge pass">✓</span></td>
+</tr>
+</tbody></table>
+<p class="validation-note">KOALA (analytical solution) in °C. Largest difference: 0.000 °C; ISO 10211 allows 0.1 °C.</p>
+<!-- validation:iso-case-1-2d:end -->
+<h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;" id="3d-solver-rhino-plugin">3D solver (Rhino plugin)</h3>
+<!-- validation:iso-case-1-3d:start -->
+<p class="validation-meta">3D solver · cell size 10 mm · 41,412 nodes · <span class="badge pass">✓ Complies with ISO 10211</span></p>
+<table class="validation-table">
+<thead><tr style="border-bottom: 1px solid var(--border-color);"><th style="padding: 0.5rem;">y \ x (m)</th>
+<th style="padding: 0.5rem;">0.25</th>
+<th style="padding: 0.5rem;">0.50</th>
+<th style="padding: 0.5rem;">0.75</th>
+<th style="padding: 0.5rem;">1.00</th>
+</tr></thead><tbody>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;"><strong>1.75</strong></td>
+<td style="padding: 0.5rem;">9.66 <span class="ref">(9.66)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">13.38 <span class="ref">(13.38)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">14.73 <span class="ref">(14.73)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">15.09 <span class="ref">(15.09)</span> <span class="badge pass">✓</span></td>
+</tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;"><strong>1.50</strong></td>
+<td style="padding: 0.5rem;">5.25 <span class="ref">(5.25)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">8.64 <span class="ref">(8.64)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">10.32 <span class="ref">(10.32)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">10.81 <span class="ref">(10.81)</span> <span class="badge pass">✓</span></td>
+</tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;"><strong>1.25</strong></td>
+<td style="padding: 0.5rem;">3.19 <span class="ref">(3.19)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">5.61 <span class="ref">(5.61)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">7.01 <span class="ref">(7.01)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">7.47 <span class="ref">(7.47)</span> <span class="badge pass">✓</span></td>
+</tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;"><strong>1.00</strong></td>
+<td style="padding: 0.5rem;">2.01 <span class="ref">(2.01)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">3.64 <span class="ref">(3.64)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">4.66 <span class="ref">(4.66)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">5.00 <span class="ref">(5.00)</span> <span class="badge pass">✓</span></td>
+</tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;"><strong>0.75</strong></td>
+<td style="padding: 0.5rem;">1.26 <span class="ref">(1.26)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">2.31 <span class="ref">(2.31)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">2.99 <span class="ref">(2.99)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">3.22 <span class="ref">(3.22)</span> <span class="badge pass">✓</span></td>
+</tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;"><strong>0.50</strong></td>
+<td style="padding: 0.5rem;">0.74 <span class="ref">(0.74)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">1.36 <span class="ref">(1.36)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">1.77 <span class="ref">(1.77)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">1.91 <span class="ref">(1.91)</span> <span class="badge pass">✓</span></td>
+</tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;"><strong>0.25</strong></td>
+<td style="padding: 0.5rem;">0.34 <span class="ref">(0.34)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">0.63 <span class="ref">(0.63)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">0.82 <span class="ref">(0.82)</span> <span class="badge pass">✓</span></td>
+<td style="padding: 0.5rem;">0.89 <span class="ref">(0.89)</span> <span class="badge pass">✓</span></td>
+</tr>
+</tbody></table>
+<p class="validation-note">KOALA (analytical solution) in °C. Largest difference: 0.000 °C; ISO 10211 allows 0.1 °C.</p>
+<!-- validation:iso-case-1-3d:end -->
+</img></article>
+<article style="margin-bottom: 4rem;">
+<h2 id="iso-case-2">ISO 10211 Test Case 2</h2>
+<img alt="ISO Case 2 Diagram" src="img/ISO Case 2.png" style="width: 100%; border-radius: 8px; margin-bottom: 1rem; border: 1px solid var(--border-color);"/>
+<p style="margin-bottom: 1rem; color: var(--text-muted);">
+<strong>Description:</strong> A frame-like section of concrete, wood and insulation with a
+                                1.5 mm aluminium strip (λ = 230 W/(m·K)) next to insulation (λ = 0.029 W/(m·K)), a
+                                conductivity ratio of almost 8000. Exterior 0 °C with Rse = 0.06 m²K/W, interior
+                                20 °C with Rsi = 0.11 m²K/W.
+                            </p>
+<p style="margin-bottom: 1rem; color: var(--text-muted);">
+<strong>Criterion:</strong> Temperatures at points A–I within 0.1 °C, total heat flow
+                                within 0.1 W/m of 9.5 W/m. KOALA's graded mesh puts a grid line on every material
+                                interface, so the 1.5 mm strip is resolved exactly even with 2.5 mm cells.
+                            </p>
+<h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;" id="2d-solver-standalone-app-section">2D solver (standalone app)</h3>
+<!-- validation:iso-case-2-2d:start -->
+<p class="validation-meta">2D solver · cell size 2.5 mm · 4,242 nodes · <span class="badge pass">✓ Complies with ISO 10211</span></p>
+<table class="validation-table">
+<thead><tr style="border-bottom: 1px solid var(--border-color);"><th style="padding: 0.5rem;">Quantity</th><th style="padding: 0.5rem;">ISO 10211</th><th style="padding: 0.5rem;">KOALA</th><th style="padding: 0.5rem;">Difference</th><th style="padding: 0.5rem;">Criterion</th><th style="padding: 0.5rem;"></th></tr></thead><tbody>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">T A</td><td style="padding: 0.5rem;">7.10 °C</td><td style="padding: 0.5rem;">7.08</td><td style="padding: 0.5rem;">0.025 °C</td><td style="padding: 0.5rem;">≤ 0.1 °C</td><td style="padding: 0.5rem;"><span class="badge pass">✓</span></td></tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">T B</td><td style="padding: 0.5rem;">0.80 °C</td><td style="padding: 0.5rem;">0.76</td><td style="padding: 0.5rem;">0.039 °C</td><td style="padding: 0.5rem;">≤ 0.1 °C</td><td style="padding: 0.5rem;"><span class="badge pass">✓</span></td></tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">T C</td><td style="padding: 0.5rem;">7.90 °C</td><td style="padding: 0.5rem;">7.91</td><td style="padding: 0.5rem;">0.007 °C</td><td style="padding: 0.5rem;">≤ 0.1 °C</td><td style="padding: 0.5rem;"><span class="badge pass">✓</span></td></tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">T D</td><td style="padding: 0.5rem;">6.30 °C</td><td style="padding: 0.5rem;">6.31</td><td style="padding: 0.5rem;">0.005 °C</td><td style="padding: 0.5rem;">≤ 0.1 °C</td><td style="padding: 0.5rem;"><span class="badge pass">✓</span></td></tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">T E</td><td style="padding: 0.5rem;">0.80 °C</td><td style="padding: 0.5rem;">0.83</td><td style="padding: 0.5rem;">0.027 °C</td><td style="padding: 0.5rem;">≤ 0.1 °C</td><td style="padding: 0.5rem;"><span class="badge pass">✓</span></td></tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">T F</td><td style="padding: 0.5rem;">16.40 °C</td><td style="padding: 0.5rem;">16.40</td><td style="padding: 0.5rem;">0.000 °C</td><td style="padding: 0.5rem;">≤ 0.1 °C</td><td style="padding: 0.5rem;"><span class="badge pass">✓</span></td></tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">T G</td><td style="padding: 0.5rem;">16.30 °C</td><td style="padding: 0.5rem;">16.33</td><td style="padding: 0.5rem;">0.026 °C</td><td style="padding: 0.5rem;">≤ 0.1 °C</td><td style="padding: 0.5rem;"><span class="badge pass">✓</span></td></tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">T H</td><td style="padding: 0.5rem;">16.80 °C</td><td style="padding: 0.5rem;">16.76</td><td style="padding: 0.5rem;">0.042 °C</td><td style="padding: 0.5rem;">≤ 0.1 °C</td><td style="padding: 0.5rem;"><span class="badge pass">✓</span></td></tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">T I</td><td style="padding: 0.5rem;">18.30 °C</td><td style="padding: 0.5rem;">18.33</td><td style="padding: 0.5rem;">0.032 °C</td><td style="padding: 0.5rem;">≤ 0.1 °C</td><td style="padding: 0.5rem;"><span class="badge pass">✓</span></td></tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">Φ (per metre)</td><td style="padding: 0.5rem;">9.50 W/m</td><td style="padding: 0.5rem;">9.51</td><td style="padding: 0.5rem;">0.011 W/m</td><td style="padding: 0.5rem;">≤ 0.1 W/m</td><td style="padding: 0.5rem;"><span class="badge pass">✓</span></td></tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">Φ at twice the mesh size</td><td style="padding: 0.5rem;">finer grid</td><td style="padding: 0.5rem;">9.536</td><td style="padding: 0.5rem;">0.27 %</td><td style="padding: 0.5rem;">≤ 1 %</td><td style="padding: 0.5rem;"><span class="badge pass">✓</span></td></tr>
+</tbody></table>
+<!-- validation:iso-case-2-2d:end -->
+<h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;" id="3d-solver-rhino-plugin-section">3D solver (Rhino plugin)</h3>
+<!-- validation:iso-case-2-3d:start -->
+<p class="validation-meta">3D solver · cell size 2.5 mm · 29,290 nodes · <span class="badge pass">✓ Complies with ISO 10211</span></p>
+<table class="validation-table">
+<thead><tr style="border-bottom: 1px solid var(--border-color);"><th style="padding: 0.5rem;">Quantity</th><th style="padding: 0.5rem;">ISO 10211</th><th style="padding: 0.5rem;">KOALA</th><th style="padding: 0.5rem;">Difference</th><th style="padding: 0.5rem;">Criterion</th><th style="padding: 0.5rem;"></th></tr></thead><tbody>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">T A</td><td style="padding: 0.5rem;">7.10 °C</td><td style="padding: 0.5rem;">7.08</td><td style="padding: 0.5rem;">0.025 °C</td><td style="padding: 0.5rem;">≤ 0.1 °C</td><td style="padding: 0.5rem;"><span class="badge pass">✓</span></td></tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">T B</td><td style="padding: 0.5rem;">0.80 °C</td><td style="padding: 0.5rem;">0.76</td><td style="padding: 0.5rem;">0.039 °C</td><td style="padding: 0.5rem;">≤ 0.1 °C</td><td style="padding: 0.5rem;"><span class="badge pass">✓</span></td></tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">T C</td><td style="padding: 0.5rem;">7.90 °C</td><td style="padding: 0.5rem;">7.91</td><td style="padding: 0.5rem;">0.007 °C</td><td style="padding: 0.5rem;">≤ 0.1 °C</td><td style="padding: 0.5rem;"><span class="badge pass">✓</span></td></tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">T D</td><td style="padding: 0.5rem;">6.30 °C</td><td style="padding: 0.5rem;">6.31</td><td style="padding: 0.5rem;">0.005 °C</td><td style="padding: 0.5rem;">≤ 0.1 °C</td><td style="padding: 0.5rem;"><span class="badge pass">✓</span></td></tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">T E</td><td style="padding: 0.5rem;">0.80 °C</td><td style="padding: 0.5rem;">0.83</td><td style="padding: 0.5rem;">0.027 °C</td><td style="padding: 0.5rem;">≤ 0.1 °C</td><td style="padding: 0.5rem;"><span class="badge pass">✓</span></td></tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">T F</td><td style="padding: 0.5rem;">16.40 °C</td><td style="padding: 0.5rem;">16.40</td><td style="padding: 0.5rem;">0.000 °C</td><td style="padding: 0.5rem;">≤ 0.1 °C</td><td style="padding: 0.5rem;"><span class="badge pass">✓</span></td></tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">T G</td><td style="padding: 0.5rem;">16.30 °C</td><td style="padding: 0.5rem;">16.33</td><td style="padding: 0.5rem;">0.026 °C</td><td style="padding: 0.5rem;">≤ 0.1 °C</td><td style="padding: 0.5rem;"><span class="badge pass">✓</span></td></tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">T H</td><td style="padding: 0.5rem;">16.80 °C</td><td style="padding: 0.5rem;">16.76</td><td style="padding: 0.5rem;">0.042 °C</td><td style="padding: 0.5rem;">≤ 0.1 °C</td><td style="padding: 0.5rem;"><span class="badge pass">✓</span></td></tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">T I</td><td style="padding: 0.5rem;">18.30 °C</td><td style="padding: 0.5rem;">18.33</td><td style="padding: 0.5rem;">0.032 °C</td><td style="padding: 0.5rem;">≤ 0.1 °C</td><td style="padding: 0.5rem;"><span class="badge pass">✓</span></td></tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">Φ (per metre)</td><td style="padding: 0.5rem;">9.50 W/m</td><td style="padding: 0.5rem;">9.51</td><td style="padding: 0.5rem;">0.011 W/m</td><td style="padding: 0.5rem;">≤ 0.1 W/m</td><td style="padding: 0.5rem;"><span class="badge pass">✓</span></td></tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">Φ at twice the cell size</td><td style="padding: 0.5rem;">finer grid</td><td style="padding: 0.5rem;">9.536</td><td style="padding: 0.5rem;">0.27 %</td><td style="padding: 0.5rem;">≤ 1 %</td><td style="padding: 0.5rem;"><span class="badge pass">✓</span></td></tr>
+</tbody></table>
+<!-- validation:iso-case-2-3d:end -->
+</article>
+<article style="margin-bottom: 4rem;">
+<h2 id="iso-case-3">ISO 10211 Test Case 3</h2>
+<div class="validation-figures">
+<figure style="--ar: calc(835 / 719);">
+<img alt="ISO case 3 vertical section: geometry" src="img/validation/iso-case-3_geometry.png"/>
+<figcaption>Vertical section through the x-wall and the projecting slab</figcaption>
+</figure>
+<figure style="--ar: calc(847 / 719);">
+<img alt="ISO case 3 vertical section: temperatures" src="img/validation/iso-case-3_thermal.png"/>
+<figcaption>Temperatures in the same section</figcaption>
+</figure>
+</div>
+<p style="margin-bottom: 1rem; color: var(--text-muted);">
+<strong>Description:</strong> Two rooms on top of each other in the corner of two external
+                                walls (100 mm λ 1.0 | 50 mm insulation λ 0.04 | 150 mm λ 0.7). The 150 mm floor slab
+                                (λ 2.5) runs through one wall and projects 600 mm outside like a balcony, with a 50 mm
+                                floor layer (λ 1.0) in the upper room. Room α (below) is at 20 °C, room β (above) at
+                                15 °C, both with Rsi = 0.20 m²K/W; outside γ is 0 °C with Rse = 0.05 m²K/W.
+                            </p>
+<p style="margin-bottom: 1rem; color: var(--text-muted);">
+<strong>Criterion:</strong> The heat flows from each environment within 1 %, and the
+                                lowest surface temperature in each room (in the three-dimensional corners) within
                                 0.1 °C.
                             </p>
-                            <p style="margin-bottom: 1rem; color: var(--text-muted);">
-                                <strong>KOALA Results:</strong> KOALA calculates the temperatures dynamically and
-                                compares them to the standard's reference. All 28 points evaluate to a difference of
-                                &le; 0.1 °C, successfully passing the standard requirements.
+<!-- validation:iso-case-3-3d:start -->
+<p class="validation-meta">3D solver · cell size 10 mm · 6,121,656 nodes · <span class="badge pass">✓ Complies with ISO 10211</span></p>
+<table class="validation-table">
+<thead><tr style="border-bottom: 1px solid var(--border-color);"><th style="padding: 0.5rem;">Quantity</th><th style="padding: 0.5rem;">ISO 10211</th><th style="padding: 0.5rem;">KOALA</th><th style="padding: 0.5rem;">Difference</th><th style="padding: 0.5rem;">Criterion</th><th style="padding: 0.5rem;"></th></tr></thead><tbody>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">Φ α (20 °C room)</td><td style="padding: 0.5rem;">46.090 W</td><td style="padding: 0.5rem;">46.125</td><td style="padding: 0.5rem;">0.08 %</td><td style="padding: 0.5rem;">≤ 1 %</td><td style="padding: 0.5rem;"><span class="badge pass">✓</span></td></tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">Φ β (15 °C room)</td><td style="padding: 0.5rem;">13.890 W</td><td style="padding: 0.5rem;">13.910</td><td style="padding: 0.5rem;">0.15 %</td><td style="padding: 0.5rem;">≤ 1 %</td><td style="padding: 0.5rem;"><span class="badge pass">✓</span></td></tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">Φ γ (exterior)</td><td style="padding: 0.5rem;">-59.980 W</td><td style="padding: 0.5rem;">-60.036</td><td style="padding: 0.5rem;">0.09 %</td><td style="padding: 0.5rem;">≤ 1 %</td><td style="padding: 0.5rem;"><span class="badge pass">✓</span></td></tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">θ min α</td><td style="padding: 0.5rem;">11.32 °C</td><td style="padding: 0.5rem;">11.32</td><td style="padding: 0.5rem;">0.003 °C</td><td style="padding: 0.5rem;">≤ 0.1 °C</td><td style="padding: 0.5rem;"><span class="badge pass">✓</span></td></tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">θ min β</td><td style="padding: 0.5rem;">11.11 °C</td><td style="padding: 0.5rem;">11.11</td><td style="padding: 0.5rem;">0.000 °C</td><td style="padding: 0.5rem;">≤ 0.1 °C</td><td style="padding: 0.5rem;"><span class="badge pass">✓</span></td></tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">Φ γ at twice the cell size</td><td style="padding: 0.5rem;">finer grid</td><td style="padding: 0.5rem;">60.132</td><td style="padding: 0.5rem;">0.16 %</td><td style="padding: 0.5rem;">≤ 1 %</td><td style="padding: 0.5rem;"><span class="badge pass">✓</span></td></tr>
+</tbody></table>
+<!-- validation:iso-case-3-3d:end -->
+</article>
+<article style="margin-bottom: 4rem;">
+<h2 id="iso-case-4">ISO 10211 Test Case 4</h2>
+<div class="validation-figures">
+<figure style="--ar: calc(815 / 475);">
+<img alt="ISO case 4 section: geometry" src="img/validation/iso-case-4_geometry.png"/>
+<figcaption>Section through the iron bar</figcaption>
+</figure>
+<figure style="--ar: calc(784 / 486);">
+<img alt="ISO case 4 section: temperatures" src="img/validation/iso-case-4_thermal.png"/>
+<figcaption>Temperatures in the same section</figcaption>
+</figure>
+</div>
+<p style="margin-bottom: 1rem; color: var(--text-muted);">
+<strong>Description:</strong> A point thermal bridge: an iron bar of 100 × 50 mm
+                                (λ = 50 W/(m·K)) penetrates a 200 mm insulation layer (λ = 0.1 W/(m·K)) of 1 × 1 m and
+                                projects 400 mm into the interior. Interior 1 °C, exterior 0 °C, both surfaces with
+                                R = 0.10 m²K/W.
                             </p>
-
-
-                            <div
-                                style="background: var(--dark-surface); padding: 1.5rem; border-radius: 8px; margin: 1rem 0; border-left: 3px solid var(--secondary); color: var(--text-muted); overflow-x: auto;">
-                                <table style="width: 100%; border-collapse: collapse; text-align: left;">
-                                    <thead>
-                                        <tr style="border-bottom: 1px solid var(--border-color);">
-                                            <th style="padding: 0.5rem;">Y \ X (m)</th>
-                                            <th style="padding: 0.5rem;">0.25</th>
-                                            <th style="padding: 0.5rem;">0.50</th>
-                                            <th style="padding: 0.5rem;">0.75</th>
-                                            <th style="padding: 0.5rem;">1.00</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr style="border-bottom: 1px solid var(--border-color);">
-                                            <td style="padding: 0.5rem;"><strong>1.75</strong></td>
-                                            <td style="padding: 0.5rem;">9.66</td>
-                                            <td style="padding: 0.5rem;">13.38</td>
-                                            <td style="padding: 0.5rem;">14.73</td>
-                                            <td style="padding: 0.5rem;">15.09</td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid var(--border-color);">
-                                            <td style="padding: 0.5rem;"><strong>1.50</strong></td>
-                                            <td style="padding: 0.5rem;">5.25</td>
-                                            <td style="padding: 0.5rem;">8.64</td>
-                                            <td style="padding: 0.5rem;">10.31</td>
-                                            <td style="padding: 0.5rem;">10.81</td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid var(--border-color);">
-                                            <td style="padding: 0.5rem;"><strong>1.25</strong></td>
-                                            <td style="padding: 0.5rem;">3.19</td>
-                                            <td style="padding: 0.5rem;">5.61</td>
-                                            <td style="padding: 0.5rem;">7.01</td>
-                                            <td style="padding: 0.5rem;">7.46</td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid var(--border-color);">
-                                            <td style="padding: 0.5rem;"><strong>1.00</strong></td>
-                                            <td style="padding: 0.5rem;">2.01</td>
-                                            <td style="padding: 0.5rem;">3.64</td>
-                                            <td style="padding: 0.5rem;">4.66</td>
-                                            <td style="padding: 0.5rem;">5.00</td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid var(--border-color);">
-                                            <td style="padding: 0.5rem;"><strong>0.75</strong></td>
-                                            <td style="padding: 0.5rem;">1.26</td>
-                                            <td style="padding: 0.5rem;">2.31</td>
-                                            <td style="padding: 0.5rem;">2.98</td>
-                                            <td style="padding: 0.5rem;">3.22</td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid var(--border-color);">
-                                            <td style="padding: 0.5rem;"><strong>0.50</strong></td>
-                                            <td style="padding: 0.5rem;">0.74</td>
-                                            <td style="padding: 0.5rem;">1.36</td>
-                                            <td style="padding: 0.5rem;">1.77</td>
-                                            <td style="padding: 0.5rem;">1.91</td>
-                                        </tr>
-                                        <tr>
-                                            <td style="padding: 0.5rem;"><strong>0.25</strong></td>
-                                            <td style="padding: 0.5rem;">0.34</td>
-                                            <td style="padding: 0.5rem;">0.63</td>
-                                            <td style="padding: 0.5rem;">0.82</td>
-                                            <td style="padding: 0.5rem;">0.89</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <p style="margin-top: 0.5rem; font-size: 0.9em; opacity: 0.8;"><em>Note: All computed
-                                        values exactly match or are within &le;0.1°C of the reference values shown
-                                        above.</em></p>
-                            </div>
-                        </article>
-
-                        <article id="iso-case-2" style="margin-bottom: 4rem;">
-                            <h2>ISO 10211 Test Case 2</h2>
-                            <img src="img/ISO Case 2.png" alt="ISO Case 2 Diagram"
-                                style="width: 100%; border-radius: 8px; margin-bottom: 1rem; border: 1px solid var(--border-color);">
-                            <p style="margin-bottom: 1rem; color: var(--text-muted);">
-                                <strong>Description:</strong> A composite structure consisting of concrete, wood,
-                                insulation, and aluminum. Evaluates heat flow through highly varying conductivities
-                                (e.g., aluminum vs insulation).
+<p style="margin-bottom: 1rem; color: var(--text-muted);">
+<strong>Criterion:</strong> The heat flow within 1 % of 0.540 W, and the highest
+                                temperature on the external surface within 0.005 °C of 0.805 °C.
                             </p>
-                            <p style="margin-bottom: 1rem; color: var(--text-muted);">
-                                <strong>Validation Criteria:</strong> Temperatures at 9 specific points (A to I) must
-                                match reference values with a maximum difference of 0.1 °C (Koala enforces a strict 0.15
-                                °C tolerance due to the complex composite mesh interaction). The total heat flow must be
-                                within 0.1 W/m of the reference value (9.5 W/m).
+<!-- validation:iso-case-4-3d:start -->
+<p class="validation-meta">3D solver · cell size 5 mm · 5,696,541 nodes · <span class="badge pass">✓ Complies with ISO 10211</span></p>
+<table class="validation-table">
+<thead><tr style="border-bottom: 1px solid var(--border-color);"><th style="padding: 0.5rem;">Quantity</th><th style="padding: 0.5rem;">ISO 10211</th><th style="padding: 0.5rem;">KOALA</th><th style="padding: 0.5rem;">Difference</th><th style="padding: 0.5rem;">Criterion</th><th style="padding: 0.5rem;"></th></tr></thead><tbody>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">Φ</td><td style="padding: 0.5rem;">0.5400 W</td><td style="padding: 0.5rem;">0.5417</td><td style="padding: 0.5rem;">0.31 %</td><td style="padding: 0.5rem;">≤ 1 %</td><td style="padding: 0.5rem;"><span class="badge pass">✓</span></td></tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">θ max external surface</td><td style="padding: 0.5rem;">0.8050 °C</td><td style="padding: 0.5rem;">0.8012</td><td style="padding: 0.5rem;">0.0038 °C</td><td style="padding: 0.5rem;">≤ 0.005 °C</td><td style="padding: 0.5rem;"><span class="badge pass">✓</span></td></tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;">Φ at twice the cell size</td><td style="padding: 0.5rem;">finer grid</td><td style="padding: 0.5rem;">0.5447</td><td style="padding: 0.5rem;">0.56 %</td><td style="padding: 0.5rem;">≤ 1 %</td><td style="padding: 0.5rem;"><span class="badge pass">✓</span></td></tr>
+</tbody></table>
+<p class="validation-note"><strong>Note:</strong> Run at 5 mm, a tenth of the 50 mm bar. With the Auto cell size (10 mm) the heat flow is 0.5447 W (0.9% from the reference) and the highest external surface temperature 0.796 °C, outside the 0.005 °C tolerance: for small point bridges, set the cell size to about a tenth of the bridging element.</p>
+<!-- validation:iso-case-4-3d:end -->
+</article>
+<article style="margin-bottom: 4rem;">
+<h2 id="therm-comparison">THERM Comparison</h2>
+<p style="margin-bottom: 1rem; color: var(--text-muted);">
+                                The figure below compares U-values calculated by KOALA and LBNL’s THERM
+                                for the illustrated construction. This comparison supplements the ISO 10211
+                                reference-case results reported above.
                             </p>
-                            <p style="margin-bottom: 1rem; color: var(--text-muted);">
-                                <strong>KOALA Results:</strong> KOALA accurately voxelizes the micro-layers (e.g. 1.5mm
-                                aluminum boundary details) at a 0.5 mm resolution. The temperatures perfectly align with
-                                the expected values, and the calculated total heat flow correctly matches the 9.5 W/m
-                                reference.
-                            </p>
-
-
-
-                            <div
-                                style="background: var(--dark-surface); padding: 1.5rem; border-radius: 8px; margin: 1rem 0; border-left: 3px solid var(--secondary); color: var(--text-muted); overflow-x: auto;">
-                                <table style="width: 100%; border-collapse: collapse; text-align: left;">
-                                    <thead>
-                                        <tr style="border-bottom: 1px solid var(--border-color);">
-                                            <th style="padding: 0.5rem;">Point</th>
-                                            <th style="padding: 0.5rem;">X (m)</th>
-                                            <th style="padding: 0.5rem;">Y (m)</th>
-                                            <th style="padding: 0.5rem;">Reference Temp (°C)</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr style="border-bottom: 1px solid var(--border-color);">
-                                            <td style="padding: 0.5rem;"><strong>A</strong></td>
-                                            <td style="padding: 0.5rem;">0.000</td>
-                                            <td style="padding: 0.5rem;">0.0475</td>
-                                            <td style="padding: 0.5rem;">7.1</td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid var(--border-color);">
-                                            <td style="padding: 0.5rem;"><strong>B</strong></td>
-                                            <td style="padding: 0.5rem;">0.500</td>
-                                            <td style="padding: 0.5rem;">0.0475</td>
-                                            <td style="padding: 0.5rem;">0.8</td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid var(--border-color);">
-                                            <td style="padding: 0.5rem;"><strong>C</strong></td>
-                                            <td style="padding: 0.5rem;">0.000</td>
-                                            <td style="padding: 0.5rem;">0.0415</td>
-                                            <td style="padding: 0.5rem;">7.9</td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid var(--border-color);">
-                                            <td style="padding: 0.5rem;"><strong>D</strong></td>
-                                            <td style="padding: 0.5rem;">0.015</td>
-                                            <td style="padding: 0.5rem;">0.0415</td>
-                                            <td style="padding: 0.5rem;">6.3</td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid var(--border-color);">
-                                            <td style="padding: 0.5rem;"><strong>E</strong></td>
-                                            <td style="padding: 0.5rem;">0.500</td>
-                                            <td style="padding: 0.5rem;">0.0415</td>
-                                            <td style="padding: 0.5rem;">0.8</td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid var(--border-color);">
-                                            <td style="padding: 0.5rem;"><strong>F</strong></td>
-                                            <td style="padding: 0.5rem;">0.000</td>
-                                            <td style="padding: 0.5rem;">0.0365</td>
-                                            <td style="padding: 0.5rem;">16.4</td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid var(--border-color);">
-                                            <td style="padding: 0.5rem;"><strong>G</strong></td>
-                                            <td style="padding: 0.5rem;">0.015</td>
-                                            <td style="padding: 0.5rem;">0.0365</td>
-                                            <td style="padding: 0.5rem;">16.3</td>
-                                        </tr>
-                                        <tr style="border-bottom: 1px solid var(--border-color);">
-                                            <td style="padding: 0.5rem;"><strong>H</strong></td>
-                                            <td style="padding: 0.5rem;">0.000</td>
-                                            <td style="padding: 0.5rem;">0.0000</td>
-                                            <td style="padding: 0.5rem;">16.8</td>
-                                        </tr>
-                                        <tr>
-                                            <td style="padding: 0.5rem;"><strong>I</strong></td>
-                                            <td style="padding: 0.5rem;">0.500</td>
-                                            <td style="padding: 0.5rem;">0.0000</td>
-                                            <td style="padding: 0.5rem;">18.3</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </article>
-
-                        <article id="therm-comparison" style="margin-bottom: 4rem;">
-                            <h2>THERM Comparison</h2>
-                            <p style="margin-bottom: 1rem; color: var(--text-muted);">
-                                In addition to the formal ISO 10211 test cases, KOALA's results are benchmarked against
-                                LBNL's THERM software.
-                                The comparison below demonstrates a simple test comparing U-Values computed by THERM and
-                                KOALA, showing strong agreement.
-                            </p>
-                            <img src="img/ThermComparison.png" alt="THERM vs KOALA U-Value Comparison"
-                                style="width: 100%; border-radius: 8px; margin-top: 1rem; border: 1px solid var(--border-color);">
-                        </article>
-
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Timur Dogan. All rights reserved.</p>
-        </div>
-    </footer>
+<img alt="THERM vs KOALA U-Value Comparison" src="img/ThermComparison.png" style="width: 100%; border-radius: 8px; margin-top: 1rem; border: 1px solid var(--border-color);"/>
+</article>
+</div>
+</div></section>
+</main>
+<footer>
+<div class="container">
+<p>© 2026 Timur Dogan. All rights reserved.</p>
+</div>
+</footer>
 </body>
-
 </html>

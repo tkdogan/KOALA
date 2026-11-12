@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Reference – KOALA</title>
+<meta content="Commands, model data, file formats and applicability of calculation outputs." name="description"/>
+<meta content="KOALA documentation, thermal analysis tutorial, Rhino 3D, U-value calculation, heat transfer analysis, standalone app" name="keywords"/>
+<meta content="Timur Dogan" name="author"/>
+<meta content="Reference – KOALA" property="og:title"/>
+<meta content="Commands, model data, file formats and applicability of calculation outputs." property="og:description"/>
+<meta content="website" property="og:type"/>
+<script src="theme.js?v=2026-11-01"></script>
+<link href="style.css?v=2026-11-11-nav" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<!-- MathJax for rendering equations -->
+<script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']]
+            }
+        };
+    </script>
+<script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- Umami Analytics -->
+<script data-website-id="d8ea1a0b-7c84-4131-9d98-2c71283b3c57" defer="" src="https://cloud.umami.is/script.js"></script>
+<script defer src="docs.js?v=2026-11-11-nav"></script>
+</head>
+<body class="documentation-page">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header><div class="container"><nav aria-label="Main navigation">
+<a class="logo" href="index.html"><img alt="KOALA home" src="img/KLogo.png" style="height:40px;width:auto"/></a>
+<div class="nav-links">
+<a href="index.html">Overview</a><a aria-current="true" class="active" href="documentation.html">Documentation</a>
+<a href="validation.html">Validation</a><a class="btn btn-primary" href="index.html#download">Download</a>
+<button aria-label="Switch theme" class="theme-toggle" type="button"><i class="fas fa-moon"></i></button>
+</div>
+<!-- docs:mobile:start -->
+<details class="mobile-site-menu"><summary>Menu</summary><div class="mobile-site-links"><a href="index.html">Overview</a>
+<a aria-current="true" class="active" href="documentation.html">Documentation</a>
+<a href="validation.html">Validation</a>
+<a class="btn btn-primary" href="index.html#download">Download</a></div></details>
+<!-- docs:mobile:end -->
+</nav></div></header>
+<main id="main-content">
+<section class="hero docs-hero"><div class="container">
+<!-- docs:breadcrumbs:start -->
+<nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="documentation.html">Documentation</a></li><li><a href="documentation.html#reference">Reference</a></li><li aria-current="page">Commands, inputs and files</li></ol></nav>
+<!-- docs:breadcrumbs:end -->
+<h1>Reference</h1><p>Commands, model data, file formats and applicability of calculation outputs.</p>
+</div></section>
+<section class="documentation-content"><div class="container docs-grid docs-layout">
+<!-- docs:navigation:start -->
+<aside class="docs-sidebar"><details class="docs-menu" open>
+<summary>Documentation navigation</summary>
+<nav class="docs-nav" aria-label="Documentation chapters">
+<a class="docs-overview" href="documentation.html">Documentation overview</a>
+<details class="docs-group"><summary>Getting started</summary><ul>
+<li><a href="getting-started.html">Application choice and first calculation</a></li>
+<li><a href="installation.html">Installation</a></li>
+</ul></details>
+<details class="docs-group"><summary>Standalone editor</summary><ul>
+<li><a href="standalone-editor.html">Construction editor</a></li>
+</ul></details>
+<details class="docs-group"><summary>Rhino workflows</summary><ul>
+<li><a href="rhino-guide.html">Model setup</a></li>
+<li><a href="examples.html">Example setups</a></li>
+<li><a href="psi-chi-workflow.html">Thermal bridge analysis (Ψ / χ)</a></li>
+<li><a href="window-analysis.html">Window analysis</a></li>
+<li><a href="window-components.html">Window and IGU components</a></li>
+<li><a href="frame-assessment.html">Custom frame assessment</a></li>
+</ul></details>
+<details class="docs-group"><summary>Results and reporting</summary><ul>
+<li><a href="reporting.html">Results, reports and exports</a></li>
+</ul></details>
+<details class="docs-group"><summary>Methods and validation</summary><ul>
+<li><a href="methods.html">Calculation methods</a></li>
+<li><a href="validation.html">Validation</a></li>
+</ul></details>
+<details class="docs-group" open><summary>Reference</summary><ul>
+<li><a href="reference.html" aria-current="page">Commands, inputs and files</a></li>
+<li><a href="frame-library.html">Frame configurations and sources</a></li>
+</ul></details>
+</nav></details></aside>
+<!-- docs:navigation:end -->
+<div class="docs-main guide-copy">
+<!-- docs:contents:start -->
+<details class="page-toc" open><summary>On this page</summary>
+<nav aria-label="On this page"><ol>
+<li><a href="#commands">Rhino commands</a>
+</li>
+<li><a href="#materials-and-boundaries">Materials and boundary conditions</a>
+</li>
+<li><a href="#window-data">Window and glazing data</a>
+</li>
+<li><a href="#file-formats">Files and exports</a>
+</li>
+<li><a href="#scope">Applicability and limitations</a>
+</li>
+</ol></nav></details>
+<!-- docs:contents:end -->
+<article><h2 id="commands">Rhino commands</h2><div class="docs-table-wrap"><table class="guide-table"><thead><tr><th>Command</th><th>Purpose</th></tr></thead><tbody><tr><td><code>KoalaAssessFrame</code></td><td>Start the point-picking shortcut for a custom frame assessment.</td></tr><tr><td><code>KoalaExamples</code></td><td>Open Library → Examples.</td></tr><tr><td><code>KoalaGlazingProperties</code></td><td>Inspect a selected glazing or frame component.</td></tr><tr><td><code>Koala</code></td><td>Open the main KOALA panel.</td></tr><tr><td><code>KoalaRun</code></td><td>Run a calculation or display a result mode through command options.</td></tr><tr><td><code>KoalaWindowAnalysis</code></td><td>Open the window assessment and reference-measurement form.</td></tr><tr><td><code>KoalaWindows</code></td><td>Open Library → Windows / IGUs.</td></tr><tr><td><code>KoalaClearFrameAssessment</code></td><td>Remove custom frame assessments.</td></tr></tbody></table></div></article>
+<article><h2 id="materials-and-boundaries">Materials and boundary conditions</h2><p>Material records define thermal conductivity, density, specific heat capacity and vapour diffusion resistance where applicable. Boundary conditions define the environment, temperature, relative humidity and surface resistance. Layer assignments determine which records apply to each model volume.</p>
+<p>See <a href="standalone-editor.html#materials">standalone material libraries</a> and <a href="rhino-guide.html#rhino-plugin">Rhino layer assignments</a>. Profile cavities may use an equivalent conductivity or the <a href="frame-assessment.html#air-cavities-in-frame-profiles">automatic frame-cavity method</a>.</p></article>
+<article><h2 id="window-data">Window and glazing data</h2><p><a href="frame-library.html">Frame configurations and sources</a> records compatibility, source classification and component identifiers. <a href="window-components.html#import-window-data">Glazing import</a> describes supported WINDOW-derived data. Placed components retain snapshots of their assigned properties and provenance.</p></article>
+<article><h2 id="file-formats">Files and exports</h2><div class="docs-table-wrap"><table class="guide-table"><thead><tr><th>Format</th><th>Contents or use</th></tr></thead><tbody>
+<tr><td>Construction JSON</td><td>Standalone construction geometry, assignments and boundary data.</td></tr>
+<tr><td>Rhino .3dm</td><td>Model geometry and document-based KOALA assignments, study setup and measurements.</td></tr>
+<tr><td>.kvox</td><td>A converged solved field and its thermal summary. See <a href="reporting.html#saved-fields">saved result fields</a>.</td></tr>
+<tr><td>Glazing JSON</td><td><code>koala.glazing-system</code> version 1, with pane/gap properties and recorded reference conditions.</td></tr>
+<tr><td>PDF, CSV and report/study JSON</td><td>Report figures and tables, structured results, or the complete study with its inputs.</td></tr>
+<tr><td>EnergyPlus IDF</td><td>Equivalent construction or window-frame properties supported by the assessment. See <a href="reporting.html#energyplus-export">EnergyPlus export</a>.</td></tr>
+</tbody></table></div></article>
+<article><h2 id="scope">Applicability and limitations</h2><p>The <a href="methods.html">methods guide</a> describes the numerical model. Window and cavity calculations are thermal-only; Glaser results are steady-state screening. Review <a href="window-analysis.html#limits">window assessment limits</a>, <a href="frame-assessment.html#air-cavities-in-frame-profiles">frame cavity assumptions</a> and the source scope of a supplied configuration when interpreting results.</p></article>
+</div>
+</div></section>
+</main>
+<footer>
+<div class="container">
+<p>© 2026 Timur Dogan. All rights reserved.</p>
+</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Frame configurations and sources – KOALA</title>
+<meta content="Frame compatibility, source classifications and recorded configuration data." name="description"/>
+<meta content="KOALA documentation, thermal analysis tutorial, Rhino 3D, U-value calculation, heat transfer analysis, standalone app" name="keywords"/>
+<meta content="Timur Dogan" name="author"/>
+<meta content="Frame configurations and sources – KOALA" property="og:title"/>
+<meta content="Frame compatibility, source classifications and recorded configuration data." property="og:description"/>
+<meta content="website" property="og:type"/>
+<script src="theme.js?v=2026-11-01"></script>
+<link href="style.css?v=2026-11-11-nav" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<!-- MathJax for rendering equations -->
+<script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']]
+            }
+        };
+    </script>
+<script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- Umami Analytics -->
+<script data-website-id="d8ea1a0b-7c84-4131-9d98-2c71283b3c57" defer="" src="https://cloud.umami.is/script.js"></script>
+<script defer src="docs.js?v=2026-11-11-nav"></script>
+</head>
+<body class="documentation-page">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header><div class="container"><nav aria-label="Main navigation">
+<a class="logo" href="index.html"><img alt="KOALA home" src="img/KLogo.png" style="height:40px;width:auto"/></a>
+<div class="nav-links">
+<a href="index.html">Overview</a><a aria-current="true" class="active" href="documentation.html">Documentation</a>
+<a href="validation.html">Validation</a><a class="btn btn-primary" href="index.html#download">Download</a>
+<button aria-label="Switch theme" class="theme-toggle" type="button"><i class="fas fa-moon"></i></button>
+</div>
+<!-- docs:mobile:start -->
+<details class="mobile-site-menu"><summary>Menu</summary><div class="mobile-site-links"><a href="index.html">Overview</a>
+<a aria-current="true" class="active" href="documentation.html">Documentation</a>
+<a href="validation.html">Validation</a>
+<a class="btn btn-primary" href="index.html#download">Download</a></div></details>
+<!-- docs:mobile:end -->
+</nav></div></header>
+<main id="main-content">
+<section class="hero docs-hero"><div class="container">
+<!-- docs:breadcrumbs:start -->
+<nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="documentation.html">Documentation</a></li><li><a href="documentation.html#reference">Reference</a></li><li aria-current="page">Frame configurations and sources</li></ol></nav>
+<!-- docs:breadcrumbs:end -->
+<h1>Frame configurations and sources</h1><p>Frame compatibility, source classifications and recorded configuration data.</p>
+</div></section>
+<section class="documentation-content"><div class="container docs-grid docs-layout">
+<!-- docs:navigation:start -->
+<aside class="docs-sidebar"><details class="docs-menu" open>
+<summary>Documentation navigation</summary>
+<nav class="docs-nav" aria-label="Documentation chapters">
+<a class="docs-overview" href="documentation.html">Documentation overview</a>
+<details class="docs-group"><summary>Getting started</summary><ul>
+<li><a href="getting-started.html">Application choice and first calculation</a></li>
+<li><a href="installation.html">Installation</a></li>
+</ul></details>
+<details class="docs-group"><summary>Standalone editor</summary><ul>
+<li><a href="standalone-editor.html">Construction editor</a></li>
+</ul></details>
+<details class="docs-group"><summary>Rhino workflows</summary><ul>
+<li><a href="rhino-guide.html">Model setup</a></li>
+<li><a href="examples.html">Example setups</a></li>
+<li><a href="psi-chi-workflow.html">Thermal bridge analysis (Ψ / χ)</a></li>
+<li><a href="window-analysis.html">Window analysis</a></li>
+<li><a href="window-components.html">Window and IGU components</a></li>
+<li><a href="frame-assessment.html">Custom frame assessment</a></li>
+</ul></details>
+<details class="docs-group"><summary>Results and reporting</summary><ul>
+<li><a href="reporting.html">Results, reports and exports</a></li>
+</ul></details>
+<details class="docs-group"><summary>Methods and validation</summary><ul>
+<li><a href="methods.html">Calculation methods</a></li>
+<li><a href="validation.html">Validation</a></li>
+</ul></details>
+<details class="docs-group" open><summary>Reference</summary><ul>
+<li><a href="reference.html">Commands, inputs and files</a></li>
+<li><a href="frame-library.html" aria-current="page">Frame configurations and sources</a></li>
+</ul></details>
+</nav></details></aside>
+<!-- docs:navigation:end -->
+<div class="docs-main guide-copy">
+<!-- docs:contents:start -->
+<details class="page-toc" open><summary>On this page</summary>
+<nav aria-label="On this page"><ol>
+<li><a href="#source-classifications">Source classifications</a>
+</li>
+<li><a href="#adding-a-sourced-configuration">Adding a sourced configuration</a>
+</li>
+<li><a href="#obtaining-product-data">Obtaining product data</a>
+</li>
+</ol></nav></details>
+<!-- docs:contents:end -->
+<p>The frame browser reads configuration metadata embedded in each <code>koala.window-section</code> JSON file. Compatibility is based on the specific configuration's overall glazing thickness, not its material family, pane count or filename. The configuration selects geometry already drawn for that thickness; it does not stretch a 24 mm rebate around a 44 mm unit.</p>
+<p>The starter catalogue contains 19 illustrative configurations:</p>
+<table>
+<thead>
+<tr>
+<th>System</th>
+<th>Glazing thicknesses</th>
+<th>Profile size</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PVC</td>
+<td>4, 6, 8, 20, 24, 36, 44 mm</td>
+<td>80 × 70 mm for single/double; 80 × 90 mm for triple</td>
+</tr>
+<tr>
+<td>Timber</td>
+<td>20, 24, 36, 44 mm</td>
+<td>80 × 70 mm for double; 80 × 90 mm for triple</td>
+</tr>
+<tr>
+<td>Timber + aluminium</td>
+<td>20, 24, 36, 44 mm</td>
+<td>80 × 70 mm for double; 80 × 90 mm for triple</td>
+</tr>
+<tr>
+<td>Aluminium with thermal break</td>
+<td>20, 24, 36, 44 mm</td>
+<td>80 × 70 mm for double; 80 × 90 mm for triple</td>
+</tr>
+</tbody>
+</table>
+<p>These sections use generic materials, retaining lips, gaskets, spacers and supplied cavity values. They represent thickness fit. Product-specific size, sash weight, hardware and structural approvals are not supplied. No manufacturer-derived or independently validated frame models are bundled.</p>
+<h2 id="source-classifications">Source classifications</h2>
+<p><code>FrameConfiguration.Source.Kind</code> records the provenance of the supplied section:</p>
+<table>
+<thead>
+<tr>
+<th>Kind</th>
+<th>Required evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Illustrative</code></td>
+<td>Source reference identifying the drawing, generator or design assumptions.</td>
+</tr>
+<tr>
+<td><code>ManufacturerDerived</code></td>
+<td>Source reference plus manufacturer and product identifiers. Geometry and thermal inputs should be traceable to the specified revision of the manufacturer's documentation.</td>
+</tr>
+<tr>
+<td><code>IndependentlyValidated</code></td>
+<td>Source reference, validation report reference, and explicit validation scope describing the geometry, quantities, method and reference conditions checked.</td>
+</tr>
+</tbody>
+</table>
+<p>The loader rejects incomplete source records. Recording evidence does not authenticate it or confer certification. A validated jamb section does not validate synthesized head/sill features, mitered corners, a complete window or a changed installation. Existing sections without metadata remain readable and unclassified.</p>
+<h2 id="adding-a-sourced-configuration">Adding a sourced configuration</h2>
+<p>Prepare an actual section with its materials, cavities, gaskets, glazing edge, anchors, boundaries and reference cases. Add its JSON file under <code>KOALASolver/Windows/Library</code>; the project embeds it automatically. Rebuild the catalogue. There is no raw CAD, native THERM or manufacturer-site importer in this workflow.</p>
+<p>Add a <code>FrameConfiguration</code> object to the section's <code>Data</code>:</p>
+<ul>
+<li><code>Id</code>: stable identifier for this exact profile/bead/gasket configuration.</li>
+<li><code>SystemId</code>, <code>SystemName</code>: identify the selectable system; all configurations of a system share its name.</li>
+<li><code>Family</code>: descriptive material family, independent of compatibility.</li>
+<li><code>ProfileId</code>: must match the section's frame component ID.</li>
+<li><code>ProfileName</code>, <code>GlazingBead</code>, <code>GasketSet</code>: identify the actual components or describe illustrative equivalents.</li>
+<li><code>GlazingThickness</code>: overall unit thickness in <strong>metres</strong>; it must match the section's glazing geometry to within 0.01 mm.</li>
+<li><code>Source</code>: <code>Kind</code>, <code>Reference</code>, and the applicable <code>Manufacturer</code>, <code>Product</code>, <code>ValidationReference</code>, <code>ValidationScope</code> and <code>Notes</code> fields.</li>
+</ul>
+<p>Use distinct systems when two alternative configurations fit the same thickness; the catalogue rejects ambiguous selection. Changing the glass/coating/gas recipe at the same total thickness retains this geometric configuration. It does not establish a product's approval for that combination. An imported glazing thickness with no available configuration remains inspectable with placement disabled.</p>
+<p>The browser's <strong>Source details…</strong>, the placed section snapshot, and the exported study preserve this metadata separately from the glazing's source. Changes to a library file do not relabel existing placements.</p>
+<h2 id="obtaining-product-data">Obtaining product data</h2>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://www.schueco.com/de-en/fabricators/products/windows/aluminium/aws-75-si-">Manufacturer technical libraries, for example Schüco AWS 75.SI+</a></td>
+<td>Obtain exact profile, bead and gasket sections; supported infill configurations; materials; thermal reports; size and hardware limits. Record the document revision and component IDs.</td>
+</tr>
+<tr>
+<td><a href="https://windows.lbl.gov/software-tools">Berkeley Lab IGDB, WINDOW and THERM</a></td>
+<td>Obtain reviewed glazing optical data, calculate glazing stacks, and model frame sections. A WINDOW frame-library entry still needs its own provenance.</td>
+</tr>
+<tr>
+<td><a href="https://database.passivehouse.com/en/components/list/window">Passive House Institute frame database</a></td>
+<td>Find certified products and reference performance. Obtain the detailed section and material inputs separately where needed.</td>
+</tr>
+<tr>
+<td><a href="https://nfrc.org/certified-product-directory/">NFRC Certified Products Directory</a></td>
+<td>Check rated product configurations and whole-product performance; obtain the underlying thermal model from its owner.</td>
+</tr>
+</tbody>
+</table>
+<p>Published Uf or Uw alone cannot reconstruct a section's local temperature field. Preserve the actual modeled spacer/glazing/frame combination and the thermal calculation's reference conditions when comparing results.</p>
+</div>
+</div></section>
+</main>
+<footer>
+<div class="container">
+<p>© 2026 Timur Dogan. All rights reserved.</p>
+</div>
+</footer>
+</body>
+</html>

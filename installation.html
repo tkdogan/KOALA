@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Installation – KOALA</title>
+<meta content="Standalone application and Rhino plugin installation." name="description"/>
+<meta content="KOALA documentation, thermal analysis tutorial, Rhino 3D, U-value calculation, heat transfer analysis, standalone app" name="keywords"/>
+<meta content="Timur Dogan" name="author"/>
+<meta content="Installation – KOALA" property="og:title"/>
+<meta content="Standalone application and Rhino plugin installation." property="og:description"/>
+<meta content="website" property="og:type"/>
+<script src="theme.js?v=2026-11-01"></script>
+<link href="style.css?v=2026-11-11-nav" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<!-- MathJax for rendering equations -->
+<script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']]
+            }
+        };
+    </script>
+<script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- Umami Analytics -->
+<script data-website-id="d8ea1a0b-7c84-4131-9d98-2c71283b3c57" defer="" src="https://cloud.umami.is/script.js"></script>
+<script defer src="docs.js?v=2026-11-11-nav"></script>
+</head>
+<body class="documentation-page">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header><div class="container"><nav aria-label="Main navigation">
+<a class="logo" href="index.html"><img alt="KOALA home" src="img/KLogo.png" style="height:40px;width:auto"/></a>
+<div class="nav-links">
+<a href="index.html">Overview</a><a aria-current="true" class="active" href="documentation.html">Documentation</a>
+<a href="validation.html">Validation</a><a class="btn btn-primary" href="index.html#download">Download</a>
+<button aria-label="Switch theme" class="theme-toggle" type="button"><i class="fas fa-moon"></i></button>
+</div>
+<!-- docs:mobile:start -->
+<details class="mobile-site-menu"><summary>Menu</summary><div class="mobile-site-links"><a href="index.html">Overview</a>
+<a aria-current="true" class="active" href="documentation.html">Documentation</a>
+<a href="validation.html">Validation</a>
+<a class="btn btn-primary" href="index.html#download">Download</a></div></details>
+<!-- docs:mobile:end -->
+</nav></div></header>
+<main id="main-content">
+<section class="hero docs-hero"><div class="container">
+<!-- docs:breadcrumbs:start -->
+<nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="documentation.html">Documentation</a></li><li><a href="documentation.html#start">Getting started</a></li><li aria-current="page">Installation</li></ol></nav>
+<!-- docs:breadcrumbs:end -->
+<h1>Installation</h1><p>Standalone application and Rhino plugin installation.</p>
+</div></section>
+<section class="documentation-content"><div class="container docs-grid docs-layout">
+<!-- docs:navigation:start -->
+<aside class="docs-sidebar"><details class="docs-menu" open>
+<summary>Documentation navigation</summary>
+<nav class="docs-nav" aria-label="Documentation chapters">
+<a class="docs-overview" href="documentation.html">Documentation overview</a>
+<details class="docs-group" open><summary>Getting started</summary><ul>
+<li><a href="getting-started.html">Application choice and first calculation</a></li>
+<li><a href="installation.html" aria-current="page">Installation</a></li>
+</ul></details>
+<details class="docs-group"><summary>Standalone editor</summary><ul>
+<li><a href="standalone-editor.html">Construction editor</a></li>
+</ul></details>
+<details class="docs-group"><summary>Rhino workflows</summary><ul>
+<li><a href="rhino-guide.html">Model setup</a></li>
+<li><a href="examples.html">Example setups</a></li>
+<li><a href="psi-chi-workflow.html">Thermal bridge analysis (Ψ / χ)</a></li>
+<li><a href="window-analysis.html">Window analysis</a></li>
+<li><a href="window-components.html">Window and IGU components</a></li>
+<li><a href="frame-assessment.html">Custom frame assessment</a></li>
+</ul></details>
+<details class="docs-group"><summary>Results and reporting</summary><ul>
+<li><a href="reporting.html">Results, reports and exports</a></li>
+</ul></details>
+<details class="docs-group"><summary>Methods and validation</summary><ul>
+<li><a href="methods.html">Calculation methods</a></li>
+<li><a href="validation.html">Validation</a></li>
+</ul></details>
+<details class="docs-group"><summary>Reference</summary><ul>
+<li><a href="reference.html">Commands, inputs and files</a></li>
+<li><a href="frame-library.html">Frame configurations and sources</a></li>
+</ul></details>
+</nav></details></aside>
+<!-- docs:navigation:end -->
+<div class="docs-main guide-copy">
+<!-- docs:contents:start -->
+<details class="page-toc" open><summary>On this page</summary>
+<nav aria-label="On this page"><ol>
+<li><a href="#windows-installation">Standalone application for Windows</a>
+</li>
+<li><a href="#macos-download">Standalone application for macOS</a>
+</li>
+<li><a href="#mac-installation">Mac Installation</a>
+<ol>
+<li><a href="#the-open-anyway-workaround">The &quot;Open Anyway&quot; Workaround</a></li>
+</ol>
+</li>
+<li><a href="#rhino-installation">Rhino 8 plugin</a>
+<ol>
+<li><a href="#installation-via-package-manager">Installation via Package Manager</a></li>
+</ol>
+</li>
+</ol></nav></details>
+<!-- docs:contents:end -->
+<article><h2 id="windows-installation">Standalone application for Windows</h2><p>Download the Windows archive from the <a href="index.html#download">download page</a>, extract it and run <code>KOALA.exe</code>.</p></article>
+<article><h2 id="macos-download">Standalone application for macOS</h2><p>Download the macOS disk image from the <a href="index.html#download">download page</a>. Follow the opening procedure below if macOS blocks the application.</p></article><article style="margin-bottom: 4rem;">
+<h2 id="mac-installation">Mac Installation</h2>
+<p style="margin-bottom: 1rem; color: var(--text-muted);">
+                                Since app notarization requires a paid Apple Developer account, users will have to use
+                                the following workaround.
+                            </p>
+<h3 style="margin-top: 2rem; margin-bottom: 1rem;" id="the-open-anyway-workaround">The "Open Anyway" Workaround</h3>
+<p style="margin-bottom: 1rem; color: var(--text-muted);">
+                                This method allows you to manually authorize a specific app without lowering your
+                                overall security settings.
+                            </p>
+<ol style="list-style: decimal; margin-left: 20px; color: var(--text-muted);">
+<li style="margin-bottom: 0.5rem;"><strong>Attempt to open the app:</strong> Try
+                                    launching the app normally. When the warning dialog appears, click <em>Done</em> or
+                                    <em>Cancel</em> to dismiss it.
+                                </li>
+<li style="margin-bottom: 0.5rem;"><strong>Go to System Settings:</strong> Open the
+                                    Apple menu and select <em>System Settings</em> (or <em>System Preferences</em> on
+                                    older macOS versions).</li>
+<li style="margin-bottom: 0.5rem;"><strong>Navigate to Privacy &amp; Security:</strong>
+                                    Click <em>Privacy &amp; Security</em> in the sidebar and scroll down to the Security
+                                    section.</li>
+<li style="margin-bottom: 0.5rem;"><strong>Click Open Anyway:</strong> Look for a
+                                    message stating that the app was blocked. Click the <em>Open Anyway</em> button next
+                                    to it.</li>
+<li style="margin-bottom: 0.5rem;"><strong>Note:</strong> This button only remains
+                                    visible for about one hour after the failed attempt to open the app.</li>
+<li style="margin-bottom: 0.5rem;"><strong>Authenticate:</strong> Enter your Mac's login
+                                    password or use Touch ID when prompted.</li>
+<li style="margin-bottom: 0.5rem;"><strong>Confirm:</strong> A final warning will appear
+                                    asking if you are sure. Click <em>Open</em> to launch the app.</li>
+</ol>
+</article><article><h2 id="rhino-installation">Rhino 8 plugin</h2><h3 style="margin-top: 2rem; margin-bottom: 1rem;" id="installation-via-package-manager">Installation via Package Manager</h3>
+<p style="color: var(--text-muted); margin-bottom: 1rem;">
+                                Install KOALA for Rhino using the built-in <strong>PackageManager</strong> command.
+                                Search for "Koala" and select Install.
+                            </p>
+<div style="margin-bottom: 1.5rem;">
+<img alt="Rhino Package Manager" src="img/rhinopackagemanager.png" style="max-width: 100%; border-radius: 8px; border: 1px solid var(--border-color);">
+</img></div>
+<p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+                                After installation, you <strong>must restart Rhino</strong> for the plugin to load
+                                properly. After restarting, type the <code>Koala</code> command into the Rhino
+                                command line to begin. A panel with a layer editor and simulation controls will appear.
+                            </p>
+<p>Continue with <a href="rhino-guide.html">Rhino model setup</a> or a <a href="examples.html">library example</a>.</p></article>
+</div>
+</div></section>
+</main>
+<footer>
+<div class="container">
+<p>© 2026 Timur Dogan. All rights reserved.</p>
+</div>
+</footer>
+</body>
+</html>

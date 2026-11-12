@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Example setups – KOALA</title>
+<meta content="Thermal bridge and window-in-wall examples from the shared Rhino Library." name="description"/>
+<meta content="KOALA documentation, thermal analysis tutorial, Rhino 3D, U-value calculation, heat transfer analysis, standalone app" name="keywords"/>
+<meta content="Timur Dogan" name="author"/>
+<meta content="Example setups – KOALA" property="og:title"/>
+<meta content="Thermal bridge and window-in-wall examples from the shared Rhino Library." property="og:description"/>
+<meta content="website" property="og:type"/>
+<script src="theme.js?v=2026-11-01"></script>
+<link href="style.css?v=2026-11-11-nav" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<!-- MathJax for rendering equations -->
+<script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']]
+            }
+        };
+    </script>
+<script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- Umami Analytics -->
+<script data-website-id="d8ea1a0b-7c84-4131-9d98-2c71283b3c57" defer="" src="https://cloud.umami.is/script.js"></script>
+<script defer src="docs.js?v=2026-11-11-nav"></script>
+</head>
+<body class="documentation-page">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header><div class="container"><nav aria-label="Main navigation">
+<a class="logo" href="index.html"><img alt="KOALA home" src="img/KLogo.png" style="height:40px;width:auto"/></a>
+<div class="nav-links">
+<a href="index.html">Overview</a><a aria-current="true" class="active" href="documentation.html">Documentation</a>
+<a href="validation.html">Validation</a><a class="btn btn-primary" href="index.html#download">Download</a>
+<button aria-label="Switch theme" class="theme-toggle" type="button"><i class="fas fa-moon"></i></button>
+</div>
+<!-- docs:mobile:start -->
+<details class="mobile-site-menu"><summary>Menu</summary><div class="mobile-site-links"><a href="index.html">Overview</a>
+<a aria-current="true" class="active" href="documentation.html">Documentation</a>
+<a href="validation.html">Validation</a>
+<a class="btn btn-primary" href="index.html#download">Download</a></div></details>
+<!-- docs:mobile:end -->
+</nav></div></header>
+<main id="main-content">
+<section class="hero docs-hero"><div class="container">
+<!-- docs:breadcrumbs:start -->
+<nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="documentation.html">Documentation</a></li><li><a href="documentation.html#rhino-workflows">Rhino workflows</a></li><li aria-current="page">Example setups</li></ol></nav>
+<!-- docs:breadcrumbs:end -->
+<h1>Example setups</h1><p>Thermal bridge and window-in-wall examples from the shared Rhino Library.</p>
+</div></section>
+<section class="documentation-content"><div class="container docs-grid docs-layout">
+<!-- docs:navigation:start -->
+<aside class="docs-sidebar"><details class="docs-menu" open>
+<summary>Documentation navigation</summary>
+<nav class="docs-nav" aria-label="Documentation chapters">
+<a class="docs-overview" href="documentation.html">Documentation overview</a>
+<details class="docs-group"><summary>Getting started</summary><ul>
+<li><a href="getting-started.html">Application choice and first calculation</a></li>
+<li><a href="installation.html">Installation</a></li>
+</ul></details>
+<details class="docs-group"><summary>Standalone editor</summary><ul>
+<li><a href="standalone-editor.html">Construction editor</a></li>
+</ul></details>
+<details class="docs-group" open><summary>Rhino workflows</summary><ul>
+<li><a href="rhino-guide.html">Model setup</a></li>
+<li><a href="examples.html" aria-current="page">Example setups</a></li>
+<li><a href="psi-chi-workflow.html">Thermal bridge analysis (Ψ / χ)</a></li>
+<li><a href="window-analysis.html">Window analysis</a></li>
+<li><a href="window-components.html">Window and IGU components</a></li>
+<li><a href="frame-assessment.html">Custom frame assessment</a></li>
+</ul></details>
+<details class="docs-group"><summary>Results and reporting</summary><ul>
+<li><a href="reporting.html">Results, reports and exports</a></li>
+</ul></details>
+<details class="docs-group"><summary>Methods and validation</summary><ul>
+<li><a href="methods.html">Calculation methods</a></li>
+<li><a href="validation.html">Validation</a></li>
+</ul></details>
+<details class="docs-group"><summary>Reference</summary><ul>
+<li><a href="reference.html">Commands, inputs and files</a></li>
+<li><a href="frame-library.html">Frame configurations and sources</a></li>
+</ul></details>
+</nav></details></aside>
+<!-- docs:navigation:end -->
+<div class="docs-main guide-copy">
+<!-- docs:contents:start -->
+<details class="page-toc" open><summary>On this page</summary>
+<nav aria-label="On this page"><ol>
+<li><a href="#thermal-bridges">Thermal bridges</a>
+<ol>
+<li><a href="#the-ground-floor-example">The ground floor example</a></li>
+</ol>
+</li>
+<li><a href="#windowwall-connections">Window–wall connections</a>
+</li>
+<li><a href="#placing">Placing</a>
+</li>
+</ol></nav></details>
+<!-- docs:contents:end -->
+<p>Choose <strong>Library…</strong> in the KOALA panel's toolbar, then the <strong>Examples</strong> tab, or run <code>KoalaExamples</code> to open that tab directly. The library is modeless and belongs to its Rhino document.</p>
+<p>An example setup is a complete, editable model of a typical situation: constructions, boundary conditions and the calculations that belong to it. Place one, simulate it, then change it into your own detail. Browsing creates no Rhino objects and runs no simulation.</p>
+<p>The library's <strong>Windows / IGUs</strong> tab has the glazing units, with or without their frame, to place in a model of your own. See <a href="window-components.html">window components</a>.</p>
+<p><figure class="docs-shot"><img alt="KOALA Library Examples tab, with complete bridge and window setups" class="theme-light" loading="lazy" src="img/generated/library_examples_light.png"/><img alt="KOALA Library Examples tab, with complete bridge and window setups" class="theme-dark" loading="lazy" src="img/generated/library_examples_dark.png"/></figure></p>
+<h2 id="thermal-bridges">Thermal bridges</h2>
+<table>
+<thead>
+<tr>
+<th>Example</th>
+<th>Result</th>
+<th>Model</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>External wall corner</td>
+<td>Ψ</td>
+<td>Plan in XY, extruded 1 m along Z</td>
+</tr>
+<tr>
+<td>Floor slab edge</td>
+<td>Ψ</td>
+<td>Section in XZ, extruded 1 m along Y</td>
+</tr>
+<tr>
+<td>Balcony slab cast through</td>
+<td>Ψ</td>
+<td>Section in XZ</td>
+</tr>
+<tr>
+<td>Balcony with structural thermal break</td>
+<td>Ψ</td>
+<td>Section in XZ</td>
+</tr>
+<tr>
+<td>Flat roof parapet</td>
+<td>Ψ, wall and roof subtracted</td>
+<td>Section in XZ</td>
+</tr>
+<tr>
+<td>Wall on a ground floor slab</td>
+<td>Ψ, wall and ISO 13370 floor subtracted</td>
+<td>Section in XZ with 10 m of soil</td>
+</tr>
+<tr>
+<td>Façade bracket through insulation</td>
+<td>χ per bracket</td>
+<td>3D, one 0.6 m × 0.6 m bay between symmetry planes</td>
+</tr>
+</tbody>
+</table>
+<p>The wall of the section examples is 160 mm EPS, 240 mm masonry and 15 mm plaster, with 20 °C inside and 0 °C outside. Flanking constructions are 1.25 m long, which meets the cut-off rule of ISO 10211 7.2.2. The outside is toward −X.</p>
+<p>Every solid of these examples is ordinary Rhino geometry on an ordinary assigned layer. The example's calculation is in <strong>Bridge Analysis…</strong>, where its lengths and U-values can be inspected and changed. Those lengths are stored as numbers and do not follow later edits of the geometry: update them when you change where the model is cut or how thick a construction is.</p>
+<p>The dimensions and materials are generic and illustrative: a starting point to edit, not a certified detail. The structural thermal break of the balcony example is one solid with an equivalent conductivity of 0.15 W/(m K) for the whole element, a placeholder: put in the λeq the manufacturer states for the type, height and load class you use. To see the heat flow through individual bars, model them as solids in 3D, as in <code>ValidationData/3DTestCase_Balcony.3dm</code>.</p>
+<h3 id="the-ground-floor-example">The ground floor example</h3>
+<p>The floor is 4 m wide between its edges (B′ = 4 m), so the model holds 2 m of floor and, as ISO 10211 asks for floors on the ground, 2.5 B′ = 10 m of soil beside the building and below the floor. Its Ψ is the model's heat flow less the wall, traced from the model, and less the floor, whose U-value is calculated with ISO 13370 for a slab on the ground and stored as an entered value with its source. It is stated with room-side dimensions only. The value belongs to this floor width: for another, change the floor's length in the model and its entered U-value together. Surface resistances are those of the model's boundary conditions.</p>
+<p>The bridges form itself does not derive ground U-values; other ground junctions need the same kind of entered reference.</p>
+<h2 id="windowwall-connections">Window–wall connections</h2>
+<table>
+<thead>
+<tr>
+<th>Example</th>
+<th>Result</th>
+<th>Model</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Window jamb in a wall</td>
+<td>Uf, Ψg, installation Ψ</td>
+<td>Cut in XY, extruded along Z</td>
+</tr>
+<tr>
+<td>Window head in a wall</td>
+<td>Uf, Ψg, installation Ψ</td>
+<td>Cut in YZ, extruded along X</td>
+</tr>
+<tr>
+<td>Window sill in a wall</td>
+<td>Uf, Ψg, installation Ψ</td>
+<td>Cut in YZ, extruded along X</td>
+</tr>
+<tr>
+<td>Whole window in a wall</td>
+<td>Uw, heat flow of the installed window</td>
+<td>3D, 1.2 m × 1.2 m</td>
+</tr>
+</tbody>
+</table>
+<p>Choose the frame system and the glazing on the right; the list offers the built-in glazing and the document's WINDOW imports that fit the frame's rebate. The IGU + frame stays a read-only library component in the example. The wall, the installation joint and the boundary conditions are editable solids, and a <strong>Supports</strong> layer takes what you add: a lintel, a sill board, a roller-shutter box. Select the example's IGU + frame and press <strong>Simulate</strong>. <a href="window-components.html">Window components</a> describes the cases, the inspector and the rules for editing.</p>
+<h2 id="placing">Placing</h2>
+<p>Select an example, choose <strong>Place example in Rhino…</strong> and click an insertion point. The example gets one grouping layer with a child layer per material and boundary condition, in the document's units.</p>
+<p>A study solves everything on assigned layers together. Place one example per document, or expect it to be solved with whatever else the document holds; the browser asks before adding an example to a document that already has a model. Placing the same thermal bridge twice adds a second calculation.</p>
+</div>
+</div></section>
+</main>
+<footer>
+<div class="container">
+<p>© 2026 Timur Dogan. All rights reserved.</p>
+</div>
+</footer>
+</body>
+</html>

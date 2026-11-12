@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Getting started – KOALA</title>
+<meta content="Choose an application, define a model and run a first calculation." name="description"/>
+<meta content="KOALA documentation, thermal analysis tutorial, Rhino 3D, U-value calculation, heat transfer analysis, standalone app" name="keywords"/>
+<meta content="Timur Dogan" name="author"/>
+<meta content="Getting started – KOALA" property="og:title"/>
+<meta content="Choose an application, define a model and run a first calculation." property="og:description"/>
+<meta content="website" property="og:type"/>
+<script src="theme.js?v=2026-11-01"></script>
+<link href="style.css?v=2026-11-11-nav" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<!-- MathJax for rendering equations -->
+<script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']]
+            }
+        };
+    </script>
+<script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- Umami Analytics -->
+<script data-website-id="d8ea1a0b-7c84-4131-9d98-2c71283b3c57" defer="" src="https://cloud.umami.is/script.js"></script>
+<script defer src="docs.js?v=2026-11-11-nav"></script>
+</head>
+<body class="documentation-page">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header><div class="container"><nav aria-label="Main navigation">
+<a class="logo" href="index.html"><img alt="KOALA home" src="img/KLogo.png" style="height:40px;width:auto"/></a>
+<div class="nav-links">
+<a href="index.html">Overview</a><a aria-current="true" class="active" href="documentation.html">Documentation</a>
+<a href="validation.html">Validation</a><a class="btn btn-primary" href="index.html#download">Download</a>
+<button aria-label="Switch theme" class="theme-toggle" type="button"><i class="fas fa-moon"></i></button>
+</div>
+<!-- docs:mobile:start -->
+<details class="mobile-site-menu"><summary>Menu</summary><div class="mobile-site-links"><a href="index.html">Overview</a>
+<a aria-current="true" class="active" href="documentation.html">Documentation</a>
+<a href="validation.html">Validation</a>
+<a class="btn btn-primary" href="index.html#download">Download</a></div></details>
+<!-- docs:mobile:end -->
+</nav></div></header>
+<main id="main-content">
+<section class="hero docs-hero"><div class="container">
+<!-- docs:breadcrumbs:start -->
+<nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="documentation.html">Documentation</a></li><li><a href="documentation.html#start">Getting started</a></li><li aria-current="page">Application choice and first calculation</li></ol></nav>
+<!-- docs:breadcrumbs:end -->
+<h1>Getting started</h1><p>Choose an application, define a model and run a first calculation.</p>
+</div></section>
+<section class="documentation-content"><div class="container docs-grid docs-layout">
+<!-- docs:navigation:start -->
+<aside class="docs-sidebar"><details class="docs-menu" open>
+<summary>Documentation navigation</summary>
+<nav class="docs-nav" aria-label="Documentation chapters">
+<a class="docs-overview" href="documentation.html">Documentation overview</a>
+<details class="docs-group" open><summary>Getting started</summary><ul>
+<li><a href="getting-started.html" aria-current="page">Application choice and first calculation</a></li>
+<li><a href="installation.html">Installation</a></li>
+</ul></details>
+<details class="docs-group"><summary>Standalone editor</summary><ul>
+<li><a href="standalone-editor.html">Construction editor</a></li>
+</ul></details>
+<details class="docs-group"><summary>Rhino workflows</summary><ul>
+<li><a href="rhino-guide.html">Model setup</a></li>
+<li><a href="examples.html">Example setups</a></li>
+<li><a href="psi-chi-workflow.html">Thermal bridge analysis (Ψ / χ)</a></li>
+<li><a href="window-analysis.html">Window analysis</a></li>
+<li><a href="window-components.html">Window and IGU components</a></li>
+<li><a href="frame-assessment.html">Custom frame assessment</a></li>
+</ul></details>
+<details class="docs-group"><summary>Results and reporting</summary><ul>
+<li><a href="reporting.html">Results, reports and exports</a></li>
+</ul></details>
+<details class="docs-group"><summary>Methods and validation</summary><ul>
+<li><a href="methods.html">Calculation methods</a></li>
+<li><a href="validation.html">Validation</a></li>
+</ul></details>
+<details class="docs-group"><summary>Reference</summary><ul>
+<li><a href="reference.html">Commands, inputs and files</a></li>
+<li><a href="frame-library.html">Frame configurations and sources</a></li>
+</ul></details>
+</nav></details></aside>
+<!-- docs:navigation:end -->
+<div class="docs-main guide-copy">
+<!-- docs:contents:start -->
+<details class="page-toc" open><summary>On this page</summary>
+<nav aria-label="On this page"><ol>
+<li><a href="#choose-application">Choose an application</a>
+</li>
+<li><a href="#first-standalone">First calculation in the standalone editor</a>
+</li>
+<li><a href="#first-rhino">First calculation in Rhino</a>
+</li>
+<li><a href="#units-and-inputs">Units and model inputs</a>
+</li>
+</ol></nav></details>
+<!-- docs:contents:end -->
+<article><h2 id="choose-application">Choose an application</h2>
+<p>The standalone editor analyses layered constructions in two dimensions. The Rhino plugin analyses junctions and window details using geometry and assignments in a Rhino document. Both use the KOALA heat-transfer solver.</p>
+<p>Begin with <a href="installation.html">installation</a>, then follow the procedure for the application you use.</p></article>
+<article><h2 id="first-standalone">First calculation in the standalone editor</h2><ol>
+<li>Open a supplied construction example, or define exterior and interior boundaries and the material layers between them.</li>
+<li>Assign material properties and check layer thicknesses, framing dimensions and boundary conditions.</li>
+<li>Run the heat-transfer analysis and inspect the calculated U-value, temperature and heat flux fields.</li>
+<li>Save the construction and review the <a href="standalone-editor.html">standalone editor guide</a> for editing and exports.</li></ol></article>
+<article><h2 id="first-rhino">First calculation in Rhino</h2><ol>
+<li>Run <code>Koala</code> to open the panel. In a new document, choose <strong>Library… → Examples</strong> and place one example.</li>
+<li>Review its material assignments, indoor and outdoor boundary conditions, document units and cell size.</li>
+<li>Choose <strong>Simulate</strong> to calculate heat flow and temperatures. Inspect the result with the plane and slice controls.</li>
+<li>For Ψ or χ, review <strong>Bridge Analysis…</strong>; for Uf, Ψg, installation Ψ or Uw, review <strong>Window Analysis…</strong>.</li>
+<li>Open <strong>Report…</strong> to review the results and report requirements.</li></ol>
+<p>See <a href="examples.html">example setups</a>, <a href="rhino-guide.html">Rhino model setup</a> and <a href="reporting.html">Results and reporting</a>.</p></article>
+<article><h2 id="units-and-inputs">Units and model inputs</h2>
+<p>The Rhino panel follows the document units. Review dimensions, material conductivities, boundary temperatures and surface resistances before calculation. The standalone editor has its own unit preference.</p>
+<p>Review the <a href="methods.html#mesh">mesh settings</a> and refinement checks when assessing numerical resolution. Example materials and dimensions are illustrative inputs for a model you review and adapt.</p></article>
+</div>
+</div></section>
+</main>
+<footer>
+<div class="container">
+<p>© 2026 Timur Dogan. All rights reserved.</p>
+</div>
+</footer>
+</body>
+</html>

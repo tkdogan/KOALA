@@ -4,17 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KOALA - Advanced Thermal Analysis Tool & Rhino Plugin</title>
+    <title>KOALA – Thermal Bridge Analysis, Standalone and for Rhino 3D</title>
     <meta name="description"
-        content="KOALA is a standalone cross-platform app and Rhino 3D plugin for advanced construction assembly thermal analysis, U-Value calculation, and 3D heat transfer modeling.">
+        content="KOALA is a standalone cross-platform app and Rhino 3D plugin for construction assembly thermal analysis, U-value calculation, window frame and installation assessment, and 3D heat transfer modeling.">
     <meta name="keywords"
         content="thermal analysis, U-value, building assemblies, Rhino 3D plugin, heat transfer, condensation risk, architecture software">
     <meta name="author" content="Timur Dogan">
-    <meta property="og:title" content="KOALA - Advanced Thermal Analysis Tool">
+    <meta property="og:title" content="KOALA – Building Envelope Thermal Analysis">
     <meta property="og:description"
-        content="KOALA is a 2D and 3D thermal analysis software for analyzing building assemblies, available as a standalone app or Rhino plugin.">
+        content="Two- and three-dimensional heat transfer analysis of building envelope assemblies, thermal bridges and windows, with U-values, Ψ/χ values, reports and EnergyPlus export.">
+    <meta property="og:image" content="img/generated/rhino_balcony_light.png">
     <meta property="og:type" content="website">
-    <link rel="stylesheet" href="style.css">
+    <script src="theme.js?v=2026-11-01"></script>
+    <link rel="stylesheet" href="style.css?v=2026-11-11-nav">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- MathJax for rendering equations -->
 
@@ -23,6 +25,7 @@
     <!-- Umami Analytics -->
     <script defer src="https://cloud.umami.is/script.js"
         data-website-id="d8ea1a0b-7c84-4131-9d98-2c71283b3c57"></script>
+<script defer src="docs.js?v=2026-11-11-nav"></script>
 </head>
 
 <body>
@@ -33,12 +36,26 @@
                     <img src="img/KLogo.png" alt="KOALA" style="height: 40px; width: auto;">
                 </div>
                 <div class="nav-links">
-                    <a href="#features">Features</a>
+                    <a href="#standalone">App</a>
+                    <a href="#rhino">Rhino</a>
+                    <a href="#windows">Windows</a>
+                    <a href="validation.html">Validation</a>
                     <a href="documentation.html">Documentation</a>
                     <a href="#download" class="btn btn-primary">
-                        <i class="fas fa-download"></i> Get KOALA
+                        <i class="fas fa-download"></i> Download
                     </a>
+                    <button class="theme-toggle" type="button" aria-label="Switch theme"><i class="fas fa-moon"></i></button>
                 </div>
+<!-- docs:mobile:start -->
+<details class="mobile-site-menu"><summary>Menu</summary><div class="mobile-site-links"><a href="#standalone">App</a>
+<a href="#rhino">Rhino</a>
+<a href="#windows">Windows</a>
+<a href="validation.html">Validation</a>
+<a href="documentation.html">Documentation</a>
+<a href="#download" class="btn btn-primary">
+                        <i class="fas fa-download"></i> Download
+                    </a></div></details>
+<!-- docs:mobile:end -->
             </nav>
         </div>
     </header>
@@ -46,156 +63,253 @@
     <main>
 
         <section class="hero">
-
-
             <div class="container">
+                <span class="section-tag">Building envelope heat transfer</span>
                 <h1>KOALA<sub>flx</sub></h1>
-                <p>K-value Optimization & Advanced Layer Analysis<br>Thermal Analysis of Building Assemblies</p>
-                <p
-                    style="margin-top: 1rem; color: var(--text-muted); max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.6;">
-                    Koala can be used as a standalone cross-platform app that allows construction entry with a table
-                    form. It also offers a Rhino plugin that supports full 3D heat transfer analysis.
-                </p>
-                <!-- <div class="hero-cta">
-                    <a href="#download" class="btn btn-primary">
-                        <i class="fas fa-download"></i> Get KOALA
-                    </a>
-                    <a href="#features" class="btn btn-secondary">
-                        Learn More
-                    </a>
-                </div> -->
-                <div class="hero-image">
-                    <img src="img/screenshot.png" alt="KOALA Interface">
+                <p class="hero-lead">KOALA calculates two- and three-dimensional steady-state heat transfer in building envelope assemblies.
+                    The standalone editor and Rhino plugin support building science research and teaching,
+                    architectural detailing, and engineering assessment.</p>
+                <div class="hero-cta">
+                    <a href="#download" class="btn btn-primary"><i class="fas fa-download"></i> Download the app</a>
+                    <a href="#rhino" class="btn btn-outline"><img src="img/rhinod_icon.webp" alt="" class="btn-icon"> Rhino plugin installation</a>
                 </div>
+                <div class="hero-split">
+                    <!-- --ar: the shots' width / height, so both render at the same height -->
+                    <figure style="--ar: 1.5517">
+                        <img class="theme-light" src="img/generated/standalone_SteelStudWall_temperature.png?v=2026-11-11"
+                            alt="KOALA standalone app: steel stud wall with its temperature field">
+                        <img class="theme-dark" src="img/generated/standalone_SteelStudWall_temperature_dark.png?v=2026-11-11"
+                            alt="KOALA standalone app: steel stud wall with its temperature field">
+                        <figcaption><strong>KOALA app</strong> · 2D analysis of layered constructions</figcaption>
+                    </figure>
+                    <figure style="--ar: 1.6736">
+                        <img class="theme-light" src="img/generated/rhino_balcony_light.png?v=2026-11-11"
+                            alt="KOALA for Rhino: temperature slice through two balconies, one with a thermal break, in the Rhino viewport">
+                        <img class="theme-dark" src="img/generated/rhino_balcony_dark.png?v=2026-11-11"
+                            alt="KOALA for Rhino: temperature slice through two balconies, one with a thermal break, in the Rhino viewport">
+                        <figcaption><strong>KOALA for Rhino</strong> · 3D analysis of Rhino geometry</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
 
+        <section class="proof-strip">
+            <div class="container proof-grid">
+                <a href="validation.html" class="proof">
+                    <i class="fas fa-check-double"></i>
+                    <strong>ISO 10211 validation</strong>
+                    <span>All four Annex C reference cases, 2D and 3D</span>
+                </a>
+                <a href="methods.html#mesh" class="proof">
+                    <i class="fas fa-border-all"></i>
+                    <strong>Graded mesh</strong>
+                    <span>Material interfaces resolved with graded cell spacing</span>
+                </a>
+                <a href="methods.html#solver-internals" class="proof">
+                    <i class="fas fa-bolt"></i>
+                    <strong>Numerical methods</strong>
+                    <span>Sparse Cholesky and conjugate gradient solvers</span>
+                </a>
+                <a href="#download" class="proof">
+                    <i class="fas fa-download"></i>
+                    <strong>Public beta</strong>
+                    <span>Windows, macOS and Rhino 8</span>
+                </a>
+            </div>
+        </section>
+
+        <section id="standalone" class="usecase">
+            <div class="container usecase-grid">
+                <div class="usecase-text">
+                    <span class="section-tag">KOALA app · Windows &amp; macOS</span>
+                    <h2>Thermal analysis of layered constructions</h2>
+                    <p>Define homogeneous layers, timber or steel studs, profiles and partially filled cavities
+                        in a construction table. The two-dimensional calculation resolves heat flow through the
+                        layer arrangement and framing, with results for comparison to the simplified estimate.</p>
+                    <ul class="checklist">
+                        <li>Calculated U-value including thermal bridging, with a parallel-path estimate for comparison</li>
+                        <li>Temperature and heat flux fields, with steady-state vapour diffusion screening</li>
+                        <li>ISO 13786 dynamic properties: decrement factor, time shift, admittance</li>
+                        <li>EnergyPlus IDF export of an equivalent construction matched to the calculated U-value</li>
+                    </ul>
+                    <a href="getting-started.html" class="text-link">Read the standalone guide <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <figure class="usecase-image">
+                    <img class="theme-light" src="img/generated/standalone_TimberFrameWall_temperature.png?v=2026-11-11" alt="Timber frame wall analysed in the KOALA app">
+                    <img class="theme-dark" src="img/generated/standalone_TimberFrameWall_temperature_dark.png?v=2026-11-11" alt="Timber frame wall analysed in the KOALA app">
+                </figure>
+            </div>
+        </section>
+
+        <section id="rhino" class="usecase alt">
+            <div class="container usecase-grid reverse">
+                <div class="usecase-text">
+                    <span class="section-tag">KOALA for Rhino · Rhino 8</span>
+                    <h2>Three-dimensional junction analysis in Rhino</h2>
+                    <p>Assign materials and indoor and outdoor boundary conditions to Rhino layers.
+                        KOALA discretises the assigned geometry on a graded grid to calculate heat transfer
+                        through balconies, brackets, window installations and other junctions.
+                        Layer priority determines material assignment where volumes overlap.</p>
+                    <ul class="checklist">
+                        <li>Temperature, heat flux and relative humidity fields displayed as viewport slices</li>
+                        <li>Linear (Ψ) and point (χ) thermal bridges, plus Uf, Ψg, installation Ψ and Uw</li>
+                        <li>Clear-field layer tracing and EnergyPlus export matched to the calculated U-value</li>
+                        <li>Export slices and result points as Rhino geometry for use in Rhino and Grasshopper</li>
+                    </ul>
+                    <a href="rhino-guide.html#rhino-plugin" class="text-link">Read the Rhino guide <i class="fas fa-arrow-right"></i></a>
+                    <a href="downloads/3DTestCase_Balcony.3dm" class="text-link" download><i class="fas fa-cube"></i> Download the balcony example (.3dm)</a>
+                </div>
+                <figure class="usecase-image">
+                    <img class="theme-light" src="img/generated/tile_rhino_viewport_light.png?v=2026-11-11" alt="Balcony with and without a thermal break: 3D temperature slice in Rhino">
+                    <img class="theme-dark" src="img/generated/tile_rhino_viewport_dark.png?v=2026-11-11" alt="Balcony with and without a thermal break: 3D temperature slice in Rhino">
+                </figure>
+            </div>
+        </section>
+
+        <section id="windows" class="usecase">
+            <div class="container usecase-grid">
+                <div class="usecase-text">
+                    <span class="section-tag">Windows · frames · installation details</span>
+                    <h2>Window frame, glazing-edge and installation assessment</h2>
+                    <p>The Library provides window-in-wall examples and glazing units with or without frames.
+                        Window Analysis defines the reference widths and projected outer-frame area used by
+                        each assessment. Measurements can be entered or drawn in Rhino and reviewed alongside
+                        a labelled diagram.</p>
+                    <ul class="checklist">
+                        <li>Frame Uf, glazing-edge Ψg and installation Ψ for section details</li>
+                        <li>Whole-window Uw from the projected outer-frame area</li>
+                        <li>Uf and Ψg assessment of a user-modelled frame around an IGU</li>
+                        <li>Reference measurements saved with the Rhino document and included in the shared report</li>
+                    </ul>
+                    <a href="window-analysis.html" class="text-link">Window analysis workflow <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <figure class="usecase-image">
+                    <img class="theme-light" src="img/generated/window_analysis_light.png?v=2026-11-11" alt="Window Analysis: reference measurements, coloured diagram and assessment controls" loading="lazy">
+                    <img class="theme-dark" src="img/generated/window_analysis_dark.png?v=2026-11-11" alt="Window Analysis: reference measurements, coloured diagram and assessment controls" loading="lazy">
+                    <figcaption>Reference measurements, assessment requirements and calculation controls.</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section class="workflow">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Rhino workflow</span>
+                    <h2>Rhino analysis procedure</h2>
+                </div>
+                <ol class="workflow-steps">
+                    <li><i class="fas fa-layer-group"></i><strong>Model on layers</strong><span>One Rhino layer per
+                            material, plus volumes for the indoor and outdoor air.</span></li>
+                    <li><i class="fas fa-fill-drip"></i><strong>Assign materials</strong><span>Pick from the library,
+                            or double-click to edit assigned properties. Layer order sets priority.</span></li>
+                    <li><i class="fas fa-play"></i><strong>Simulate</strong><span>Auto cell size, optional mesh check,
+                            cancellable progress.</span></li>
+                    <li><i class="fas fa-chart-area"></i><strong>Read the results</strong><span>Slices, Ψ/χ, IDF,
+                            baked geometry and report images.</span></li>
+                </ol>
             </div>
         </section>
 
         <section id="features" class="features">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-tag">Features</span>
-                    <h2>Tool For Advanced Construction Assembly Thermal Analysis</h2>
+                    <span class="section-tag">Calculation methods</span>
+                    <h2>Analysis outputs</h2>
                 </div>
-
                 <div class="features-grid">
-                    <!--<div class="feature-card">
-                        <div class="feature-image">
-                            <div class="img-placeholder">Editor Screenshot</div>
-                        </div>
-                        <div class="feature-content">
-                            <div class="feature-icon">
-                                <i class="fas fa-layer-group"></i>
-                            </div>
-                            <h3>Construction Editor</h3>
-                            <p>Build assemblies layer by layer. Manage homogeneous and inhomogeneous layers with
-                                parametric editing of thickness and stud spacing.</p>
-                        </div>
-                    </div> -->
-
                     <div class="feature-card">
                         <div class="feature-image">
-                            <img src="img/3dheatransfer.png" alt="3D Heat Transfer">
+                            <img class="theme-light" src="img/generated/tile_standalone_steelstud_temperature.png?v=2026-11-11" alt="Temperature field of a steel stud wall" loading="lazy">
+                            <img class="theme-dark" src="img/generated/tile_standalone_steelstud_temperature_dark.png?v=2026-11-11" alt="Temperature field of a steel stud wall" loading="lazy">
                         </div>
                         <div class="feature-content">
-                            <div class="feature-icon">
-                                <i class="fas fa-cubes"></i>
-                            </div>
-                            <h3>3D Heat Transfer in Rhino3d</h3>
-                            <p>Koala for Rhino supports full 3D heat transfer analysis by modeling volume blocks with
-                                assigned materials.</p>
+                            <div class="feature-icon"><i class="fas fa-temperature-high"></i></div>
+                            <h3>Temperature fields</h3>
+                            <p>Review temperature fields, isotherms and surface temperatures at framing, profiles
+                                and connections.</p>
                         </div>
                     </div>
-
                     <div class="feature-card">
                         <div class="feature-image">
-                            <img src="img/materials.png" alt="Material Management"> -->
+                            <img class="theme-light" src="img/generated/tile_standalone_framing_flux.png?v=2026-11-11" alt="Heat flux through a framed wall" loading="lazy">
+                            <img class="theme-dark" src="img/generated/tile_standalone_framing_flux_dark.png?v=2026-11-11" alt="Heat flux through a framed wall" loading="lazy">
                         </div>
                         <div class="feature-content">
-                            <div class="feature-icon">
-                                <i class="fas fa-database"></i>
-                            </div>
-                            <h3>Material Management</h3>
-                            <p>Robust built-in library of standard materials. Create custom libraries, import/export
-                                JSON, and manage distinct properties.</p>
+                            <div class="feature-icon"><i class="fas fa-bars-staggered"></i></div>
+                            <h3>Heat flux</h3>
+                            <p>Examine heat flux distributions and the contribution of framing to overall thermal transmittance.</p>
                         </div>
                     </div>
-
                     <div class="feature-card">
                         <div class="feature-image">
-                            <img src="img/export.png" alt="Equivalent U-Value and IDF">
+                            <img class="theme-light" src="img/generated/tile_standalone_timber_humidity.png?v=2026-11-11" alt="Relative humidity in a timber frame wall" loading="lazy">
+                            <img class="theme-dark" src="img/generated/tile_standalone_timber_humidity_dark.png?v=2026-11-11" alt="Relative humidity in a timber frame wall" loading="lazy">
                         </div>
                         <div class="feature-content">
-                            <div class="feature-icon">
-                                <i class="fas fa-calculator"></i>
-                            </div>
-                            <h3>U-Value Calculation</h3>
-                            <p>Compute U-values that take into account the thermal bridging effect in inhomogeneous
-                                constructions and export equivalent homogenious construction to EnergyPlus IDF.</p>
+                            <div class="feature-icon"><i class="fas fa-tint"></i></div>
+                            <h3>Condensation risk</h3>
+                            <p>Steady-state vapour diffusion screening (Glaser method) identifies calculated condensation conditions.</p>
                         </div>
                     </div>
-
                     <div class="feature-card">
                         <div class="feature-image contain">
-                            <img src="img/dynamic.png" alt="Dynamic Analysis"> -->
+                            <img src="img/validation/iso-case-3_thermal.png" alt="ISO 10211 case 3 temperature section">
                         </div>
                         <div class="feature-content">
-                            <div class="feature-icon">
-                                <i class="fas fa-wave-square"></i>
-                            </div>
-                            <h3>Dynamic Analysis</h3>
-                            <p>ISO 13786 compliant dynamic solver. Calculate decrement factor, phase shift, and thermal
-                                admittance for time-dependent response.</p>
+                            <div class="feature-icon"><i class="fas fa-cubes"></i></div>
+                            <h3>3D thermal bridges</h3>
+                            <p>Projecting slabs, corners and point bridges solved in 3D, with Ψ and χ values.</p>
                         </div>
                     </div>
-
                     <div class="feature-card">
-                        <div class="feature-image contain">
-                            <img src="img/temperaturegradient.png" alt="Temperature Gradient">
+                        <div class="feature-image">
+                            <img src="img/export.png" alt="Equivalent U-value and IDF export">
                         </div>
                         <div class="feature-content">
-                            <div class="feature-icon">
-                                <i class="fas fa-temperature-high"></i>
-                            </div>
-                            <h3>Temperature Gradient Mapping</h3>
-                            <p>Visualize temperature distribution to identify thermal weak points to facilitate thermal
-                                bridging mitigation.</p>
+                            <div class="feature-icon"><i class="fas fa-calculator"></i></div>
+                            <h3>EnergyPlus export</h3>
+                            <p>Export an equivalent layered construction with the modelled thicknesses and mass,
+                                matched to the calculated U-value.</p>
                         </div>
                     </div>
-
                     <div class="feature-card">
                         <div class="feature-image contain">
-                            <img src="img/heatflux.png" alt="Heat Flux Mapping"> -->
-                            <div class="img-placeholder">Heat Flux Mapping</div>
+                            <img src="img/dynamic.png" alt="Dynamic analysis">
                         </div>
                         <div class="feature-content">
-                            <div class="feature-icon">
-                                <i class="fas fa-bars-staggered"></i>
-                            </div>
-                            <h3>Heat Flux Mapping</h3>
-                            <p>Visualize heat flux through your construction assembly components</p>
-                        </div>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-image contain">
-                            <img src="img/condensation.png" alt="Condensation Risk">
-
-                        </div>
-                        <div class="feature-content">
-                            <div class="feature-icon">
-                                <i class="fas fa-tint"></i>
-                            </div>
-                            <h3>Condensation Risk Analysis</h3>
-                            <p>Perform a 2D condensation risk assessment and understand where moisture issues could
-                                arise.</p>
+                            <div class="feature-icon"><i class="fas fa-wave-square"></i></div>
+                            <h3>Dynamic properties</h3>
+                            <p>ISO 13786 decrement factor, time shift and admittance for summer comfort and thermal
+                                mass.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-
+        <section class="validation-teaser">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Numerical verification</span>
+                    <h2>ISO 10211 reference cases</h2>
+                    <p class="section-lead">The tables report results from automated solver tests. For the projecting-slab
+                        reference case, the reported heat-flow difference is below 0.15 % at the default cell size.</p>
+                </div>
+                <!-- validation:summary-compact:start -->
+<table class="validation-table" data-wrap="1">
+<thead><tr style="border-bottom: 1px solid var(--border-color);"><th style="padding: 0.5rem;">ISO 10211 reference case</th><th style="padding: 0.5rem;">Solver</th><th style="padding: 0.5rem;">Result</th></tr></thead><tbody>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;"><a href="validation.html#iso-case-1">Case 1: half square column</a></td><td style="padding: 0.5rem;">2D</td><td style="padding: 0.5rem;"><span class="badge pass">✓ Complies with ISO 10211</span></td></tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;"><a href="validation.html#iso-case-1">Case 1: half square column</a></td><td style="padding: 0.5rem;">3D</td><td style="padding: 0.5rem;"><span class="badge pass">✓ Complies with ISO 10211</span></td></tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;"><a href="validation.html#iso-case-2">Case 2: frame with thin aluminium</a></td><td style="padding: 0.5rem;">2D</td><td style="padding: 0.5rem;"><span class="badge pass">✓ Complies with ISO 10211</span></td></tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;"><a href="validation.html#iso-case-2">Case 2: frame with thin aluminium</a></td><td style="padding: 0.5rem;">3D</td><td style="padding: 0.5rem;"><span class="badge pass">✓ Complies with ISO 10211</span></td></tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;"><a href="validation.html#iso-case-3">Case 3: rooms in a wall corner with a projecting slab</a></td><td style="padding: 0.5rem;">3D</td><td style="padding: 0.5rem;"><span class="badge pass">✓ Complies with ISO 10211</span></td></tr>
+<tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 0.5rem;"><a href="validation.html#iso-case-4">Case 4: iron bar through insulation</a></td><td style="padding: 0.5rem;">3D</td><td style="padding: 0.5rem;"><span class="badge pass">✓ Complies with ISO 10211</span></td></tr>
+</tbody></table>
+                <!-- validation:summary-compact:end -->
+                <p style="text-align: center; margin-top: 1.5rem;"><a href="validation.html" class="text-link">All
+                        results and figures <i class="fas fa-arrow-right"></i></a></p>
+            </div>
+        </section>
 
         <section id="download" class="download">
             <div class="container">
@@ -224,7 +338,7 @@
                         <a href="#" class="btn btn-primary" onclick="openModal('macOS', '')">Download
                             .dmg</a>
                         <div style="margin-top: 10px;">
-                            <a href="documentation.html#mac-installation"
+                            <a href="installation.html#mac-installation"
                                 style="color: var(--text-muted); text-decoration: underline; font-size: 0.9em;">Installation
                                 Instructions</a>
                         </div>
@@ -236,9 +350,9 @@
                         </div>
                         <h3>Rhino 3D</h3>
                         <span class="version">Plugin (v1.0.0)</span>
-                        <a href="documentation.html#rhino-plugin" class="btn btn-secondary">Package Manager</a>
+                        <a href="rhino-guide.html#rhino-plugin" class="btn btn-secondary">Package Manager</a>
                         <div style="margin-top: 10px;">
-                            <a href="documentation.html#rhino-plugin"
+                            <a href="rhino-guide.html#rhino-plugin"
                                 style="color: var(--text-muted); text-decoration: underline; font-size: 0.9em;">Installation
                                 Instructions</a>
                         </div>
@@ -258,10 +372,9 @@
     <div id="downloadModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Get KOALA for <span id="platformName"></span></h2>
-            <p style="margin-bottom: 1rem; color: var(--text-muted);">Please share a bit about yourself. The installer
-                download links will be provided after this short form. By downloading and installing the software, you
-                are agreeing to the <a href="license.html" target="_blank"
+            <h2>Download KOALA for <span id="platformName"></span></h2>
+            <p style="margin-bottom: 1rem; color: var(--text-muted);">Complete the registration form to access the installer
+                download links. Downloading and installing the software indicates acceptance of the <a href="license.html" target="_blank"
                     style="color: var(--primary); text-decoration: underline;">license</a>.</p>
 
             <div class="form-container">

@@ -1,23 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
 
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentation - KOALA Thermal Analysis Tool</title>
-    <meta name="description"
-        content="Comprehensive documentation and user guide for the KOALA Thermal Analysis application and its Rhino 3D plugin. Learn about materials, constructions, 3D modeling, and the solver.">
-    <meta name="keywords"
-        content="KOALA documentation, thermal analysis tutorial, Rhino 3D, U-value calculation, heat transfer analysis, standalone app">
-    <meta name="author" content="Timur Dogan">
-    <meta property="og:title" content="KOALA Documentation">
-    <meta property="og:description"
-        content="User guide and tutorials for the KOALA Thermal Analysis Tool and Rhino 3D Plugin.">
-    <meta property="og:type" content="website">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- MathJax for rendering equations -->
-    <script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Documentation – KOALA</title>
+<meta content="Guides and reference material for the standalone construction editor and Rhino plugin." name="description"/>
+<meta content="KOALA documentation, thermal analysis tutorial, Rhino 3D, U-value calculation, heat transfer analysis, standalone app" name="keywords"/>
+<meta content="Timur Dogan" name="author"/>
+<meta content="Documentation – KOALA" property="og:title"/>
+<meta content="Guides and reference material for the standalone construction editor and Rhino plugin." property="og:description"/>
+<meta content="website" property="og:type"/>
+<script src="theme.js?v=2026-11-01"></script>
+<link href="style.css?v=2026-11-11-nav" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<!-- MathJax for rendering equations -->
+<script>
         window.MathJax = {
             tex: {
                 inlineMath: [['\\(', '\\)']],
@@ -25,454 +23,80 @@
             }
         };
     </script>
-
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-    <!-- Umami Analytics -->
-    <script defer src="https://cloud.umami.is/script.js"
-        data-website-id="d8ea1a0b-7c84-4131-9d98-2c71283b3c57"></script>
+<script async="" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- Umami Analytics -->
+<script data-website-id="d8ea1a0b-7c84-4131-9d98-2c71283b3c57" defer="" src="https://cloud.umami.is/script.js"></script>
+<script defer src="docs.js?v=2026-11-11-nav"></script>
 </head>
+<body class="documentation-page" data-docs-index="">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header><div class="container"><nav aria-label="Main navigation">
+<a class="logo" href="index.html"><img alt="KOALA home" src="img/KLogo.png" style="height:40px;width:auto"/></a>
+<div class="nav-links">
+<a href="index.html">Overview</a><a aria-current="true" class="active" href="documentation.html">Documentation</a>
+<a href="validation.html">Validation</a><a class="btn btn-primary" href="index.html#download">Download</a>
+<button aria-label="Switch theme" class="theme-toggle" type="button"><i class="fas fa-moon"></i></button>
+</div>
+<!-- docs:mobile:start -->
+<details class="mobile-site-menu"><summary>Menu</summary><div class="mobile-site-links"><a href="index.html">Overview</a>
+<a aria-current="true" class="active" href="documentation.html">Documentation</a>
+<a href="validation.html">Validation</a>
+<a class="btn btn-primary" href="index.html#download">Download</a></div></details>
+<!-- docs:mobile:end -->
+</nav></div></header>
+<main id="main-content">
+<section class="hero docs-hero"><div class="container">
+<!-- docs:breadcrumbs:start -->
+<nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="index.html">Overview</a></li><li aria-current="page">Documentation</li></ol></nav>
+<!-- docs:breadcrumbs:end -->
+<h1>Documentation</h1><p>Guides and reference material for the standalone construction editor and Rhino plugin.</p>
+</div></section>
+<section class="documentation-content"><div class="container docs-grid docs-layout">
+<!-- docs:navigation:start -->
+<aside class="docs-sidebar"><details class="docs-menu" open>
+<summary>Documentation navigation</summary>
+<nav class="docs-nav" aria-label="Documentation chapters">
+<a class="docs-overview" href="documentation.html" aria-current="page">Documentation overview</a>
+<details class="docs-group"><summary>Getting started</summary><ul>
+<li><a href="getting-started.html">Application choice and first calculation</a></li>
+<li><a href="installation.html">Installation</a></li>
+</ul></details>
+<details class="docs-group"><summary>Standalone editor</summary><ul>
+<li><a href="standalone-editor.html">Construction editor</a></li>
+</ul></details>
+<details class="docs-group"><summary>Rhino workflows</summary><ul>
+<li><a href="rhino-guide.html">Model setup</a></li>
+<li><a href="examples.html">Example setups</a></li>
+<li><a href="psi-chi-workflow.html">Thermal bridge analysis (Ψ / χ)</a></li>
+<li><a href="window-analysis.html">Window analysis</a></li>
+<li><a href="window-components.html">Window and IGU components</a></li>
+<li><a href="frame-assessment.html">Custom frame assessment</a></li>
+</ul></details>
+<details class="docs-group"><summary>Results and reporting</summary><ul>
+<li><a href="reporting.html">Results, reports and exports</a></li>
+</ul></details>
+<details class="docs-group"><summary>Methods and validation</summary><ul>
+<li><a href="methods.html">Calculation methods</a></li>
+<li><a href="validation.html">Validation</a></li>
+</ul></details>
+<details class="docs-group"><summary>Reference</summary><ul>
+<li><a href="reference.html">Commands, inputs and files</a></li>
+<li><a href="frame-library.html">Frame configurations and sources</a></li>
+</ul></details>
+</nav></details></aside>
+<!-- docs:navigation:end -->
+<div class="docs-main guide-copy">
+<!-- docs:contents:start -->
 
-<body>
-    <header>
-        <div class="container">
-            <nav>
-                <div class="logo">
-                    <a href="index.html" style="text-decoration: none; color: inherit;">
-                        <img src="img/KLogo.png" alt="KOALA" style="height: 40px; width: auto;">
-                    </a>
-                </div>
-                <div class="nav-links">
-                    <a href="index.html#features">Features</a>
-                    <a href="#" class="active" style="color: var(--secondary);">Documentation</a>
-                    <a href="index.html#download" class="btn btn-primary">Download</a>
-                </div>
-            </nav>
-        </div>
-    </header>
-
-    <main>
-        <section class="hero" style="padding-bottom: 50px; padding-top: 150px;">
-            <div class="container">
-                <h1>Documentation</h1>
-            </div>
-        </section>
-
-        <section class="documentation-content">
-            <div class="container">
-                <div class="docs-grid" style="display: grid; grid-template-columns: 250px 1fr; gap: 4rem;">
-
-                    <!-- Sidebar Navigation -->
-                    <aside class="docs-nav" style="position: sticky; top: 100px; height: fit-content;">
-                        <ul style="list-style: none;">
-                            <li style="margin-bottom: 1rem;"><a href="#getting-started"
-                                    style="font-weight: 600;">Getting Started</a></li>
-                            <li style="margin-bottom: 1rem;"><a href="#mac-installation" style="font-weight: 600;">Mac
-                                    Installation</a></li>
-                            <li style="margin-bottom: 1rem;"><a href="#interface" style="font-weight: 600;">Interface
-                                    Overview</a></li>
-                            <li style="margin-bottom: 1rem;"><a href="#materials" style="font-weight: 600;">Material
-                                    Library</a></li>
-                            <li style="margin-bottom: 1rem;"><a href="#constructions" style="font-weight: 600;">Building
-                                    Constructions</a></li>
-                            <li style="margin-bottom: 1rem;"><a href="#solver" style="font-weight: 600;">Running the
-                                    Solver</a></li>
-                            <li style="margin-bottom: 1rem;"><a href="#results" style="font-weight: 600;">Analyzing
-                                    Results</a></li>
-                            <li style="margin-bottom: 1rem;"><a href="#idf-export" style="font-weight: 600;">EnergyPlus
-                                    Export</a></li>
-                            <li style="margin-bottom: 1rem;"><a href="#rhino-plugin" style="font-weight: 600;">Rhino
-                                    Plugin</a></li>
-                            <li style="margin-bottom: 1rem; margin-top: 2rem;"><a href="validation.html" style="font-weight: 600; color: var(--secondary); border-left: 2px solid var(--secondary); padding-left: 10px;">Validation and Software Comparison</a></li>
-                        </ul>
-                    </aside>
-
-                    <!-- Main Content -->
-                    <div class="docs-main">
-
-                        <article id="getting-started" style="margin-bottom: 4rem;">
-                            <h2>Getting Started</h2>
-                            <p style="margin-bottom: 1rem; color: var(--text-muted);">
-                                Koala can be used as a standalone cross-platform app that allows construction entry with
-                                a table form. It is distributed as an MSI installer for Windows or DMG for macOS.
-                            </p>
-                            <p style="margin-bottom: 1rem; color: var(--text-muted);">
-                                Alternatively, Koala for Rhino supports full 3D heat transfer analysis by modeling
-                                volume blocks with assigned materials.
-                            </p>
-                        </article>
-
-                        <article id="mac-installation" style="margin-bottom: 4rem;">
-                            <h2>Mac Installation</h2>
-                            <p style="margin-bottom: 1rem; color: var(--text-muted);">
-                                Since app notarization requires a paid Apple Developer account, users will have to use
-                                the following workaround.
-                            </p>
-
-                            <h3 style="margin-top: 2rem; margin-bottom: 1rem;">The "Open Anyway" Workaround</h3>
-                            <p style="margin-bottom: 1rem; color: var(--text-muted);">
-                                This method allows you to manually authorize a specific app without lowering your
-                                overall security settings.
-                            </p>
-
-                            <ol style="list-style: decimal; margin-left: 20px; color: var(--text-muted);">
-                                <li style="margin-bottom: 0.5rem;"><strong>Attempt to open the app:</strong> Try
-                                    launching the app normally. When the warning dialog appears, click <em>Done</em> or
-                                    <em>Cancel</em> to dismiss it.
-                                </li>
-                                <li style="margin-bottom: 0.5rem;"><strong>Go to System Settings:</strong> Open the
-                                    Apple menu and select <em>System Settings</em> (or <em>System Preferences</em> on
-                                    older macOS versions).</li>
-                                <li style="margin-bottom: 0.5rem;"><strong>Navigate to Privacy & Security:</strong>
-                                    Click <em>Privacy & Security</em> in the sidebar and scroll down to the Security
-                                    section.</li>
-                                <li style="margin-bottom: 0.5rem;"><strong>Click Open Anyway:</strong> Look for a
-                                    message stating that the app was blocked. Click the <em>Open Anyway</em> button next
-                                    to it.</li>
-                                <li style="margin-bottom: 0.5rem;"><strong>Note:</strong> This button only remains
-                                    visible for about one hour after the failed attempt to open the app.</li>
-                                <li style="margin-bottom: 0.5rem;"><strong>Authenticate:</strong> Enter your Mac's login
-                                    password or use Touch ID when prompted.</li>
-                                <li style="margin-bottom: 0.5rem;"><strong>Confirm:</strong> A final warning will appear
-                                    asking if you are sure. Click <em>Open</em> to launch the app.</li>
-                            </ol>
-                        </article>
-
-                        <article id="interface" style="margin-bottom: 4rem;">
-                            <h2>Interface Overview</h2>
-                            <p style="margin-bottom: 1rem; color: var(--text-muted);">
-                                The KOALA interface is designed to be intuitive and efficient. The main window is
-                                divided into three primary areas:
-                            </p>
-                            <ol style="list-style: decimal; margin-left: 20px; color: var(--text-muted);">
-                                <li style="margin-bottom: 0.5rem;"><strong>Navigation Bar:</strong> Access different
-                                    modules (Materials, Constructions, Solver).</li>
-                                <li style="margin-bottom: 0.5rem;"><strong>Workspace:</strong> The central area where
-                                    you edit materials or build geometric models.</li>
-                                <li style="margin-bottom: 0.5rem;"><strong>Properties Panel:</strong> Located on the
-                                    right, this panel shows details for the currently selected item.</li>
-                            </ol>
-                        </article>
-
-                        <article id="materials" style="margin-bottom: 4rem;">
-                            <h2>Material Library</h2>
-                            <p style="margin-bottom: 1rem; color: var(--text-muted);">
-                                Before creating a construction, you need materials. KOALA comes with a standard library,
-                                but you can create your own.
-                            </p>
-                            <p style="color: var(--text-muted);">
-                                Navigate to the <strong>Materials</strong> tab. Click "New Material" to define
-                                properties like Thermal Conductivity (λ), Density (ρ), and Specific Heat Capacity (cp).
-                            </p>
-                        </article>
-
-                        <article id="constructions" style="margin-bottom: 4rem;">
-                            <h2>Building Constructions</h2>
-                            <p style="margin-bottom: 1rem; color: var(--text-muted);">
-                                The <strong>Construction Editor</strong> is where you define the geometry of your
-                                building assembly.
-                            </p>
-                            <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Adding Layers</h3>
-                            <p style="color: var(--text-muted);">
-                                You can add layers to your assembly. Each layer can be:
-                            </p>
-                            <ul style="list-style: disc; margin-left: 20px; color: var(--text-muted);">
-                                <li><strong>Homogeneous:</strong> A single material slab.</li>
-                                <li><strong>Inhomogeneous:</strong> A layer with repeating thermal bridges (e.g.,
-                                    studs). You can define the stud spacing and width parametrically.</li>
-                            </ul>
-                            <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Surface Resistances (Rsi/Rse)</h3>
-                            <p style="color: var(--text-muted); margin-bottom: 1rem;">
-                                Every construction requires <strong>Surface Film Resistances</strong> to account for the
-                                thin layer of air clinging to the surface.
-                            </p>
-                            <ul style="list-style: disc; margin-left: 20px; color: var(--text-muted);">
-                                <li><strong>Rsi (Interior):</strong> Represents the resistance at the indoor surface
-                                    (convection + radiation). Standard value for walls: <strong>0.13 m²K/W</strong>.
-                                </li>
-                                <li><strong>Rse (Exterior):</strong> Represents the resistance at the outdoor surface
-                                    (influenced by wind). Standard value for walls: <strong>0.04 m²K/W</strong>.</li>
-                            </ul>
-                            <p
-                                style="color: var(--text-muted); margin-top: 1rem; font-size: 0.9em; font-style: italic;">
-                                KOALA automatically adds these layers to your construction stack. You do not need to
-                                model them as material layers, but you can adjust their values in the Properties Panel
-                                if simulating floors or roofs.
-                            </p>
-                        </article>
-
-                        <article id="solver" style="margin-bottom: 4rem;">
-                            <h2>Running the Solver</h2>
-                            <p style="margin-bottom: 1rem; color: var(--text-muted);">
-                                KOALA performs two types of thermal simulations simultaneously: a
-                                <strong>Steady-State
-                                    Analysis</strong> and a <strong>Dynamic Analysis (ISO 13786)</strong>.
-                            </p>
-
-                            <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">Boundary Conditions</h3>
-                            <p style="color: var(--text-muted); margin-bottom: 1rem;">
-                                The solver calculates heat flow based on the temperature difference (ΔT) between the
-                                indoor and outdoor environments.
-                            </p>
-                            <ul style="list-style: disc; margin-left: 20px; color: var(--text-muted);">
-                                <li><strong>Temperature:</strong> Set the Interior (e.g., 20°C) and Exterior (e.g.,
-                                    -10°C) air temperatures. The solver uses these to calculate the temperature
-                                    gradient through the assembly.</li>
-                                <li><strong>Relative Humidity (RH):</strong> Define the moisture content of the air
-                                    on both sides. This is critical for <strong>Glaser Method</strong> condensation
-                                    risk analysis.</li>
-                            </ul>
-
-                            <p style="color: var(--text-muted); margin-bottom: 1rem;">
-                                The solver discretizes your construction into a 2D mesh of rectangular finite
-                                elements.
-                                It solves the steady-state heat diffusion equation to determine the temperature at
-                                every
-                                node. This is crucial for identifying <strong>thermal bridges</strong>—areas where
-                                heat
-                                bypasses insulation (like through steel or wood studs), significantly reducing the
-                                wall's effective performance.
-                            </p>
-
-                            <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">Dynamic Analysis</h3>
-                            <p style="color: var(--text-muted);">
-                                In addition to the static U-value, KOALA computes dynamic thermal properties
-                                according
-                                to the ISO 13786 standard. This simulates how the wall reacts to fluctuating outdoor
-                                temperatures over a 24-hour cycle, which is essential for understanding
-                                <strong>thermal
-                                    mass</strong> and time lag.
-                            </p>
-                        </article>
-
-                        <article id="results" style="margin-bottom: 4rem;">
-                            <h2>Results</h2>
-                            <ul
-                                style="list-style: disc; margin-left: 20px; color: var(--text-muted); margin-bottom: 1.5rem;">
-                                <li style="margin-bottom: 0.5rem;">
-                                    <strong>U-Value (Thermal Transmittance):</strong> Represents the rate of heat
-                                    transfer through the assembly. Lower values mean better insulation. KOALA
-                                    calculates
-                                    the <span style="font-family: monospace;">U_Simulated</span>, which accurately
-                                    accounts
-                                    for 2D thermal bridging effects that simple 1D calculations miss. <span
-                                        style="font-family: monospace;">U_Estimated</span> uses a simple parallel path
-                                    U-Value calculation that is only valid if there is little to no lateral conducion
-                                    the the inhomogeneous layers.
-                                </li>
-                                <li style="margin-bottom: 0.5rem;"><strong>Decrement Factor:</strong> How much the
-                                    exterior temperature wave is dampened before reaching the interior. Lower is
-                                    better
-                                    for stable indoor temperatures.</li>
-                                <li style="margin-bottom: 0.5rem;"><strong>Time Shift (Phase Lag):</strong> The time
-                                    delay (in hours) for the peak outdoor temperature to reach the inside. A high
-                                    time
-                                    shift (e.g., 8-12 hours) can delay heat gain until night when it can be flushed
-                                    out.
-                                </li>
-                                <!-- <li style="margin-bottom: 0.5rem;">
-                                        <strong>Temperature Field:</strong> Creating a color gradient map helps
-                                        visualize
-                                        the temperature distribution. Use this to spot cold spots on the interior
-                                        surface
-                                        where <strong>condensation</strong> might occur.
-                                    </li>
-                                    <li style="margin-bottom: 0.5rem;">
-                                        <strong>Heat Flux</strong> Arrows show the path of least resistance for
-                                        heat flow. Large arrows through studs indicate significant thermal bridging.
-                                    </li>
-                                        <li style="margin-bottom: 0.5rem;">
-                                        <strong>Condensation Risk</strong> Arrows show the path of least resistance for
-                                        heat flow. Large arrows through studs indicate significant thermal bridging.
-                                    </li> -->
-                            </ul>
-
-
-                        </article>
-
-                        <article id="idf-export" style="margin-bottom: 4rem;">
-                            <h2>EnergyPlus Integration (IDF Export)</h2>
-                            <p style="margin-bottom: 1rem; color: var(--text-muted);">
-                                KOALA bridges the gap between detailed component analysis and whole-building energy
-                                simulation.
-                            </p>
-                            <p style="color: var(--text-muted); margin-bottom: 1rem;">
-                                You can export your construction as an <strong>EnergyPlus Input File
-                                    (.idf)</strong>.
-                                This export generates an approximate "equivalent layer" representation of your
-                                complex
-                                2D assembly that can be used in energy models.
-                            </p>
-
-                            <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">How to Use in Energy Modeling
-                            </h3>
-                            <ol style="list-style: decimal; margin-left: 20px; color: var(--text-muted);">
-                                <li style="margin-bottom: 0.5rem;"><strong>Export:</strong> in KOALA, go to `File >
-                                    Export > EnergyPlus IDF`.</li>
-                                <li style="margin-bottom: 0.5rem;"><strong>Import:</strong> Open your primary energy
-                                    model (in tools like OpenStudio, ClimateStudio, or DesignBuilder).</li>
-                                <li style="margin-bottom: 0.5rem;"><strong>Copy Objects:</strong> Copy the
-                                    `Material`
-                                    and `Construction` definitions from the exported IDF text file into your model's
-                                    IDF
-                                    file.</li>
-                                <li style="margin-bottom: 0.5rem;"><strong>Assign:</strong> Assign the new
-                                    construction
-                                    to surfaces (Walls, Roofs) in your building energy model.</li>
-                            </ol>
-                            <p
-                                style="color: var(--text-muted); margin-top: 1rem; font-size: 0.9em; font-style: italic;">
-                                Note: This export uses "equivalent homogeneous layers" to mimic the thermal mass and
-                                resistance of the 2D assembly.
-                            </p>
-                        </article>
-
-                        <article id="rhino-plugin" style="margin-bottom: 4rem;">
-                            <h2>Rhino Plugin</h2>
-                            <p style="margin-bottom: 1rem; color: var(--text-muted);">
-                                While the standalone Koala application offers a quick and easy table form entry for
-                                layered constructions, the <strong>Koala for Rhino</strong> plugin takes your analysis
-                                capabilities into three dimensions.
-                            </p>
-                            <p style="color: var(--text-muted); margin-bottom: 1rem;">
-                                Koala for Rhino supports full 3D heat transfer analysis by modeling volume blocks with
-                                assigned materials. This allows you to evaluate complex geometric intersections,
-                                corners, structural penetrations, and custom architectural details that cannot be easily
-                                captured in a 1D or 2D table format.
-                            </p>
-
-                            <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Installation via Package Manager</h3>
-                            <p style="color: var(--text-muted); margin-bottom: 1rem;">
-                                The easiest way to install Koala for Rhino is through the built-in
-                                <strong>PackageManager</strong> command. Search for "Koala" and click install.
-                            </p>
-                            <div style="margin-bottom: 1.5rem;">
-                                <img src="img/rhinopackagemanager.png" alt="Rhino Package Manager"
-                                    style="max-width: 100%; border-radius: 8px; border: 1px solid var(--border-color);">
-                            </div>
-                            <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
-                                After installation, you <strong>must restart Rhino</strong> for the plugin to load
-                                properly. Once restarted, simply type the <code>KOALA</code> command into the Rhino
-                                command line to begin. A panel with a layer editor and simulation controls will appear.
-                            </p>
-
-                            <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Layer Editor and Voxelization</h3>
-                            <p style="color: var(--text-muted); margin-bottom: 1rem;">
-                                The layer editor is used to assign materials and boundary conditions to the geometric
-                                volumes in your document. An important feature of the KOALA solver is how it handles
-                                intersections through layer priorities during the <strong>voxelization process</strong>.
-                            </p>
-                            <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
-                                <strong>Layer order matters:</strong> Layers higher up in the list have priority over
-                                lower layers. This is an extremely useful feature that allows modelers to draw volumes
-                                that intersect each other without having to perform tedious boolean operations. For
-                                example, if you have small metal fasteners that protrude through a layer of insulation,
-                                you just need to ensure the fasteners are placed on a layer that is <em>higher</em> in
-                                the list than the insulation layer. During voxelization, the fasteners will
-                                automatically carve their volume out of the insulation.
-                            </p>
-
-                            <div style="margin-bottom: 2rem;">
-                                <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Interface Overview</h3>
-                                <img src="img/koalarhinoscreenshot.png" alt="Koala Rhino Interface"
-                                    style="max-width: 100%; border-radius: 8px; border: 1px solid var(--border-color); margin-bottom: 1.5rem;">
-                                <p style="color: var(--text-muted); margin-bottom: 1rem;">
-                                    The <strong>Koala UI Panel</strong> consists of several key sections:
-                                </p>
-                                <ul
-                                    style="list-style: disc; margin-left: 20px; color: var(--text-muted); margin-bottom: 1.5rem;">
-                                    <li style="margin-bottom: 0.5rem;"><strong>Layer List:</strong> Displays and manages
-                                        your active Rhino layers along with their assigned materials. You can adjust the
-                                        layer priority for voxelization here.</li>
-                                    <li style="margin-bottom: 0.5rem;"><strong>Settings & Refresh:</strong> The settings
-                                        icon opens configuration options for the voxel grid resolution. The refresh
-                                        button synchronizes the panel if you've made changes to the Rhino layer
-                                        structure.</li>
-                                    <li style="margin-bottom: 0.5rem;"><strong>Simulation Controls:</strong> Set up your
-                                        boundary conditions including interior and exterior temperatures, as well as the
-                                        surface film resistances (Rsi and Rse).</li>
-                                    <li style="margin-bottom: 0.5rem;"><strong>Compute:</strong> The prominent button at
-                                        the bottom initiates the voxelization and 3D heat transfer solver process.</li>
-                                    <li style="margin-bottom: 0.5rem;"><strong>Visualization Modes:</strong> Once the
-                                        simulation completes, use these toggles to display geometry, thermal gradients,
-                                        heat flux vectors, or relative humidity right in the Rhino viewport.</li>
-                                </ul>
-                            </div>
-
-                            <ul
-                                style="list-style: disc; margin-left: 20px; color: var(--text-muted); margin-bottom: 1.5rem;">
-                                <li style="margin-bottom: 0.5rem;"><strong>3D Modeling:</strong> Build custom details
-                                    using Rhino's native volume blocks and solid modeling tools.</li>
-                                <li style="margin-bottom: 0.5rem;"><strong>Material Assignment:</strong> Assign thermal
-                                    properties directly to your 3D geometry using the layer editor.</li>
-                                <li style="margin-bottom: 0.5rem;"><strong>Advanced Analysis:</strong> Analyze full 3D
-                                    heat flows to accurately evaluate thermal bridges in joints and connections.</li>
-                            </ul>
-                        </article>
-
-                        <!-- 
-                            <article id="under-the-hood" style="margin-bottom: 4rem;">
-                                <h2>Simulations Under the Hood</h2>
-                                <p style="margin-bottom: 1rem; color: var(--text-muted);">
-                                    KOALA combines two advanced numerical methods to provide a complete picture of
-                                    thermal performance.
-                                </p>
-
-                                <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">The Finite Element Method (FEM)
-                                </h3>
-                                <p style="color: var(--text-muted); margin-bottom: 1rem;">
-                                    For steady-state analysis, KOALA solves the 2D heat diffusion equation:
-                                </p>
-                                <div class="math-block"
-                                    style="background: var(--dark-surface); padding: 1.5rem; border-radius: 8px; margin: 1rem 0; border-left: 3px solid var(--secondary); color: var(--text-muted); font-family: 'Fira Code', monospace; overflow-x: auto;">
-                                    \[ \frac{\partial}{\partial x} \left( k_x \frac{\partial T}{\partial x} \right) +
-                                    \frac{\partial}{\partial y} \left( k_y \frac{\partial T}{\partial y} \right) = 0 \]
-                                </div>
-                                <p style="color: var(--text-muted); margin-bottom: 1rem;">
-                                    <strong>Discretization:</strong> The geometry is decomposed into a structured mesh
-                                    of 4-node rectangular elements.
-                                </p>
-                                <p style="color: var(--text-muted); margin-bottom: 1rem;">
-                                    <strong>System Solution:</strong> The global stiffness matrix \([K]\) is assembled
-                                    from local element properties, and the system \([K]\{T\} = \{F\}\) is solved, where
-                                    \(\{T\}\) is the nodal temperature vector and \(\{F\}\) represents boundary fluxes.
-                                </p>
-
-                                <h3 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">ISO 13786 Matrix Method</h3>
-                                <p style="color: var(--text-muted); margin-bottom: 1rem;">
-                                    For dynamic analysis, we treat the wall as a multi-layer system responding to a
-                                    sinusoidal temperature wave with a period of 24 hours (86400 seconds).
-                                </p>
-                                <p style="color: var(--text-muted); margin-bottom: 1rem;">
-                                    Each layer is represented by a <strong>transfer matrix</strong> \(Z\) that relates
-                                    temperature (\(T\)) and heat flux (\(q\)) on one side to the other:
-                                </p>
-                                <div class="math-block"
-                                    style="background: var(--dark-surface); padding: 1.5rem; border-radius: 8px; margin: 1rem 0; border-left: 3px solid var(--secondary); color: var(--text-muted); font-family: 'Fira Code', monospace; overflow-x: auto;">
-                                    \[
-                                    \begin{pmatrix} T_{out} \\ q_{out} \end{pmatrix} =
-                                    \begin{pmatrix} Z_{11} & Z_{12} \\ Z_{21} & Z_{22} \end{pmatrix}
-                                    \begin{pmatrix} T_{in} \\ q_{in} \end{pmatrix}
-                                    \]
-                                </div>
-                                <p style="color: var(--text-muted);">
-                                    By multiplying these matrices for all layers, we determine the <strong>periodic
-                                        thermal transmittance</strong> (\(Y_{mn}\)), which directly yields the decrement
-                                    factor and time shift.
-                                </p>
-                            </article> -->
-
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Timur Dogan. All rights reserved.</p>
-        </div>
-    </footer>
+<!-- docs:contents:end -->
+<p>For a first calculation, begin with <a href="getting-started.html">Getting started</a>. For an existing model, select the relevant workflow or reference topic below.</p><div class="doc-category-grid"><section class="doc-category" id="start"><h2 id="getting-started-section">Getting started</h2><ul><li><a data-topic-redirect="" href="getting-started.html" id="getting-started">Application choice and first calculation</a></li><li><a href="installation.html">Installation</a></li><li><a data-topic-redirect="" href="installation.html#mac-installation" id="mac-installation">macOS opening procedure</a></li></ul></section><section class="doc-category" id="standalone"><h2 id="standalone-editor">Standalone editor</h2><ul><li><a href="standalone-editor.html">Construction editor</a></li><li><a data-topic-redirect="" href="standalone-editor.html#interface" id="interface">Interface overview</a></li><li><a data-topic-redirect="" href="standalone-editor.html#materials" id="materials">Materials and boundary libraries</a></li><li><a data-topic-redirect="" href="standalone-editor.html#constructions" id="constructions">Layers and framing</a></li><li><a data-topic-redirect="" href="standalone-editor.html#solver" id="solver">Run a calculation</a></li><li><a data-topic-redirect="" href="standalone-editor.html#results" id="results">Inspect standalone results</a></li></ul></section><section class="doc-category" id="rhino-workflows"><h2 id="rhino-workflows-section">Rhino workflows</h2><ul><li><a data-topic-redirect="" href="rhino-guide.html#rhino-plugin" id="rhino-plugin">Model setup and layer assignments</a></li><li><a href="examples.html">Example setups</a></li><li><a href="psi-chi-workflow.html">Thermal bridge analysis (Ψ / χ)</a></li><li><a data-topic-redirect="" href="window-analysis.html" id="window-analysis">Window analysis (Uf, Ψg, Ψ, Uw)</a></li><li><a href="window-components.html">Window and IGU components</a></li><li><a href="frame-assessment.html">Custom frame assessment</a></li></ul></section><section class="doc-category" id="results-reporting"><h2 id="results-and-reporting">Results and reporting</h2><ul><li><a href="reporting.html">Result inspection and reporting</a></li><li><a href="reporting.html#surface-check">Surface-temperature checks</a></li><li><a href="reporting.html#saved-fields">Save and load result fields</a></li><li><a data-topic-redirect="" href="reporting.html#idf-export" id="idf-export">EnergyPlus export</a></li></ul></section><section class="doc-category" id="methods-validation"><h2 id="methods-and-validation">Methods and validation</h2><ul><li><a data-topic-redirect="" href="methods.html#mesh" id="mesh">Mesh construction and verification</a></li><li><a data-topic-redirect="" href="methods.html#solver-internals" id="solver-internals">Heat transfer, moisture and dynamic methods</a></li><li><a href="validation.html">ISO 10211 reference cases and THERM comparison</a></li></ul></section><section class="doc-category" id="reference"><h2 id="reference-section">Reference</h2><ul><li><a href="reference.html">Commands, inputs and file formats</a></li><li><a href="frame-library.html">Frame configurations and sources</a></li></ul></section></div>
+</div>
+</div></section>
+</main>
+<footer>
+<div class="container">
+<p>© 2026 Timur Dogan. All rights reserved.</p>
+</div>
+</footer>
 </body>
-
 </html>
